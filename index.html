@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="Marca personal — Portfolio, servicios y contacto." />
-  <title>Brander Trujillo ~ Ingeniero</title>
+  <title>Brander Trujillo ~ Ingeniero, Economista & Gestor Público</title>
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="brander-favicon.png" />
@@ -17,6 +17,10 @@
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- AOS (Animate On Scroll) CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
   <script>
     tailwind.config = {
       theme: {
@@ -27,7 +31,8 @@
           colors: {
             brand: {
               50: '#f5f7ff',
-              500: '#4f46e5',
+              500: '#6366f1',
+              600: '#4f46e5',
               700: '#3730a3'
             }
           }
@@ -35,116 +40,118 @@
       }
     }
   </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    /* Animación sutil de respiración para el botón de WhatsApp */
+    @keyframes pulse-subtle {
+      0%, 100% { transform: scale(1); box-shadow: 0 4px 14px rgba(34, 197, 94, 0.4); }
+      50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(34, 197, 94, 0.6); }
+    }
+    .animate-pulse-subtle { animation: pulse-subtle 3s infinite ease-in-out; }
+  </style>
 </head>
-<body class="font-sans bg-slate-950 text-slate-100 antialiased">
+<body class="font-sans bg-slate-950 text-slate-100 antialiased overflow-x-hidden">
 
   <!-- Navbar -->
-  <header class="fixed top-0 inset-x-0 z-30 bg-slate-950/80 backdrop-blur-md border-b border-slate-900">
+  <header class="fixed top-0 inset-x-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-900 transition-all duration-300">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="#" class="flex items-center">
+      <a href="#" class="flex items-center transition transform hover:scale-105">
         <img src="firma-logo.png" alt="Brander Trujillo" class="h-10 object-contain" />
-              </a>
-      <nav class="hidden md:flex items-center gap-6 text-sm">
-        <a href="#about" class="text-slate-300 hover:text-white">Sobre mí</a>
-        <a href="#investigaciones" class="text-slate-300 hover:text-white">Investigaciones</a>
-        <a href="#blog" class="text-slate-300 hover:text-white">Blog</a>
-        <a href="#contacto" class="text-slate-300 hover:text-white">Contacto</a>
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <a href="#about" class="text-slate-400 hover:text-white transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-brand-500 after:transition-all hover:after:w-full py-1">Sobre mí</a>
+        <a href="#investigaciones" class="text-slate-400 hover:text-white transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-brand-500 after:transition-all hover:after:w-full py-1">Investigaciones</a>
+        <a href="#blog" class="text-slate-400 hover:text-white transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-brand-500 after:transition-all hover:after:w-full py-1">Blog</a>
+        <a href="#contacto" class="text-slate-400 hover:text-white transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-brand-500 after:transition-all hover:after:w-full py-1">Contacto</a>
       </nav>
-      <button id="navToggle" class="md:hidden text-slate-300">
+      <button id="navToggle" class="md:hidden text-slate-300 focus:outline-none">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
         </svg>
       </button>
     </div>
-    <div id="mobileMenu" class="md:hidden px-6 pb-4 hidden">
-      <a href="#about" class="block py-2 text-slate-300 hover:text-white">Sobre mí</a>
-      <a href="#investigaciones" class="block py-2 text-slate-300 hover:text-white">Investigaciones</a>
-      <a href="#blog" class="block py-2 text-slate-300 hover:text-white">Blog</a>
-      <a href="#contacto" class="block py-2 text-slate-300 hover:text-white">Contacto</a>
+    <div id="mobileMenu" class="md:hidden px-6 pb-4 hidden bg-slate-950/95 border-b border-slate-900 shadow-xl transition-all">
+      <a href="#about" class="block py-2.5 text-slate-300 hover:text-white border-b border-slate-900/50">Sobre mí</a>
+      <a href="#investigaciones" class="block py-2.5 text-slate-300 hover:text-white border-b border-slate-900/50">Investigaciones</a>
+      <a href="#blog" class="block py-2.5 text-slate-300 hover:text-white border-b border-slate-900/50">Blog</a>
+      <a href="#contacto" class="block py-2.5 text-slate-300 hover:text-white">Contacto</a>
     </div>
   </header>
 
-  <!-- Ajusta el main para no quedar oculto bajo el header fijo -->
-<main class="max-w-6xl mx-auto px-6 py-12 pt-24">
-  <!-- Hero -->
-  <section class="mt-12">
-    <div class="bg-slate-950 text-white rounded-2xl relative overflow-hidden shadow-xl bg-gradient-to-tr from-slate-900 via-slate-950 to-indigo-950 px-8 py-16 md:p-16">
-      <div class="grid md:grid-cols-12 gap-8 items-center">
-        <div class="md:col-span-7">
-          <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight italic" style="font-family: 'Playfair Display', serif;">Hola, soy Brander Trujillo.</h1>
-          <p class="mt-6 max-w-xl text-lg text-slate-300">Ingeniero Empresarial y Economista especializado en optimización presupuestal, gerencia de proyectos y modernización digital de organizaciones.</p>
-          <div class="mt-8 flex flex-wrap gap-3">
-            <a href="#investigaciones" class="inline-flex items-center justify-center px-5 py-2.5 border border-slate-700 bg-slate-900/80 text-white font-medium rounded-lg shadow-sm transition-all duration-300 hover:bg-brand-500 hover:border-brand-500 hover:text-white hover:-translate-y-0.5">Investigaciones</a>
-            <a href="#blog" class="inline-flex items-center justify-center px-5 py-2.5 border border-slate-700 bg-slate-900/80 text-white font-medium rounded-lg shadow-sm transition-all duration-300 hover:bg-brand-500 hover:border-brand-500 hover:text-white hover:-translate-y-0.5">Artículos</a>
-            <a href="#contacto" class="inline-flex items-center justify-center px-5 py-2.5 border border-slate-700 bg-slate-900/80 text-white font-medium rounded-lg shadow-sm transition-all duration-300 hover:bg-brand-500 hover:border-brand-500 hover:text-white hover:-translate-y-0.5">Contacto</a>
+  <main class="max-w-6xl mx-auto px-6 py-12 pt-24">
+    <!-- Hero -->
+    <section class="mt-12" data-aos="fade-up" data-aos-duration="1000">
+      <div class="bg-slate-950 text-white rounded-3xl relative overflow-hidden shadow-2xl bg-gradient-to-tr from-slate-900 via-slate-950 to-indigo-950 border border-slate-800/50 px-8 py-16 md:p-16">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(99,102,241,0.15),transparent_45%)]"></div>
+        <div class="grid md:grid-cols-12 gap-8 items-center relative z-10">
+          <div class="md:col-span-7">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight" style="font-family: 'Playfair Display', serif; line-height: 1.2;">Hola, soy <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-500 to-indigo-300">Brander Trujillo</span></h1>
+            <p class="mt-6 max-w-xl text-lg text-slate-300 leading-relaxed">Ingeniero Empresarial y Economista especializado en optimización presupuestal, gerencia de proyectos estratégicos y modernización digital de organizaciones.</p>
+            <div class="mt-8 flex flex-wrap gap-4">
+              <a href="#investigaciones" class="inline-flex items-center justify-center px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-brand-500/20">Investigaciones</a>
+              <a href="#blog" class="inline-flex items-center justify-center px-6 py-3 border border-slate-800 bg-slate-900/80 hover:bg-slate-800 text-white font-semibold rounded-xl shadow-sm transition-all duration-300 hover:-translate-y-1">Artículos</a>
+              <a href="#contacto" class="inline-flex items-center justify-center px-6 py-3 border border-slate-800 bg-slate-900/80 hover:bg-slate-800 text-white font-semibold rounded-xl shadow-sm transition-all duration-300 hover:-translate-y-1">Contacto</a>
+            </div>
           </div>
-          
-        </div>
 
-        <div class="md:col-span-5 flex justify-center relative">
-          <div class="absolute -inset-1 m-auto w-72 h-72 rounded-full bg-gradient-to-r from-brand-500 to-indigo-500 blur opacity-25"></div>
-          <div class="relative w-64 h-64 rounded-full border-4 border-slate-900 shadow-2xl overflow-hidden">
-            <img src="fotoperfil.jpg" alt="Brander Trujillo" class="w-full h-full object-cover" />
+          <div class="md:col-span-5 flex justify-center relative mt-8 md:mt-0">
+            <div class="absolute -inset-4 m-auto w-72 h-72 rounded-full bg-gradient-to-r from-brand-500 to-indigo-500 blur-2xl opacity-20 animate-pulse"></div>
+            <div class="relative w-64 h-64 rounded-2xl border-2 border-slate-800 shadow-2xl overflow-hidden transform rotate-2 hover:rotate-0 transition-transform duration-500">
+              <img src="fotoperfil.jpg" alt="Brander Trujillo" class="w-full h-full object-cover" />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
     <!-- About -->
-    <section id="about" class="mt-16 bg-slate-900/50 border border-slate-800 rounded-xl p-8 shadow-sm">
-      <div class="grid gap-8 md:grid-cols-2">
+    <section id="about" class="mt-20 bg-slate-900/30 border border-slate-900 rounded-2xl p-8 md:p-10 shadow-lg relative" data-aos="fade-up">
+      <div class="grid gap-12 md:grid-cols-2">
         <div>
-          <h2 class="text-2xl font-semibold text-white">Sobre mí</h2>
-          <p class="mt-4 text-slate-300 leading-relaxed">
+          <h2 class="text-3xl font-bold text-white tracking-tight relative after:absolute after:bottom-[-8px] after:left-0 after:h-1 after:w-12 after:bg-brand-500">Sobre mí</h2>
+          <p class="mt-8 text-slate-300 leading-relaxed text-base">
             Soy Ingeniero Empresarial y Magíster en Gestión Pública por la Universidad San Ignacio de Loyola (USIL). Mi enfoque profesional combina la ingeniería de negocios, la analítica económica y la modernización del Estado. Me especializo en la optimización de presupuestos públicos, la estructuración de proyectos estratégicos y la integración de tecnologías emergentes e Inteligencia Artificial para maximizar la eficiencia y la transparencia en las organizaciones.
           </p>
-          <div class="mt-6 flex flex-wrap gap-3">
-            <span class="inline-flex items-center rounded-full border border-slate-800 bg-slate-950/80 px-3 py-2 text-sm font-medium text-slate-100">🛠️ Ingeniero</span>
-            <span class="inline-flex items-center rounded-full border border-slate-800 bg-slate-950/80 px-3 py-2 text-sm font-medium text-slate-100">📈 Economista</span>
-            <span class="inline-flex items-center rounded-full border border-slate-800 bg-slate-950/80 px-3 py-2 text-sm font-medium text-slate-100">🏛️ Gestor Público</span>
+          <div class="mt-8 flex flex-wrap gap-2.5">
+            <span class="inline-flex items-center rounded-xl border border-slate-800 bg-slate-900/80 px-4 py-2 text-sm font-medium text-indigo-300 shadow-inner">🛠️ Ingeniero</span>
+            <span class="inline-flex items-center rounded-xl border border-slate-800 bg-slate-900/80 px-4 py-2 text-sm font-medium text-indigo-300 shadow-inner">📈 Economista</span>
+            <span class="inline-flex items-center rounded-xl border border-slate-800 bg-slate-900/80 px-4 py-2 text-sm font-medium text-indigo-300 shadow-inner">🏛️ Gestor Público</span>
           </div>
         </div>
         <div>
-          <h3 class="text-lg font-semibold text-white">Redes sociales</h3>
-          <div class="mt-6 space-y-4">
-            <a href="https://web.facebook.com/brandertrujillo?locale=es_LA" target="_blank" rel="noopener noreferrer" class="group block rounded-xl border border-slate-800/80 bg-slate-900/60 p-5 shadow-md transition-all duration-300 hover:bg-slate-800 hover:border-brand-500/50">
-              <div class="flex items-center gap-4">
-                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-100 text-blue-700">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24h11.495v-9.294H9.691V11.09h3.129V8.413c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.464.099 2.797.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.762v2.313h3.587l-.467 3.616h-3.12V24h6.116c.73 0 1.324-.593 1.324-1.325V1.325C24 .593 23.407 0 22.675 0z"/>
-                  </svg>
-                </div>
-                <div>
-                  <p class="text-sm font-semibold text-slate-100">Facebook</p>
-                  <p class="text-xs text-slate-400">Presencia institucional y contacto</p>
-                </div>
+          <h3 class="text-xl font-semibold text-white mb-6">Canales Profesionales</h3>
+          <div class="space-y-4">
+            <a href="https://web.facebook.com/brandertrujillo?locale=es_LA" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 rounded-xl border border-slate-900 bg-slate-950/40 p-4 shadow-sm transition-all duration-300 hover:bg-slate-900 hover:border-slate-800 hover:-translate-y-1">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-600/10 text-blue-400 group-hover:scale-110 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24h11.495v-9.294H9.691V11.09h3.129V8.413c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.464.099 2.797.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.762v2.313h3.587l-.467 3.616h-3.12V24h6.116c.73 0 1.324-.593 1.324-1.325V1.325C24 .593 23.407 0 22.675 0z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-200">Facebook</p>
+                <p class="text-xs text-slate-400">Presencia institucional y contacto comunitario</p>
               </div>
             </a>
-            <a href="https://www.tiktok.com/@brandertrujillo" target="_blank" rel="noopener noreferrer" class="group block rounded-xl border border-slate-800/80 bg-slate-900/60 p-5 shadow-md transition-all duration-300 hover:bg-slate-800 hover:border-brand-500/50">
-              <div class="flex items-center gap-4">
-                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-black text-white">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12.75 2.25h-1.5v4.064a3.001 3.001 0 0 1-1.5-.414V2.25H7.5v6.75h3.75v8.25c0 1.242-1.008 2.25-2.25 2.25S6.75 18.492 6.75 17.25 7.758 15 9 15c.408 0 .79.11 1.125.3V9.75h3.75V7.5h-3.75V2.25z"/>
-                  </svg>
-                </div>
-                <div>
-                  <p class="text-sm font-semibold text-slate-100">TikTok</p>
-                  <p class="text-xs text-slate-400">Contenido profesional y tendencias</p>
-                </div>
+            <a href="https://www.tiktok.com/@brandertrujillo" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 rounded-xl border border-slate-900 bg-slate-950/40 p-4 shadow-sm transition-all duration-300 hover:bg-slate-900 hover:border-slate-800 hover:-translate-y-1">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-800 text-white group-hover:scale-110 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12.75 2.25h-1.5v4.064a3.001 3.001 0 0 1-1.5-.414V2.25H7.5v6.75h3.75v8.25c0 1.242-1.008 2.25-2.25 2.25S6.75 18.492 6.75 17.25 7.758 15 9 15c.408 0 .79.11 1.125.3V9.75h3.75V7.5h-3.75V2.25z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-200">TikTok</p>
+                <p class="text-xs text-slate-400">Análisis técnico, divulgación y tendencias de IA</p>
               </div>
             </a>
-            <a href="https://www.linkedin.com/in/brandertrujillo/" target="_blank" rel="noopener noreferrer" class="group block rounded-xl border border-slate-800/80 bg-slate-900/60 p-5 shadow-md transition-all duration-300 hover:bg-slate-800 hover:border-brand-500/50">
-              <div class="flex items-center gap-4">
-                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-700">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
-                  </svg>
-                </div>
-                <div>
-                  <p class="text-sm font-semibold text-slate-100">LinkedIn</p>
-                  <p class="text-xs text-slate-400">Perfil profesional y networking</p>
-                </div>
+            <a href="https://www.linkedin.com/in/brandertrujillo/" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 rounded-xl border border-slate-900 bg-slate-950/40 p-4 shadow-sm transition-all duration-300 hover:bg-slate-900 hover:border-slate-800 hover:-translate-y-1">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-600/10 text-indigo-400 group-hover:scale-110 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-200">LinkedIn</p>
+                <p class="text-xs text-slate-400">Red profesional, consultoría y artículos científicos</p>
               </div>
             </a>
           </div>
@@ -153,53 +160,61 @@
     </section>
 
     <!-- Investigaciones -->
-    <section id="investigaciones" class="mt-12 bg-slate-900/40 border border-slate-800/80 rounded-xl p-8 shadow-sm">
-      <h2 class="text-2xl font-bold text-white mb-2">Investigaciones</h2>
-      <p class="text-slate-300 text-sm mb-6">Trabajos académicos y técnicos disponibles en repositorios institucionales.</p>
+    <section id="investigaciones" class="mt-20 border-t border-slate-900 pt-16" data-aos="fade-up">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8">
+        <div>
+          <h2 class="text-3xl font-bold text-white tracking-tight">Investigaciones Científicas</h2>
+          <p class="text-slate-400 text-sm mt-2">Tesis y artículos técnicos indexados en repositorios universitarios oficiales.</p>
+        </div>
+      </div>
+      
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- Tarjeta 1 -->
-        <article class="bg-slate-900/60 border border-slate-800/80 rounded-xl shadow-md overflow-hidden hover:bg-slate-800 hover:border-brand-500/50 transition-all duration-300">
+        <article class="bg-slate-900/20 border border-slate-900 rounded-2xl shadow-xl overflow-hidden hover:bg-slate-900/60 hover:border-slate-800 transition-all duration-300 flex flex-col justify-between group">
           <div class="p-6">
-            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-300">Posgrado — Gestión Pública & APP</span>
-            <h4 class="mt-5 text-lg font-semibold text-slate-100">Percepción de los factores limitantes en la ejecución de proyectos de infraestructura a través de las asociaciones público-privadas adjudicados por proinversión en el sector de educación en el Perú (2002-2022)</h4>
-            <p class="mt-4 text-sm text-slate-300 leading-relaxed">Análisis crítico y cualitativo sobre las barreras burocráticas, regulatorias y financieras que afectan la ejecución de infraestructura educativa bajo la modalidad de Asociaciones Público-Privadas (APP). Evalúa la gestión de ProInversión y el impacto de los factores limitantes en el desarrollo de colegios y centros educativos durante las últimas dos décadas.</p>
+            <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-semibold bg-indigo-500/10 text-indigo-300">Magíster — Gestión Pública & APP</span>
+            <h4 class="mt-5 text-base font-bold text-slate-100 group-hover:text-brand-500 transition-colors line-clamp-4">Percepción de los factores limitantes en la ejecución de proyectos de infraestructura a través de las asociaciones público-privadas adjudicados por proinversión en el sector de educación en el Perú (2002-2022)</h4>
+            <p class="mt-4 text-xs text-slate-400 leading-relaxed line-clamp-5">Análisis crítico y cualitativo sobre las barreras burocráticas, regulatorias y financieras que afectan la ejecución de infraestructura educativa bajo la modalidad de Asociaciones Público-Privadas (APP). Evalúa la gestión de ProInversión y el impacto de los factores limitantes en el desarrollo de colegios y centros educativos durante las últimas dos décadas.</p>
           </div>
-          <div class="border-t border-slate-800/80 px-6 py-4 flex items-center justify-between">
-            <a href="https://hdl.handle.net/20.500.14005/15705" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-brand-500 text-white text-xs font-semibold rounded-full transition transform duration-300 hover:bg-brand-700 hover:-translate-y-0.5">Ver documento
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          <div class="px-6 pb-6 pt-2">
+            <a href="https://hdl.handle.net/20.500.14005/15705" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full gap-2 px-4 py-2.5 bg-slate-950 border border-slate-800 text-slate-200 text-xs font-semibold rounded-xl transition hover:bg-brand-600 hover:border-brand-600 hover:text-white">
+              Descargar desde repositorio oficial
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
             </a>
           </div>
         </article>
 
         <!-- Tarjeta 2 -->
-        <article class="bg-slate-900/60 border border-slate-800/80 rounded-xl shadow-md overflow-hidden hover:bg-slate-800 hover:border-brand-500/50 transition-all duration-300">
+        <article class="bg-slate-900/20 border border-slate-900 rounded-2xl shadow-xl overflow-hidden hover:bg-slate-900/60 hover:border-slate-800 transition-all duration-300 flex flex-col justify-between group">
           <div class="p-6">
-            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-300">Pregrado — Ingeniería & Logística</span>
-            <h4 class="mt-5 text-lg font-semibold text-slate-100">Aplicación del modelo SERVQUAL para medir la calidad en el servicio de la empresa Serpost</h4>
-            <p class="mt-4 text-sm text-slate-300 leading-relaxed">Evaluación cuantitativa aplicada al sector de servicios postales y logísticos del Estado mediante la metodología SERVQUAL. Análisis estadístico de brechas entre las expectativas y las percepciones de los usuarios para optimizar dimensiones de fiabilidad, capacidad de respuesta y tangibilidad en la gestión operativa.</p>
+            <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-semibold bg-indigo-500/10 text-indigo-300">Ingeniería — Calidad & Logística</span>
+            <h4 class="mt-5 text-base font-bold text-slate-100 group-hover:text-brand-500 transition-colors line-clamp-4">Aplicación del modelo SERVQUAL para medir la calidad en el servicio de la empresa Serpost</h4>
+            <p class="mt-4 text-xs text-slate-400 leading-relaxed line-clamp-5">Evaluación cuantitativa aplicada al sector de servicios postales y logísticos del Estado mediante la metodología SERVQUAL. Análisis estadístico de brechas entre las expectativas y las percepciones de los usuarios para optimizar dimensiones de fiabilidad, capacidad de respuesta y tangibilidad en la gestión operativa.</p>
           </div>
-          <div class="border-t border-slate-800/80 px-6 py-4 flex items-center justify-between">
-            <a href="https://hdl.handle.net/20.500.14005/12289" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-brand-500 text-white text-xs font-semibold rounded-full transition transform duration-300 hover:bg-brand-700 hover:-translate-y-0.5">Ver documento
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          <div class="px-6 pb-6 pt-2">
+            <a href="https://hdl.handle.net/20.500.14005/12289" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full gap-2 px-4 py-2.5 bg-slate-950 border border-slate-800 text-slate-200 text-xs font-semibold rounded-xl transition hover:bg-brand-600 hover:border-brand-600 hover:text-white">
+              Descargar desde repositorio oficial
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
             </a>
           </div>
         </article>
 
         <!-- Tarjeta 3 -->
-        <article class="bg-slate-900/60 border border-slate-800/80 rounded-xl shadow-md overflow-hidden hover:bg-slate-800 hover:border-brand-500/50 transition-all duration-300">
+        <article class="bg-slate-900/20 border border-slate-900 rounded-2xl shadow-xl overflow-hidden hover:bg-slate-900/60 hover:border-slate-800 transition-all duration-300 flex flex-col justify-between group">
           <div class="p-6">
-            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-300">Investigación — Productividad & Operaciones</span>
-            <h4 class="mt-5 text-lg font-semibold text-slate-100">Implementación de la Metodología 5s para mejorar la productividad en el taller de confección de una empresa textil</h4>
-            <p class="mt-4 text-sm text-slate-300 leading-relaxed">Estudio técnico de ingeniería de procesos enfocado en la filosofía Lean Manufacturing mediante el despliegue de las 5S. Aborda la optimización del espacio de trabajo, la reducción de tiempos muertos en la línea de producción y la estandarización de flujos operativos para maximizar la productividad.</p>
+            <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-semibold bg-indigo-500/10 text-indigo-300">Procesos — Productividad & Textil</span>
+            <h4 class="mt-5 text-base font-bold text-slate-100 group-hover:text-brand-500 transition-colors line-clamp-4">Implementación de la Metodología 5s para mejorar la productividad en el taller de confección de una empresa textil</h4>
+            <p class="mt-4 text-xs text-slate-400 leading-relaxed line-clamp-5">Estudio técnico de ingeniería de procesos enfocado en la filosofía Lean Manufacturing mediante el despliegue de las 5S. Aborda la optimización del espacio de trabajo, la reducción de tiempos muertos en la línea de producción y la estandarización de flujos operativos para maximizar la productividad.</p>
           </div>
-          <div class="border-t border-slate-800/80 px-6 py-4 flex items-center justify-between">
-            <a href="https://hdl.handle.net/20.500.14005/11623" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-brand-500 text-white text-xs font-semibold rounded-full transition transform duration-300 hover:bg-brand-700 hover:-translate-y-0.5">Ver documento
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          <div class="px-6 pb-6 pt-2">
+            <a href="https://hdl.handle.net/20.500.14005/11623" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full gap-2 px-4 py-2.5 bg-slate-950 border border-slate-800 text-slate-200 text-xs font-semibold rounded-xl transition hover:bg-brand-600 hover:border-brand-600 hover:text-white">
+              Descargar desde repositorio oficial
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
             </a>
           </div>
@@ -208,90 +223,54 @@
     </section>
 
     <!-- Blog -->
-    <section id="blog" class="mt-12 bg-slate-900/40 border border-slate-800/80 rounded-xl p-8 shadow-sm">
-      <h2 class="text-2xl font-bold text-white mb-2">Blog</h2>
-      <p class="text-slate-300 text-sm mb-6">Artículos sobre consultoría, innovación y transformación digital.</p>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <article class="bg-slate-900/60 border border-slate-800/80 rounded-xl shadow-md overflow-hidden hover:bg-slate-800 hover:border-brand-500/50 transition-all duration-300 group cursor-pointer">
-          <div class="h-40 bg-slate-950/80 flex items-center justify-center group-hover:bg-slate-900 transition">
-            <span class="text-4xl">📚</span>
+    <section id="blog" class="mt-20 border-t border-slate-900 pt-16" data-aos="fade-up">
+      <div>
+        <h2 class="text-3xl font-bold text-white tracking-tight">Artículos y Blog Técnico</h2>
+        <p class="text-slate-400 text-sm mt-2">Espacio de análisis sobre consultoría de inversión, auditoría de obras e innovación con IA.</p>
+      </div>
+      
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+        <!-- Artículo 1 -->
+        <article onclick="openBlogModal('Cómo optimizar presupuestos públicos con datos', 'El uso masivo de analítica de datos e inteligencia de negocios (BI) permite a los auditores gubernamentales y gerentes públicos mapear ineficiencias presupuestales en tiempo récord. Cruzando los códigos únicos de inversión (CUI) con las ejecuciones reales devengadas por los gobiernos locales, se pueden estructurar matrices de riesgo predictivas. Esto no solo eleva la fiscalización y transparencia, sino que ayuda a redistribuir los fondos municipales estratégicamente hacia obras prioritarias de saneamiento e infraestructura urbana que la población demanda.')" class="bg-slate-900/30 border border-slate-900 rounded-2xl shadow-md overflow-hidden hover:bg-slate-900/60 hover:border-slate-800 transition-all duration-300 group cursor-pointer hover:-translate-y-1">
+          <div class="h-36 bg-slate-950/80 flex items-center justify-center group-hover:bg-slate-900 transition-colors">
+            <span class="text-4xl group-hover:scale-110 transition-transform">📊</span>
           </div>
-          <div class="p-4">
-            <h4 class="font-semibold text-slate-100 group-hover:text-brand-300 transition">Cómo optimizar presupuestos públicos con datos</h4>
-            <p class="mt-2 text-xs text-slate-400">Una guía práctica para implementar análisis de datos en gestión pública...</p>
-            <div class="mt-4 flex items-center justify-between text-xs text-slate-400">
-              <span>15 de enero, 2024</span>
-              <span class="text-brand-300 font-medium">Leer →</span>
+          <div class="p-5">
+            <h4 class="font-bold text-sm text-slate-200 group-hover:text-brand-500 transition-colors">Cómo optimizar presupuestos públicos con datos</h4>
+            <p class="mt-2 text-xs text-slate-400 line-clamp-2">Una guía práctica para implementar análisis de datos en gestión pública...</p>
+            <div class="mt-4 flex items-center justify-between text-xs text-slate-500">
+              <span>15 de enero, 2026</span>
+              <span class="text-brand-500 font-semibold group-hover:translate-x-1 transition-transform">Leer artículo →</span>
             </div>
           </div>
         </article>
 
-        <article class="bg-slate-900/60 border border-slate-800/80 rounded-xl shadow-md overflow-hidden hover:bg-slate-800 hover:border-brand-500/50 transition-all duration-300 group cursor-pointer">
-          <div class="h-40 bg-slate-950/80 flex items-center justify-center group-hover:bg-slate-900 transition">
-            <span class="text-4xl">🤖</span>
+        <!-- Artículo 2 -->
+        <article onclick="openBlogModal('IA aplicada: Casos de uso en auditoría', 'La inteligencia artificial generativa y los modelos de lenguaje (LLMs) están transformando la velocidad de las auditorías estructurales. Hoy en día, alimentar un modelo con cientos de páginas de expedientes técnicos y contratos públicos permite detectar brechas de cumplimiento, sobrecostos o inconsistencias normativas en segundos. El rol del gestor data-driven es dirigir estas herramientas como copilotos estratégicos para blindar la legalidad y la eficiencia operativa de los proyectos.')" class="bg-slate-900/30 border border-slate-900 rounded-2xl shadow-md overflow-hidden hover:bg-slate-900/60 hover:border-slate-800 transition-all duration-300 group cursor-pointer hover:-translate-y-1">
+          <div class="h-36 bg-slate-950/80 flex items-center justify-center group-hover:bg-slate-900 transition-colors">
+            <span class="text-4xl group-hover:scale-110 transition-transform">🤖</span>
           </div>
-          <div class="p-4">
-            <h4 class="font-semibold text-slate-100 group-hover:text-brand-300 transition">IA aplicada: Casos de uso en auditoría</h4>
-            <p class="mt-2 text-xs text-slate-400">Descubre cómo la inteligencia artificial revoluciona la auditoría moderna...</p>
-            <div class="mt-4 flex items-center justify-between text-xs text-slate-400">
-              <span>10 de enero, 2024</span>
-              <span class="text-brand-300 font-medium">Leer →</span>
+          <div class="p-5">
+            <h4 class="font-bold text-sm text-slate-200 group-hover:text-brand-500 transition-colors">IA aplicada: Casos de uso en auditoría</h4>
+            <p class="mt-2 text-xs text-slate-400 line-clamp-2">Descubre cómo la inteligencia artificial revoluciona la auditoría moderna...</p>
+            <div class="mt-4 flex items-center justify-between text-xs text-slate-500">
+              <span>10 de enero, 2026</span>
+              <span class="text-brand-500 font-semibold group-hover:translate-x-1 transition-transform">Leer artículo →</span>
             </div>
           </div>
         </article>
 
-        <article class="bg-slate-900/60 border border-slate-800/80 rounded-xl shadow-md overflow-hidden hover:bg-slate-800 hover:border-brand-500/50 transition-all duration-300 group cursor-pointer">
-          <div class="h-40 bg-slate-950/80 flex items-center justify-center group-hover:bg-slate-900 transition">
-            <span class="text-4xl">🚀</span>
+        <!-- Artículo 3 -->
+        <article onclick="openBlogModal('Transformación digital en el sector público', 'La verdadera modernización del Estado no consiste en digitalizar burocracia en archivos PDF, sino en reingeniería completa de procesos. Integrar plataformas interoperables donde la rendición de cuentas ocurra en tiempo real acelera el retorno social de la inversión. La automatización inteligente permite liberar horas hombre críticas de tareas operativas y canalizarlas hacia la planeación estratégica y la resolución de cuellos de botella institucionales.')" class="bg-slate-900/30 border border-slate-900 rounded-2xl shadow-md overflow-hidden hover:bg-slate-900/60 hover:border-slate-800 transition-all duration-300 group cursor-pointer hover:-translate-y-1">
+          <div class="h-36 bg-slate-950/80 flex items-center justify-center group-hover:bg-slate-900 transition-colors">
+            <span class="text-4xl group-hover:scale-110 transition-transform">🚀</span>
           </div>
-          <div class="p-4">
-            <h4 class="font-semibold text-slate-100 group-hover:text-brand-300 transition">Transformación digital en el sector público</h4>
-            <p class="mt-2 text-xs text-slate-400">Estrategias clave para implementar tecnología en instituciones...</p>
-            <div class="mt-4 flex items-center justify-between text-xs text-slate-400">
-              <span>5 de enero, 2024</span>
-              <span class="text-brand-300 font-medium">Leer →</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="bg-slate-900/60 border border-slate-800/80 rounded-xl shadow-md overflow-hidden hover:bg-slate-800 hover:border-brand-500/50 transition-all duration-300 group cursor-pointer">
-          <div class="h-40 bg-slate-950/80 flex items-center justify-center group-hover:bg-slate-900 transition">
-            <span class="text-4xl">📊</span>
-          </div>
-          <div class="p-4">
-            <h4 class="font-semibold text-slate-100 group-hover:text-brand-300 transition">Evaluación de proyectos de inversión pública</h4>
-            <p class="mt-2 text-xs text-slate-400">Metodologías modernas para evaluar ROI en inversiones estatales...</p>
-            <div class="mt-4 flex items-center justify-between text-xs text-slate-400">
-              <span>28 de diciembre, 2023</span>
-              <span class="text-brand-300 font-medium">Leer →</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="bg-slate-900/60 border border-slate-800/80 rounded-xl shadow-md overflow-hidden hover:bg-slate-800 hover:border-brand-500/50 transition-all duration-300 group cursor-pointer">
-          <div class="h-40 bg-slate-950/80 flex items-center justify-center group-hover:bg-slate-900 transition">
-            <span class="text-4xl">💼</span>
-          </div>
-          <div class="p-4">
-            <h4 class="font-semibold text-slate-100 group-hover:text-brand-300 transition">Liderazgo en times de cambio organizacional</h4>
-            <p class="mt-2 text-xs text-slate-400">Gestionar transformaciones exitosas en contextos complejos...</p>
-            <div class="mt-4 flex items-center justify-between text-xs text-slate-400">
-              <span>20 de diciembre, 2023</span>
-              <span class="text-brand-300 font-medium">Leer →</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="bg-slate-900/60 border border-slate-800/80 rounded-xl shadow-md overflow-hidden hover:bg-slate-800 hover:border-brand-500/50 transition-all duration-300 group cursor-pointer">
-          <div class="h-40 bg-slate-950/80 flex items-center justify-center group-hover:bg-slate-900 transition">
-            <span class="text-4xl">🎯</span>
-          </div>
-          <div class="p-4">
-            <h4 class="font-semibold text-slate-100 group-hover:text-brand-300 transition">Estrategia de datos en organizaciones</h4>
-            <p class="mt-2 text-xs text-slate-400">Cómo construir una cultura data-driven desde cero...</p>
-            <div class="mt-4 flex items-center justify-between text-xs text-slate-400">
-              <span>15 de diciembre, 2023</span>
-              <span class="text-brand-300 font-medium">Leer →</span>
+          <div class="p-5">
+            <h4 class="font-bold text-sm text-slate-200 group-hover:text-brand-500 transition-colors">Transformación digital en el sector público</h4>
+            <p class="mt-2 text-xs text-slate-400 line-clamp-2">Estrategias clave para implementar tecnología en instituciones estatales...</p>
+            <div class="mt-4 flex items-center justify-between text-xs text-slate-500">
+              <span>5 de enero, 2026</span>
+              <span class="text-brand-500 font-semibold group-hover:translate-x-1 transition-transform">Leer artículo →</span>
             </div>
           </div>
         </article>
@@ -299,85 +278,157 @@
     </section>
 
     <!-- Contact -->
-    <section id="contacto" class="mt-12 bg-slate-900/50 border border-slate-800 rounded-xl p-8 shadow-sm">
-      <div class="grid gap-8 md:grid-cols-2">
+    <section id="contacto" class="mt-20 border-t border-slate-900 pt-16" data-aos="fade-up">
+      <div class="grid gap-12 md:grid-cols-2 bg-slate-900/20 border border-slate-900 p-8 md:p-10 rounded-3xl relative">
         <div>
-          <h2 class="text-2xl font-semibold text-white">Contacto</h2>
-          <p class="mt-3 text-sm text-slate-300">¿Tienes un proyecto, consultoría o auditoría en mente? Hablemos.</p>
-          <form class="mt-6 grid gap-4">
-            <input class="w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm text-slate-100 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500" type="text" placeholder="Nombre" required />
-            <input class="w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm text-slate-100 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500" type="email" placeholder="Correo" required />
-            <input class="w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm text-slate-100 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500" type="text" placeholder="Asunto" />
-            <textarea class="w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm text-slate-100 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500" rows="6" placeholder="Mensaje"></textarea>
-            <button class="mt-2 inline-flex w-full items-center justify-center rounded-xl bg-brand-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-700">Enviar mensaje</button>
+          <h2 class="text-3xl font-bold text-white tracking-tight">Agendemos un Proyecto</h2>
+          <p class="mt-4 text-sm text-slate-400 leading-relaxed">¿Tienes un proyecto de infraestructura, consultoría económica, auditoría integral o requieres una estrategia de modernización digital? Hablemos.</p>
+          <form class="mt-8 grid gap-4">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <input class="w-full rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3.5 text-xs text-slate-100 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 transition-colors" type="text" placeholder="Nombre Completo" required />
+              <input class="w-full rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3.5 text-xs text-slate-100 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 transition-colors" type="email" placeholder="Correo de contacto" required />
+            </div>
+            <input class="w-full rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3.5 text-xs text-slate-100 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 transition-colors" type="text" placeholder="Asunto / Entidad u Organización" />
+            <textarea class="w-full rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3.5 text-xs text-slate-100 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 transition-colors" rows="5" placeholder="Escribe los detalles o alcance de la consulta..."></textarea>
+            <button class="inline-flex w-full items-center justify-center rounded-xl bg-brand-600 hover:bg-brand-700 px-5 py-3.5 text-xs font-bold text-white transition-all transform hover:-translate-y-0.5 shadow-md shadow-brand-500/10">Enviar mensaje institucional</button>
           </form>
         </div>
-        <div>
-          <h3 class="text-lg font-semibold text-white">Otras vías de contacto</h3>
-          <div class="mt-6 space-y-4">
-            <a href="https://web.facebook.com/brandertrujillo?locale=es_LA" target="_blank" rel="noopener noreferrer" class="group block rounded-xl border border-slate-800/80 bg-slate-900/60 p-5 transition hover:bg-slate-800">
-              <div class="flex items-center gap-4">
-                <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-50 text-blue-700">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24h11.495v-9.294H9.691V11.09h3.129V8.413c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.464.099 2.797.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.762v2.313h3.587l-.467 3.616h-3.12V24h6.116c.73 0 1.324-.593 1.324-1.325V1.325C24 .593 23.407 0 22.675 0z"/>
-                  </svg>
+        
+        <div class="flex flex-col justify-between">
+          <div>
+            <h3 class="text-lg font-semibold text-white mb-6">Atención Inmediata</h3>
+            <p class="text-xs text-slate-400 mb-6">Si prefieres canales directos corporativos para acelerar la comunicación de consultorías externas:</p>
+            <div class="space-y-4">
+              <div class="flex items-center gap-4 rounded-xl border border-slate-900/60 bg-slate-950/30 p-4">
+                <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-800 text-slate-400">
+                  📍
                 </div>
-                <div class="flex-1">
-                  <p class="font-semibold text-slate-100">Facebook</p>
-                  <p class="text-xs text-slate-400">fb.com/brandertrujillo</p>
-                </div>
-              </div>
-            </a>
-            <a href="https://www.tiktok.com/@brandertrujillo" target="_blank" rel="noopener noreferrer" class="group block rounded-xl border border-slate-800/80 bg-slate-900/60 p-5 transition hover:bg-slate-800">
-              <div class="flex items-center gap-4">
-                <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-black text-white">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12.75 2.25h-1.5v4.064a3.001 3.001 0 0 1-1.5-.414V2.25H7.5v6.75h3.75v8.25c0 1.242-1.008 2.25-2.25 2.25S6.75 18.492 6.75 17.25 7.758 15 9 15c.408 0 .79.11 1.125.3V9.75h3.75V7.5h-3.75V2.25z"/>
-                  </svg>
-                </div>
-                <div class="flex-1">
-                  <p class="font-semibold text-slate-100">TikTok</p>
-                  <p class="text-xs text-slate-400">@brandertrujillo</p>
+                <div>
+                  <p class="text-xs font-bold text-slate-200">Ubicación de enlace</p>
+                  <p class="text-xs text-slate-400">Lima, Perú</p>
                 </div>
               </div>
-            </a>
-            <a href="https://www.linkedin.com/in/brandertrujillo/" target="_blank" rel="noopener noreferrer" class="group block rounded-xl border border-slate-800/80 bg-slate-900/60 p-5 transition hover:bg-slate-800">
-              <div class="flex items-center gap-4">
-                <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-50 text-blue-700">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
-                  </svg>
+              <div class="flex items-center gap-4 rounded-xl border border-slate-900/60 bg-slate-950/30 p-4">
+                <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-800 text-slate-400">
+                  💼
                 </div>
-                <div class="flex-1">
-                  <p class="font-semibold text-slate-100">LinkedIn</p>
-                  <p class="text-xs text-slate-400">linkedin.com/in/brandertrujillo</p>
+                <div>
+                  <p class="text-xs font-bold text-slate-200">Disponibilidad</p>
+                  <p class="text-xs text-slate-400">Consultorías Externas / Comités de Inversión</p>
                 </div>
               </div>
-            </a>
+            </div>
+          </div>
+          <div class="mt-8 border-t border-slate-900 pt-6 text-center md:text-left text-xs text-slate-500">
+            * Toda la correspondencia enviada mediante los formularios se gestiona bajo absoluta confidencialidad y reserva profesional.
           </div>
         </div>
       </div>
     </section>
 
     <!-- Footer -->
-    <footer class="mt-12 py-8 text-sm text-slate-400">
-      <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
-        <span>© <span id="year"></span> Brander Trujillo — Todos los derechos reservados</span>
-        <div class="flex gap-4 mt-4 md:mt-0">
-          <a href="#" class="hover:text-white">LinkedIn</a>
-          <a href="#" class="hover:text-white">Twitter</a>
-          <a href="#" class="hover:text-white">Email</a>
+    <footer class="mt-20 py-8 border-t border-slate-900 text-xs text-slate-500">
+      <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+        <span>© <span id="year"></span> Brander Trujillo — Todos los derechos reservados.</span>
+        <div class="flex gap-6 font-medium">
+          <a href="https://www.linkedin.com/in/brandertrujillo/" target="_blank" rel="noopener" class="hover:text-slate-300 transition-colors">LinkedIn</a>
+          <a href="https://www.tiktok.com/@brandertrujillo" target="_blank" rel="noopener" class="hover:text-slate-300 transition-colors">TikTok</a>
+          <a href="https://web.facebook.com/brandertrujillo?locale=es_LA" target="_blank" rel="noopener" class="hover:text-slate-300 transition-colors">Facebook</a>
         </div>
       </div>
     </footer>
   </main>
 
+  <!-- Ventana Modal de Blog Interactiva (Popup) -->
+  <div id="blogModal" class="fixed inset-0 z-50 flex items-center justify-center px-4 bg-slate-950/80 backdrop-blur-sm hidden transition-opacity duration-300 opacity-0">
+    <div class="bg-slate-900 border border-slate-800 w-full max-w-xl rounded-2xl p-6 md:p-8 shadow-2xl relative transform transition-transform duration-300 scale-95">
+      <button onclick="closeBlogModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2 rounded-lg bg-slate-950/50 hover:bg-slate-950 focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      <div class="mt-2">
+        <span class="text-[10px] font-bold uppercase tracking-wider bg-brand-500/10 text-brand-300 px-2.5 py-1 rounded-md">Lectura de Artículo</span>
+        <h3 id="modalTitle" class="text-xl font-bold text-white mt-4 leading-snug"></h3>
+        <p id="modalContent" class="mt-4 text-slate-300 text-sm leading-relaxed whitespace-pre-line"></p>
+      </div>
+      <div class="mt-8 pt-4 border-t border-slate-800 flex justify-end">
+        <button onclick="closeBlogModal()" class="px-5 py-2 bg-slate-950 hover:bg-slate-800 text-slate-200 text-xs font-semibold rounded-xl border border-slate-800 transition-colors">Cerrar lectura</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón de WhatsApp Corporativo Flotante -->
+  <div class="fixed bottom-6 right-6 z-50 flex items-center gap-3 group">
+    <!-- Mini globo de texto interactivo -->
+    <div class="bg-slate-900 border border-slate-800 text-slate-200 text-xs font-medium px-3 py-2 rounded-xl shadow-xl backdrop-blur-md opacity-0 -translate-x-4 pointer-events-none transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 hidden md:block">
+      ¿Hablamos por WhatsApp? 💬
+    </div>
+    <!-- Cambia el número de teléfono abajo (ej: 51999999999) por el tuyo exacto -->
+    <a href="https://api.whatsapp.com/send?phone=51912212046&text=Hola%20Brander,%20vi%20tu%20p%C3%A1gina%20web%20personal%20y%20me%20gustar%C3%ADa%20agendar%20una%20consultor%C3%ADa." target="_blank" rel="noopener noreferrer" class="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500 text-white shadow-lg animate-pulse-subtle hover:bg-emerald-600 transition-colors duration-300 focus:outline-none">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.963C16.428 2.016 13.97 1.01 11.999 1.01c-5.442 0-9.866 4.372-9.87 9.802 0 1.68.463 3.321 1.34 4.764L2.345 19.8l4.302-1.127zM17.13 14.844c-.31-.155-1.833-.903-2.096-.997-.262-.094-.453-.14-.643.146-.19.286-.736.903-.903 1.096-.166.19-.332.214-.642.06-1.066-.533-1.802-1.016-2.512-1.637-.517-.453-.865-.115-1.138.156-.245.244-.49.576-.736.862-.122.14-.244.156-.454.048-.211-.107-.892-.328-1.7-.1.047-.61-.518-2.39-2.062-3.186-.453-.233-.706-.513-.801-.659-.095-.147-.01-.226.065-.302.068-.068.156-.179.233-.268.078-.09.104-.153.156-.256.053-.102.026-.192-.013-.27-.039-.077-.357-.86-.489-1.177-.128-.31-.259-.267-.357-.272l-.304-.005c-.21 0-.552.079-.84.394-.288.316-1.1.1.077-1.1 2.22 0 .213.435.735.72 1.05.286.315.435.347.643.486.21.14.332.12.454.01.122-.11.552-.643.676-.774.124-.13.248-.135.458-.03 1.202.593 1.834.975 2.513 1.652.544.542.544 1.325.048 1.844z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- AOS (Animate On Scroll) JavaScript & Controladores -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    // simple mobile toggle and dynamic year
+    // Inicializar el motor de animaciones
+    AOS.init({
+      once: true, // La animación ocurre solo una vez al bajar para fluidez total
+      offset: 120
+    });
+
+    // Mobile menu toggle
     document.getElementById('navToggle').addEventListener('click', function() {
       document.getElementById('mobileMenu').classList.toggle('hidden');
     });
+
+    // Cerrar menú móvil al hacer clic en un enlace
+    document.querySelectorAll('#mobileMenu a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.add('hidden');
+      });
+    });
+
+    // Set dynamic current year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Lógica interactiva de Modales del Blog
+    function openBlogModal(title, content) {
+      const modal = document.getElementById('blogModal');
+      const innerModal = modal.querySelector('div');
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalContent').textContent = content;
+      
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        innerModal.classList.remove('scale-95');
+        innerModal.classList.add('scale-100');
+      }, 50);
+    }
+
+    function closeBlogModal() {
+      const modal = document.getElementById('blogModal');
+      const innerModal = modal.querySelector('div');
+      modal.classList.add('opacity-0');
+      innerModal.classList.remove('scale-100');
+      innerModal.classList.add('scale-95');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+      }, 300);
+    }
+
+    // Cerrar modal si hacen clic fuera del contenedor blanco
+    window.onclick = function(event) {
+      const modal = document.getElementById('blogModal');
+      if (event.target == modal) {
+        closeBlogModal();
+      }
+    }
   </script>
 </body>
 </html>
