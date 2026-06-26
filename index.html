@@ -42,7 +42,12 @@
   </script>
   <style>
     html { scroll-behavior: smooth; }
-    /* Animación sutil de respiración para el botón de WhatsApp */
+
+    .perspective-1000 { perspective: 1000px; }
+    .preserve-3d { transform-style: preserve-3d; }
+    .backface-hidden { backface-visibility: hidden; }
+    .rotate-y-180 { transform: rotateY(180deg); }
+
     @keyframes pulse-subtle {
       0%, 100% { transform: scale(1); box-shadow: 0 4px 14px rgba(34, 197, 94, 0.4); }
       50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(34, 197, 94, 0.6); }
@@ -78,9 +83,9 @@
     </div>
   </header>
 
-  <main class="max-w-6xl mx-auto px-6 py-12 pt-24">
+  <main class="max-w-6xl mx-auto px-6 py-12 pt-16">
     <!-- Hero -->
-    <section class="mt-12" data-aos="fade-up" data-aos-duration="1000">
+    <section class="mt-4" data-aos="fade-up" data-aos-duration="1000">
       <div class="bg-slate-950 text-white rounded-3xl relative overflow-hidden shadow-2xl bg-gradient-to-tr from-slate-900 via-slate-950 to-indigo-950 border border-slate-800/50 px-8 py-16 md:p-16">
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(99,102,241,0.15),transparent_45%)]"></div>
         <div class="grid md:grid-cols-12 gap-8 items-center relative z-10">
@@ -88,7 +93,7 @@
             <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight" style="font-family: 'Playfair Display', serif; line-height: 1.2;">Hola, soy <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-500 to-indigo-300">Brander Trujillo</span></h1>
             <p class="mt-6 max-w-xl text-lg text-slate-300 leading-relaxed">Ingeniero Empresarial y Economista especializado en optimización presupuestal, gerencia de proyectos estratégicos y modernización digital de organizaciones.</p>
             <div class="mt-8 flex flex-wrap gap-4">
-              <a href="#investigaciones" class="inline-flex items-center justify-center px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-brand-500/20">Investigaciones</a>
+              <a href="#investigaciones" class="inline-flex items-center justify-center px-6 py-3 border border-slate-800 bg-slate-900/80 text-white font-semibold rounded-xl shadow-sm hover:bg-brand-600 hover:border-brand-600 hover:shadow-brand-500/20 hover:-translate-y-1 transition-all duration-300">Investigaciones</a>
               <a href="#blog" class="inline-flex items-center justify-center px-6 py-3 border border-slate-800 bg-slate-900/80 hover:bg-slate-800 text-white font-semibold rounded-xl shadow-sm transition-all duration-300 hover:-translate-y-1">Artículos</a>
               <a href="#contacto" class="inline-flex items-center justify-center px-6 py-3 border border-slate-800 bg-slate-900/80 hover:bg-slate-800 text-white font-semibold rounded-xl shadow-sm transition-all duration-300 hover:-translate-y-1">Contacto</a>
             </div>
@@ -105,7 +110,7 @@
     </section>
 
     <!-- About -->
-    <section id="about" class="mt-20 bg-slate-900/30 border border-slate-900 rounded-2xl p-8 md:p-10 shadow-lg relative" data-aos="fade-up">
+    <section id="about" class="mt-8 bg-slate-900/30 border border-slate-900 rounded-2xl p-5 md:p-6 shadow-lg relative" data-aos="fade-up">
       <div class="grid gap-12 md:grid-cols-2">
         <div>
           <h2 class="text-3xl font-bold text-white tracking-tight relative after:absolute after:bottom-[-8px] after:left-0 after:h-1 after:w-12 after:bg-brand-500">Sobre mí</h2>
@@ -160,7 +165,7 @@
     </section>
 
     <!-- Investigaciones -->
-    <section id="investigaciones" class="mt-20 border-t border-slate-900 pt-16" data-aos="fade-up">
+    <section id="investigaciones" class="mt-8 border-t border-slate-900 pt-6" data-aos="fade-up">
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-8">
         <div>
           <h2 class="text-3xl font-bold text-white tracking-tight">Investigaciones Científicas</h2>
@@ -170,60 +175,108 @@
       
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- Tarjeta 1 -->
-        <article class="bg-slate-900/20 border border-slate-900 rounded-2xl shadow-xl overflow-hidden hover:bg-slate-900/60 hover:border-slate-800 transition-all duration-300 flex flex-col justify-between group">
-          <div class="p-6">
-            <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-semibold bg-indigo-500/10 text-indigo-300">Magíster — Gestión Pública & APP</span>
-            <h4 class="mt-5 text-base font-bold text-slate-100 group-hover:text-brand-500 transition-colors line-clamp-4">Percepción de los factores limitantes en la ejecución de proyectos de infraestructura a través de las asociaciones público-privadas adjudicados por proinversión en el sector de educación en el Perú (2002-2022)</h4>
-            <p class="mt-4 text-xs text-slate-400 leading-relaxed line-clamp-5">Análisis crítico y cualitativo sobre las barreras burocráticas, regulatorias y financieras que afectan la ejecución de infraestructura educativa bajo la modalidad de Asociaciones Público-Privadas (APP). Evalúa la gestión de ProInversión y el impacto de los factores limitantes en el desarrollo de colegios y centros educativos durante las últimas dos décadas.</p>
-          </div>
-          <div class="px-6 pb-6 pt-2">
-            <a href="https://hdl.handle.net/20.500.14005/15705" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full gap-2 px-4 py-2.5 bg-slate-950 border border-slate-800 text-slate-200 text-xs font-semibold rounded-xl transition hover:bg-brand-600 hover:border-brand-600 hover:text-white">
-              Descargar desde repositorio oficial
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
-            </a>
+        <article class="h-[210px] perspective-1000">
+          <div class="relative w-full h-full preserve-3d transition-transform duration-700 cursor-pointer" onclick="this.classList.toggle('rotate-y-180')">
+            <!-- Cara frontal -->
+            <div class="absolute inset-0 bg-slate-900/20 border border-slate-900 rounded-2xl shadow-xl px-5 py-4 backface-hidden flex flex-col items-center justify-center text-center">
+              <div class="flex flex-col items-center justify-center">
+                <span class="inline-flex items-center px-2 py-1 rounded-md text-[9px] tracking-[0.2em] uppercase font-medium bg-indigo-500/10 text-indigo-300">
+                  Tesis de maestría
+                </span>
+                <h4 class="mt-2 text-[13px] md:text-sm font-semibold leading-4 text-slate-100" style="font-family: 'Playfair Display', serif;">
+                  Percepción de los factores limitantes en la ejecución de proyectos de infraestructura a través de las asociaciones público-privadas adjudicados por proinversión en el sector de educación en el Perú (2002-2022)
+                </h4>
+              </div>
+            </div>
+
+            <!-- Cara posterior -->
+            <div class="absolute inset-0 bg-slate-900/20 border border-slate-900 rounded-2xl shadow-xl px-5 py-4 backface-hidden rotate-y-180 flex flex-col justify-between">
+              <div class="w-full flex flex-col items-center">
+                <span class="inline-flex items-center px-2 py-1 rounded-md text-[9px] tracking-[0.2em] uppercase font-medium bg-indigo-500/10 text-indigo-300">Resumen</span>
+                <p class="mt-2 text-[10px] leading-tight text-slate-300 font-sans text-justify">
+                  Análisis crítico y cualitativo sobre las barreras burocráticas, regulatorias y financieras que afectan la ejecución de infraestructura educativa bajo la modalidad de Asociaciones Público-Privadas (APP). Evalúa la gestión de ProInversión y el impacto de los factores limitantes en el desarrollo de colegios y centros educativos durante las últimas dos décadas.
+                </p>
+              </div>
+              <a href="https://hdl.handle.net/20.500.14005/15705" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-lg border border-slate-800 bg-slate-950/90 text-[9px] font-medium tracking-[0.2em] uppercase text-slate-200 transition hover:bg-brand-600 hover:border-brand-600 hover:text-white">
+                Leer completo
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+              </a>
+            </div>
           </div>
         </article>
 
         <!-- Tarjeta 2 -->
-        <article class="bg-slate-900/20 border border-slate-900 rounded-2xl shadow-xl overflow-hidden hover:bg-slate-900/60 hover:border-slate-800 transition-all duration-300 flex flex-col justify-between group">
-          <div class="p-6">
-            <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-semibold bg-indigo-500/10 text-indigo-300">Ingeniería — Calidad & Logística</span>
-            <h4 class="mt-5 text-base font-bold text-slate-100 group-hover:text-brand-500 transition-colors line-clamp-4">Aplicación del modelo SERVQUAL para medir la calidad en el servicio de la empresa Serpost</h4>
-            <p class="mt-4 text-xs text-slate-400 leading-relaxed line-clamp-5">Evaluación cuantitativa aplicada al sector de servicios postales y logísticos del Estado mediante la metodología SERVQUAL. Análisis estadístico de brechas entre las expectativas y las percepciones de los usuarios para optimizar dimensiones de fiabilidad, capacidad de respuesta y tangibilidad en la gestión operativa.</p>
-          </div>
-          <div class="px-6 pb-6 pt-2">
-            <a href="https://hdl.handle.net/20.500.14005/12289" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full gap-2 px-4 py-2.5 bg-slate-950 border border-slate-800 text-slate-200 text-xs font-semibold rounded-xl transition hover:bg-brand-600 hover:border-brand-600 hover:text-white">
-              Descargar desde repositorio oficial
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
-            </a>
+        <article class="h-[210px] perspective-1000">
+          <div class="relative w-full h-full preserve-3d transition-transform duration-700 cursor-pointer" onclick="this.classList.toggle('rotate-y-180')">
+            <!-- Cara frontal -->
+            <div class="absolute inset-0 bg-slate-900/20 border border-slate-900 rounded-2xl shadow-xl px-5 py-4 backface-hidden flex flex-col items-center justify-center text-center">
+              <div class="flex flex-col items-center justify-center">
+                <span class="inline-flex items-center px-2 py-1 rounded-md text-[9px] tracking-[0.2em] uppercase font-medium bg-indigo-500/10 text-indigo-300">
+                  Tesis de grado
+                </span>
+                <h4 class="mt-2 text-[13px] md:text-sm font-semibold leading-4 text-slate-100" style="font-family: 'Playfair Display', serif;">
+                  Aplicación del modelo SERVQUAL para medir la calidad en el servicio de la empresa Serpost
+                </h4>
+              </div>
+            </div>
+
+            <!-- Cara posterior -->
+            <div class="absolute inset-0 bg-slate-900/20 border border-slate-900 rounded-2xl shadow-xl px-5 py-4 backface-hidden rotate-y-180 flex flex-col justify-between">
+              <div class="w-full flex flex-col items-center">
+                <span class="inline-flex items-center px-2 py-1 rounded-md text-[9px] tracking-[0.2em] uppercase font-medium bg-indigo-500/10 text-indigo-300">Resumen</span>
+                <p class="mt-2 text-[10px] leading-tight text-slate-300 font-sans text-justify">
+                  Evaluación cuantitativa aplicada al sector de servicios postales y logísticos del Estado mediante la metodología SERVQUAL. Análisis estadístico de brechas entre las expectativas y las percepciones de los usuarios para optimizar dimensiones de fiabilidad, capacidad de respuesta y tangibilidad en la gestión operativa.
+                </p>
+              </div>
+              <a href="https://hdl.handle.net/20.500.14005/12289" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-lg border border-slate-800 bg-slate-950/90 text-[9px] font-medium tracking-[0.2em] uppercase text-slate-200 transition hover:bg-brand-600 hover:border-brand-600 hover:text-white">
+                Leer completo
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+              </a>
+            </div>
           </div>
         </article>
 
         <!-- Tarjeta 3 -->
-        <article class="bg-slate-900/20 border border-slate-900 rounded-2xl shadow-xl overflow-hidden hover:bg-slate-900/60 hover:border-slate-800 transition-all duration-300 flex flex-col justify-between group">
-          <div class="p-6">
-            <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-semibold bg-indigo-500/10 text-indigo-300">Procesos — Productividad & Textil</span>
-            <h4 class="mt-5 text-base font-bold text-slate-100 group-hover:text-brand-500 transition-colors line-clamp-4">Implementación de la Metodología 5s para mejorar la productividad en el taller de confección de una empresa textil</h4>
-            <p class="mt-4 text-xs text-slate-400 leading-relaxed line-clamp-5">Estudio técnico de ingeniería de procesos enfocado en la filosofía Lean Manufacturing mediante el despliegue de las 5S. Aborda la optimización del espacio de trabajo, la reducción de tiempos muertos en la línea de producción y la estandarización de flujos operativos para maximizar la productividad.</p>
-          </div>
-          <div class="px-6 pb-6 pt-2">
-            <a href="https://hdl.handle.net/20.500.14005/11623" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full gap-2 px-4 py-2.5 bg-slate-950 border border-slate-800 text-slate-200 text-xs font-semibold rounded-xl transition hover:bg-brand-600 hover:border-brand-600 hover:text-white">
-              Descargar desde repositorio oficial
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
-            </a>
+        <article class="h-[210px] perspective-1000">
+          <div class="relative w-full h-full preserve-3d transition-transform duration-700 cursor-pointer" onclick="this.classList.toggle('rotate-y-180')">
+            <!-- Cara frontal -->
+            <div class="absolute inset-0 bg-slate-900/20 border border-slate-900 rounded-2xl shadow-xl px-5 py-4 backface-hidden flex flex-col items-center justify-center text-center">
+              <div class="flex flex-col items-center justify-center">
+                <span class="inline-flex items-center px-2 py-1 rounded-md text-[9px] tracking-[0.2em] uppercase font-medium bg-indigo-500/10 text-indigo-300">
+                  Trabajo de grado
+                </span>
+                <h4 class="mt-2 text-[13px] md:text-sm font-semibold leading-4 text-slate-100" style="font-family: 'Playfair Display', serif;">
+                  Implementación de la Metodología 5s para mejorar la productividad en el taller de confección de una empresa textil
+                </h4>
+              </div>
+            </div>
+
+            <!-- Cara posterior -->
+            <div class="absolute inset-0 bg-slate-900/20 border border-slate-900 rounded-2xl shadow-xl px-5 py-4 backface-hidden rotate-y-180 flex flex-col justify-between">
+              <div class="w-full flex flex-col items-center">
+                <span class="inline-flex items-center px-2 py-1 rounded-md text-[9px] tracking-[0.2em] uppercase font-medium bg-indigo-500/10 text-indigo-300">Resumen</span>
+                <p class="mt-2 text-[10px] leading-tight text-slate-300 font-sans text-justify">
+                  Estudio técnico de ingeniería de procesos enfocado en la filosofía Lean Manufacturing mediante el despliegue de las 5S. Aborda la optimización del espacio de trabajo, la reducción de tiempos muertos en la línea de producción y la estandarización de flujos operativos para maximizar la productividad.
+                </p>
+              </div>
+              <a href="https://hdl.handle.net/20.500.14005/11623" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-lg border border-slate-800 bg-slate-950/90 text-[9px] font-medium tracking-[0.2em] uppercase text-slate-200 transition hover:bg-brand-600 hover:border-brand-600 hover:text-white">
+                Leer completo
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+              </a>
+            </div>
           </div>
         </article>
       </div>
     </section>
 
     <!-- Blog -->
-    <section id="blog" class="mt-20 border-t border-slate-900 pt-16" data-aos="fade-up">
+    <section id="blog" class="mt-8 border-t border-slate-900 pt-6" data-aos="fade-up">
       <div>
         <h2 class="text-3xl font-bold text-white tracking-tight">Artículos y Blog Técnico</h2>
         <p class="text-slate-400 text-sm mt-2">Espacio de análisis sobre consultoría de inversión, auditoría de obras e innovación con IA.</p>
@@ -278,33 +331,31 @@
     </section>
 
     <!-- Contact -->
-    <section id="contacto" class="mt-20 border-t border-slate-900 pt-16" data-aos="fade-up">
-      <div class="grid gap-12 md:grid-cols-2 bg-slate-900/20 border border-slate-900 p-8 md:p-10 rounded-3xl relative">
+    <section id="contacto" class="mt-8 border-t border-slate-900 pt-6" data-aos="fade-up">
+      <div class="grid gap-12 md:grid-cols-2 bg-slate-900/20 border border-slate-900 p-5 md:p-6 rounded-3xl relative">
         <div>
-          <h2 class="text-3xl font-bold text-white tracking-tight">Agendemos un Proyecto</h2>
-          <p class="mt-4 text-sm text-slate-400 leading-relaxed">¿Tienes un proyecto de infraestructura, consultoría económica, auditoría integral o requieres una estrategia de modernización digital? Hablemos.</p>
+          <h2 class="text-3xl font-bold text-white tracking-tight">Contacto</h2>
           <form class="mt-8 grid gap-4">
             <div class="grid sm:grid-cols-2 gap-4">
-              <input class="w-full rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3.5 text-xs text-slate-100 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 transition-colors" type="text" placeholder="Nombre Completo" required />
-              <input class="w-full rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3.5 text-xs text-slate-100 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 transition-colors" type="email" placeholder="Correo de contacto" required />
+              <input class="w-full rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3.5 text-xs text-slate-100 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 transition-colors" type="text" placeholder="Nombre" required />
+              <input class="w-full rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3.5 text-xs text-slate-100 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 transition-colors" type="email" placeholder="Correo" required />
             </div>
-            <input class="w-full rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3.5 text-xs text-slate-100 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 transition-colors" type="text" placeholder="Asunto / Entidad u Organización" />
-            <textarea class="w-full rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3.5 text-xs text-slate-100 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 transition-colors" rows="5" placeholder="Escribe los detalles o alcance de la consulta..."></textarea>
-            <button class="inline-flex w-full items-center justify-center rounded-xl bg-brand-600 hover:bg-brand-700 px-5 py-3.5 text-xs font-bold text-white transition-all transform hover:-translate-y-0.5 shadow-md shadow-brand-500/10">Enviar mensaje institucional</button>
+            <input class="w-full rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3.5 text-xs text-slate-100 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 transition-colors" type="text" placeholder="Asunto" />
+            <textarea class="w-full rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3.5 text-xs text-slate-100 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 transition-colors" rows="5" placeholder="Mensaje..."></textarea>
+            <button class="inline-flex w-full items-center justify-center rounded-xl bg-brand-600 hover:bg-brand-700 px-5 py-3.5 text-xs font-bold text-white transition-all transform hover:-translate-y-0.5 shadow-md shadow-brand-500/10">Enviar</button>
           </form>
         </div>
         
         <div class="flex flex-col justify-between">
           <div>
-            <h3 class="text-lg font-semibold text-white mb-6">Atención Inmediata</h3>
-            <p class="text-xs text-slate-400 mb-6">Si prefieres canales directos corporativos para acelerar la comunicación de consultorías externas:</p>
+            <h3 class="text-lg font-semibold text-white mb-6">Canales directos</h3>
             <div class="space-y-4">
               <div class="flex items-center gap-4 rounded-xl border border-slate-900/60 bg-slate-950/30 p-4">
                 <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-800 text-slate-400">
                   📍
                 </div>
                 <div>
-                  <p class="text-xs font-bold text-slate-200">Ubicación de enlace</p>
+                  <p class="text-xs font-bold text-slate-200">Ubicación</p>
                   <p class="text-xs text-slate-400">Lima, Perú</p>
                 </div>
               </div>
@@ -319,7 +370,7 @@
               </div>
             </div>
           </div>
-          <div class="mt-8 border-t border-slate-900 pt-6 text-center md:text-left text-xs text-slate-500">
+          <div class="mt-8 border-t border-slate-900 pt-6 text-center md:text-left text-[10px] text-slate-500">
             * Toda la correspondencia enviada mediante los formularios se gestiona bajo absoluta confidencialidad y reserva profesional.
           </div>
         </div>
@@ -327,7 +378,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="mt-20 py-8 border-t border-slate-900 text-xs text-slate-500">
+    <footer class="mt-8 py-8 border-t border-slate-900 text-xs text-slate-500">
       <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <span>© <span id="year"></span> Brander Trujillo — Todos los derechos reservados.</span>
         <div class="flex gap-6 font-medium">
