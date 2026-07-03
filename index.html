@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" style="scroll-behavior: smooth;">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -46,6 +46,15 @@
   <style>
     html { scroll-behavior: smooth; }
 
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 700ms ease-out both;
+    }
+
     .perspective-1000 { perspective: 1000px; }
     .preserve-3d { transform-style: preserve-3d; }
     .backface-hidden { backface-visibility: hidden; }
@@ -61,7 +70,7 @@
 <body class="font-sans bg-slate-950 text-slate-100 antialiased overflow-x-hidden">
 
   <!-- Navbar -->
-  <header class="fixed top-0 inset-x-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-900 transition-all duration-300">
+  <header class="sticky top-0 inset-x-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-900 transition-all duration-300">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
       <a href="#" class="flex items-center transition transform hover:scale-105">
         <img src="firma-logo.png" alt="Brander Trujillo" class="h-10 object-contain" />
@@ -86,14 +95,14 @@
     </div>
   </header>
 
-  <main class="max-w-6xl mx-auto px-6 py-12 pt-16">
+  <main class="max-w-6xl mx-auto px-6 py-12 pt-8">
     <!-- Hero -->
-    <section class="mt-4" data-aos="fade-up" data-aos-duration="1000">
+    <section class="mt-0" data-aos="fade-up" data-aos-duration="1000">
       <div class="bg-slate-950 text-white rounded-3xl relative overflow-hidden shadow-2xl bg-gradient-to-tr from-slate-900 via-slate-950 to-indigo-950 border border-slate-800/50 px-8 py-16 md:p-16">
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(99,102,241,0.15),transparent_45%)]"></div>
         <div class="grid md:grid-cols-12 gap-8 items-center relative z-10">
           <div class="md:col-span-7">
-            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight" style="font-family: 'Playfair Display', serif; line-height: 1.2;">Hola, soy <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-500 to-indigo-300">Brander Trujillo</span></h1>
+            <h1 class="inline-block whitespace-nowrap text-3xl md:text-4xl font-extrabold tracking-tight drop-shadow-[0_0_10px_rgba(99,102,241,0.35)]" style="font-family: 'Playfair Display', serif; line-height: 1.2;">Hola, soy <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-500 to-indigo-300">Brander Trujillo</span></h1>
             <p class="mt-6 max-w-xl text-lg font-normal text-slate-300 leading-relaxed text-left">Ingeniero Empresarial y Economista especializado en optimización presupuestal, gerencia de proyectos estratégicos y modernización digital de organizaciones.</p>
             <div class="mt-8 flex flex-wrap gap-4">
               <a href="#investigaciones" class="inline-flex items-center justify-center px-6 py-3 border border-slate-800 bg-slate-900/80 text-white font-semibold rounded-xl shadow-sm hover:bg-brand-600 hover:border-brand-600 hover:shadow-brand-500/20 hover:-translate-y-1 transition-all duration-300">Investigaciones</a>
@@ -113,56 +122,16 @@
     </section>
 
     <!-- About -->
-    <section id="about" class="mt-8 bg-slate-900/30 border border-slate-900 rounded-2xl p-5 md:p-6 shadow-lg relative" data-aos="fade-up">
-      <div class="grid gap-12 md:grid-cols-2">
-        <div>
-          <h2 class="text-3xl font-bold text-white tracking-tight relative after:absolute after:bottom-[-8px] after:left-0 after:h-1 after:w-12 after:bg-brand-500">Sobre mí</h2>
-          <p class="mt-8 text-slate-300 font-normal leading-relaxed text-base text-left">
-            Soy Ingeniero Empresarial y Magíster en Gestión Pública por la Universidad San Ignacio de Loyola (USIL). Mi enfoque profesional combina la ingeniería de negocios, la analítica económica y la modernización del Estado. Me especializo en la optimización de presupuestos públicos, la estructuración de proyectos estratégicos y la integración de tecnologías emergentes e Inteligencia Artificial para maximizar la eficiencia y la transparencia en las organizaciones.
-          </p>
-          <div class="mt-8 flex flex-wrap gap-2.5">
-            <span class="inline-flex items-center rounded-xl border border-slate-800 bg-slate-900/80 px-4 py-2 text-sm font-medium text-indigo-300 shadow-inner">🛠️ Ingeniero</span>
-            <span class="inline-flex items-center rounded-xl border border-slate-800 bg-slate-900/80 px-4 py-2 text-sm font-medium text-indigo-300 shadow-inner">📈 Economista</span>
-            <span class="inline-flex items-center rounded-xl border border-slate-800 bg-slate-900/80 px-4 py-2 text-sm font-medium text-indigo-300 shadow-inner">🏛️ Gestor Público</span>
-          </div>
-        </div>
-        <div>
-          <h3 class="text-xl font-semibold text-white mb-6">Canales Profesionales</h3>
-          <div class="space-y-4">
-            <a href="https://web.facebook.com/brandertrujillo?locale=es_LA" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 rounded-xl border border-slate-900 bg-slate-950/40 p-4 shadow-sm transition-all duration-300 hover:bg-slate-900 hover:border-slate-800 hover:-translate-y-1">
-              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-600/10 text-blue-400 group-hover:scale-110 transition-transform">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24h11.495v-9.294H9.691V11.09h3.129V8.413c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.464.099 2.797.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.762v2.313h3.587l-.467 3.616h-3.12V24h6.116c.73 0 1.324-.593 1.324-1.325V1.325C24 .593 23.407 0 22.675 0z"/>
-                </svg>
-              </div>
-              <div>
-                <p class="text-sm font-semibold text-slate-200">Facebook</p>
-                <p class="text-xs text-slate-400">Presencia institucional y contacto comunitario</p>
-              </div>
-            </a>
-            <a href="https://www.tiktok.com/@brandertrujillo" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 rounded-xl border border-slate-900 bg-slate-950/40 p-4 shadow-sm transition-all duration-300 hover:bg-slate-900 hover:border-slate-800 hover:-translate-y-1">
-              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-800 text-white group-hover:scale-110 transition-transform">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12.75 2.25h-1.5v4.064a3.001 3.001 0 0 1-1.5-.414V2.25H7.5v6.75h3.75v8.25c0 1.242-1.008 2.25-2.25 2.25S6.75 18.492 6.75 17.25 7.758 15 9 15c.408 0 .79.11 1.125.3V9.75h3.75V7.5h-3.75V2.25z"/>
-                </svg>
-              </div>
-              <div>
-                <p class="text-sm font-semibold text-slate-200">TikTok</p>
-                <p class="text-xs text-slate-400">Análisis técnico, divulgación y tendencias de IA</p>
-              </div>
-            </a>
-            <a href="https://www.linkedin.com/in/brandertrujillo/" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 rounded-xl border border-slate-900 bg-slate-950/40 p-4 shadow-sm transition-all duration-300 hover:bg-slate-900 hover:border-slate-800 hover:-translate-y-1">
-              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-600/10 text-indigo-400 group-hover:scale-110 transition-transform">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
-                </svg>
-              </div>
-              <div>
-                <p class="text-sm font-semibold text-slate-200">LinkedIn</p>
-                <p class="text-xs text-slate-400">Red profesional, consultoría y artículos científicos</p>
-              </div>
-            </a>
-          </div>
+    <section id="about" class="mt-8 min-h-[70vh] bg-slate-900/30 border border-slate-900 rounded-2xl p-5 md:p-6 shadow-lg relative flex items-center" data-aos="fade-up" data-aos-duration="900">
+      <div class="fade-in-up w-full max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-white tracking-tight relative after:absolute after:bottom-[-8px] after:left-0 after:h-1 after:w-12 after:bg-brand-500">Sobre mí</h2>
+        <p class="mt-8 text-slate-300 font-normal leading-relaxed text-base text-left">
+          Soy Ingeniero Empresarial y Magíster en Gestión Pública por la Universidad San Ignacio de Loyola (USIL). Mi enfoque profesional combina la ingeniería de negocios, la analítica económica y la modernización del Estado. Me especializo en la optimización de presupuestos públicos, la estructuración de proyectos estratégicos y la integración de tecnologías emergentes e Inteligencia Artificial para maximizar la eficiencia y la transparencia en las organizaciones.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-2.5">
+          <span class="inline-flex items-center rounded-xl border border-slate-800 bg-slate-900/80 px-4 py-2 text-sm font-medium text-indigo-300 shadow-inner">🛠️ Ingeniero</span>
+          <span class="inline-flex items-center rounded-xl border border-slate-800 bg-slate-900/80 px-4 py-2 text-sm font-medium text-indigo-300 shadow-inner">📈 Economista</span>
+          <span class="inline-flex items-center rounded-xl border border-slate-800 bg-slate-900/80 px-4 py-2 text-sm font-medium text-indigo-300 shadow-inner">🏛️ Gestor Público</span>
         </div>
       </div>
     </section>
@@ -171,7 +140,7 @@
     <section id="investigaciones" class="mt-8 border-t border-slate-900 pt-6" data-aos="fade-up">
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-8">
         <div>
-          <h2 class="text-3xl font-bold text-white tracking-tight">Investigaciones Científicas</h2>
+          <h2 class="text-3xl font-bold text-white tracking-tight">Investigaciones</h2>
           <p class="text-slate-400 text-sm mt-2">Tesis y artículos técnicos indexados en repositorios universitarios oficiales.</p>
         </div>
       </div>
@@ -281,7 +250,7 @@
     <!-- Blog -->
     <section id="blog" class="mt-8 border-t border-slate-900 pt-6" data-aos="fade-up">
       <div>
-        <h2 class="text-3xl font-bold text-white tracking-tight">Artículos y Blog Técnico</h2>
+        <h2 class="text-3xl font-bold text-white tracking-tight">Artículos</h2>
         <p class="text-slate-400 text-sm mt-2">Espacio de análisis sobre consultoría de inversión, auditoría de obras e innovación con IA.</p>
       </div>
       
@@ -335,7 +304,7 @@
 
     <!-- Contact -->
     <section id="contacto" class="mt-8 border-t border-slate-900 pt-6" data-aos="fade-up">
-      <div class="grid gap-12 md:grid-cols-2 bg-slate-900/20 border border-slate-900 p-5 md:p-6 rounded-3xl relative">
+      <div class="grid gap-12 bg-slate-900/20 border border-slate-900 p-5 md:p-6 rounded-3xl relative">
         <div>
           <h2 class="text-3xl font-bold text-white tracking-tight">Contacto</h2>
           <form class="mt-8 grid gap-4">
@@ -348,34 +317,46 @@
             <button class="inline-flex w-full items-center justify-center rounded-xl bg-brand-600 hover:bg-brand-700 px-5 py-3.5 text-xs font-bold text-white transition-all transform hover:-translate-y-0.5 shadow-md shadow-brand-500/10">Enviar</button>
           </form>
         </div>
-        
-        <div class="flex flex-col justify-between">
-          <div>
-            <h3 class="text-lg font-semibold text-white mb-6">Canales directos</h3>
-            <div class="space-y-4">
-              <div class="flex items-center gap-4 rounded-xl border border-slate-900/60 bg-slate-950/30 p-4">
-                <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-800 text-slate-400">
-                  📍
-                </div>
-                <div>
-                  <p class="text-xs font-bold text-slate-200">Ubicación</p>
-                  <p class="text-xs text-slate-400">Lima, Perú</p>
-                </div>
-              </div>
-              <div class="flex items-center gap-4 rounded-xl border border-slate-900/60 bg-slate-950/30 p-4">
-                <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-800 text-slate-400">
-                  💼
-                </div>
-                <div>
-                  <p class="text-xs font-bold text-slate-200">Disponibilidad</p>
-                  <p class="text-xs text-slate-400">Consultorías Externas / Comités de Inversión</p>
-                </div>
-              </div>
+      </div>
+    </section>
+
+    <section id="redes-sociales" class="mt-8 min-h-[70vh] bg-slate-900/30 border border-slate-900 rounded-2xl p-5 md:p-6 shadow-lg relative flex items-center" data-aos="fade-up" data-aos-duration="900">
+      <div class="fade-in-up w-full max-w-3xl mx-auto">
+        <h3 class="text-2xl font-semibold text-white mb-6">Redes sociales</h3>
+        <div class="space-y-4">
+          <a href="https://web.facebook.com/brandertrujillo?locale=es_LA" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 rounded-xl border border-slate-900 bg-slate-950/40 p-4 shadow-sm transition-all duration-300 hover:bg-slate-900 hover:border-slate-800 hover:-translate-y-1">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-600/10 text-blue-400 group-hover:scale-110 transition-transform">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24h11.495v-9.294H9.691V11.09h3.129V8.413c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.464.099 2.797.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.762v2.313h3.587l-.467 3.616h-3.12V24h6.116c.73 0 1.324-.593 1.324-1.325V1.325C24 .593 23.407 0 22.675 0z"/>
+              </svg>
             </div>
-          </div>
-          <div class="mt-8 border-t border-slate-900 pt-6 text-center md:text-left text-[10px] text-slate-500">
-            * Toda la correspondencia enviada mediante los formularios se gestiona bajo absoluta confidencialidad y reserva profesional.
-          </div>
+            <div>
+              <p class="text-sm font-semibold text-slate-200">Facebook</p>
+              <p class="text-xs text-slate-400">Presencia institucional y contacto comunitario</p>
+            </div>
+          </a>
+          <a href="https://www.tiktok.com/@brandertrujillo" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 rounded-xl border border-slate-900 bg-slate-950/40 p-4 shadow-sm transition-all duration-300 hover:bg-slate-900 hover:border-slate-800 hover:-translate-y-1">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-800 text-white group-hover:scale-110 transition-transform">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12.75 2.25h-1.5v4.064a3.001 3.001 0 0 1-1.5-.414V2.25H7.5v6.75h3.75v8.25c0 1.242-1.008 2.25-2.25 2.25S6.75 18.492 6.75 17.25 7.758 15 9 15c.408 0 .79.11 1.125.3V9.75h3.75V7.5h-3.75V2.25z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-slate-200">TikTok</p>
+              <p class="text-xs text-slate-400">Análisis técnico, divulgación y tendencias de IA</p>
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/brandertrujillo/" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 rounded-xl border border-slate-900 bg-slate-950/40 p-4 shadow-sm transition-all duration-300 hover:bg-slate-900 hover:border-slate-800 hover:-translate-y-1">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-600/10 text-indigo-400 group-hover:scale-110 transition-transform">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-slate-200">LinkedIn</p>
+              <p class="text-xs text-slate-400">Red profesional, consultoría y artículos científicos</p>
+            </div>
+          </a>
         </div>
       </div>
     </section>
