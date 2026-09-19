@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Investigaciones y publicaciones de Brander Trujillo." />
+  <title>Publicaciones | Brander Trujillo</title>
+  <link rel="icon" type="image/png" href="brander-favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter','ui-sans-serif','system-ui'] },
+          colors: {
+            brand: {
+              50:'#f5f7ff',
+              500:'#6366f1',
+              600:'#4f46e5',
+              700:'#3730a3'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-sans bg-slate-950 text-slate-100 antialiased overflow-x-hidden">
+
+<header class="sticky top-0 inset-x-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-900">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center">
+      <img src="firma-logo.png" alt="Brander Trujillo" class="h-10 object-contain" />
+    </a>
+
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium">
+      <a href="index.html" class="text-slate-300 hover:text-white transition">Inicio</a>
+
+      <div class="relative group">
+        <button class="flex items-center gap-1 text-slate-300 hover:text-white transition py-2">
+          Trayectoria
+          <svg class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="absolute left-0 top-full pt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+          <div class="rounded-xl border border-slate-800 bg-slate-900 shadow-2xl overflow-hidden p-2">
+            <a href="sobre-mi.html" class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-slate-800 hover:text-white">Sobre mí</a>
+            <a href="formacion.html" class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-slate-800 hover:text-white">Formación</a>
+            <a href="publicaciones.html" class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-slate-800 hover:text-white">Publicaciones</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative group">
+        <button class="flex items-center gap-1 text-slate-300 hover:text-white transition py-2">
+          Ingeniería Empresarial
+          <svg class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="absolute left-0 top-full pt-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+          <div class="rounded-xl border border-slate-800 bg-slate-900 shadow-2xl overflow-hidden p-2">
+            <a href="inteligencia-artificial.html" class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-slate-800 hover:text-white">Inteligencia Artificial</a>
+            <a href="innovacion-estrategia.html" class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-slate-800 hover:text-white">Innovación y Estrategia</a>
+            <a href="gestion-proyectos.html" class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-slate-800 hover:text-white">Gestión de Proyectos</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative group">
+        <button class="flex items-center gap-1 text-slate-300 hover:text-white transition py-2">
+          Gestión Pública
+          <svg class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div class="absolute right-0 top-full pt-2 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+          <div class="rounded-xl border border-slate-800 bg-slate-900 shadow-2xl overflow-hidden p-2">
+            <a href="gestion-estado.html" class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-slate-800 hover:text-white">Gestión del Estado</a>
+            <a href="gestion-municipal.html" class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-slate-800 hover:text-white">Gestión Municipal y Desarrollo Local</a>
+            <a href="inversion-publica.html" class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-slate-800 hover:text-white">Inversión Pública y Proyectos</a>
+          </div>
+        </div>
+      </div>
+
+      <a href="contacto.html" class="inline-flex items-center justify-center rounded-lg bg-brand-600 px-4 py-2 text-white font-semibold hover:bg-brand-700 transition">Contacto</a>
+    </nav>
+
+    <button id="navToggle" class="md:hidden text-slate-300" aria-label="Abrir menú">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobileMenu" class="md:hidden px-6 pb-5 hidden bg-slate-950 border-b border-slate-900">
+    <a href="index.html" class="block py-3 text-white border-b border-slate-900">Inicio</a>
+
+    <div class="py-3 border-b border-slate-900">
+      <p class="text-xs uppercase tracking-[0.14em] text-indigo-300 font-semibold mb-2">Trayectoria</p>
+      <a href="sobre-mi.html" class="block py-2 pl-3 text-slate-300">Sobre mí</a>
+      <a href="formacion.html" class="block py-2 pl-3 text-slate-300">Formación</a>
+      <a href="publicaciones.html" class="block py-2 pl-3 text-slate-300">Publicaciones</a>
+    </div>
+
+    <div class="py-3 border-b border-slate-900">
+      <p class="text-xs uppercase tracking-[0.14em] text-indigo-300 font-semibold mb-2">Ingeniería Empresarial</p>
+      <a href="inteligencia-artificial.html" class="block py-2 pl-3 text-slate-300">Inteligencia Artificial</a>
+      <a href="innovacion-estrategia.html" class="block py-2 pl-3 text-slate-300">Innovación y Estrategia</a>
+      <a href="gestion-proyectos.html" class="block py-2 pl-3 text-slate-300">Gestión de Proyectos</a>
+    </div>
+
+    <div class="py-3 border-b border-slate-900">
+      <p class="text-xs uppercase tracking-[0.14em] text-indigo-300 font-semibold mb-2">Gestión Pública</p>
+      <a href="gestion-estado.html" class="block py-2 pl-3 text-slate-300">Gestión del Estado</a>
+      <a href="gestion-municipal.html" class="block py-2 pl-3 text-slate-300">Gestión Municipal y Desarrollo Local</a>
+      <a href="inversion-publica.html" class="block py-2 pl-3 text-slate-300">Inversión Pública y Proyectos</a>
+    </div>
+
+    <a href="contacto.html" class="block py-3 text-slate-300">Contacto</a>
+  </div>
+</header>
+
+
+<main class="max-w-6xl mx-auto px-6 py-14 md:py-16">
+
+  <!-- Encabezado -->
+  <section class="max-w-4xl">
+    <div class="inline-flex items-center gap-2 rounded-full border border-indigo-400/20 bg-indigo-400/10 px-3 py-1.5">
+      <span class="h-1.5 w-1.5 rounded-full bg-indigo-300"></span>
+      <p class="text-xs uppercase tracking-[0.20em] text-indigo-300 font-semibold">
+        Trayectoria
+      </p>
+    </div>
+
+    <h1 class="mt-5 text-4xl md:text-5xl font-extrabold tracking-tight">
+      Publicaciones
+    </h1>
+
+    <p class="mt-4 text-base md:text-lg text-slate-400">
+      Investigaciones académicas y trabajos publicados.
+    </p>
+  </section>
+
+  <!-- Investigaciones -->
+  <section class="grid md:grid-cols-3 gap-6 mt-12">
+
+    <!-- Investigación 1 -->
+    <article class="group flex flex-col rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900/80 to-slate-950 p-7 shadow-xl shadow-black/10 hover:-translate-y-1 hover:border-indigo-500/60 transition-all duration-300">
+      <div>
+        <span class="inline-flex rounded-full border border-indigo-400/20 bg-indigo-400/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-indigo-300">
+          Tesis de maestría
+        </span>
+
+        <h2 class="mt-6 text-lg font-bold leading-relaxed text-white">
+          Percepción de los factores limitantes en la ejecución de proyectos de infraestructura a través de las asociaciones público-privadas adjudicados por ProInversión en el sector de educación en el Perú (2002-2022)
+        </h2>
+
+        <p class="mt-4 text-sm text-slate-400 leading-relaxed">
+          Análisis sobre barreras burocráticas, regulatorias y financieras que afectan la ejecución de infraestructura educativa mediante APP.
+        </p>
+      </div>
+
+      <div class="mt-auto pt-7">
+        <a href="https://hdl.handle.net/20.500.14005/15705"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="inline-flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-950/60 px-4 py-2.5 text-sm font-semibold text-slate-200 hover:border-indigo-500 hover:bg-indigo-600 hover:text-white transition">
+          Leer completo
+          <span>→</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- Investigación 2 -->
+    <article class="group flex flex-col rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900/80 to-slate-950 p-7 shadow-xl shadow-black/10 hover:-translate-y-1 hover:border-indigo-500/60 transition-all duration-300">
+      <div>
+        <span class="inline-flex rounded-full border border-indigo-400/20 bg-indigo-400/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-indigo-300">
+          Tesis de grado
+        </span>
+
+        <h2 class="mt-6 text-lg font-bold leading-relaxed text-white">
+          Aplicación del modelo SERVQUAL para medir la calidad en el servicio de la empresa Serpost
+        </h2>
+
+        <p class="mt-4 text-sm text-slate-400 leading-relaxed">
+          Evaluación de la calidad del servicio a partir de las brechas entre expectativas y percepciones de los usuarios.
+        </p>
+      </div>
+
+      <div class="mt-auto pt-7">
+        <a href="https://hdl.handle.net/20.500.14005/12289"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="inline-flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-950/60 px-4 py-2.5 text-sm font-semibold text-slate-200 hover:border-indigo-500 hover:bg-indigo-600 hover:text-white transition">
+          Leer completo
+          <span>→</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- Investigación 3 -->
+    <article class="group flex flex-col rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900/80 to-slate-950 p-7 shadow-xl shadow-black/10 hover:-translate-y-1 hover:border-indigo-500/60 transition-all duration-300">
+      <div>
+        <span class="inline-flex rounded-full border border-indigo-400/20 bg-indigo-400/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-indigo-300">
+          Trabajo de grado
+        </span>
+
+        <h2 class="mt-6 text-lg font-bold leading-relaxed text-white">
+          Implementación de la Metodología 5S para mejorar la productividad en el taller de confección de una empresa textil
+        </h2>
+
+        <p class="mt-4 text-sm text-slate-400 leading-relaxed">
+          Estudio orientado a mejorar productividad, orden y estandarización de procesos mediante la metodología 5S.
+        </p>
+      </div>
+
+      <div class="mt-auto pt-7">
+        <a href="https://hdl.handle.net/20.500.14005/11623"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="inline-flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-950/60 px-4 py-2.5 text-sm font-semibold text-slate-200 hover:border-indigo-500 hover:bg-indigo-600 hover:text-white transition">
+          Leer completo
+          <span>→</span>
+        </a>
+      </div>
+    </article>
+
+  </section>
+
+</main>
+
+
+<footer class="mt-16 border-t border-slate-900">
+  <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+    <span>© <span id="year"></span> Brander Trujillo — Todos los derechos reservados.</span>
+    <div class="flex gap-5">
+      <a href="https://www.linkedin.com/in/brandertrujillo/" target="_blank" rel="noopener" class="hover:text-slate-300">LinkedIn</a>
+      <a href="https://www.tiktok.com/@brandertrujillo" target="_blank" rel="noopener" class="hover:text-slate-300">TikTok</a>
+      <a href="https://web.facebook.com/brandertrujillo?locale=es_LA" target="_blank" rel="noopener" class="hover:text-slate-300">Facebook</a>
+    </div>
+  </div>
+</footer>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const navToggle = document.getElementById('navToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  navToggle?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+</script>
+</body>
+</html>
