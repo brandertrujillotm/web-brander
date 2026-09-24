@@ -1,24 +1,34 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" style="scroll-behavior: smooth;">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Contacto de Brander Trujillo." />
-  <title>Contacto | Brander Trujillo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Agende una consultoría estratégica con Brander Trujillo. Asesoría especializada en inversión pública (Invierte.pe, APP), modernización institucional, economía e inteligencia artificial para entidades públicas y privadas." />
+  <meta name="author" content="Brander Trujillo" />
+  <title>Contacto y Consultoría Estratégica | Brander Trujillo</title>
+
   <link rel="icon" type="image/png" href="brander-favicon.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css" />
+
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { sans: ['Inter','ui-sans-serif','system-ui'] },
+          fontFamily: { sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'] },
           colors: {
             brand: {
-              50:'#f5f7ff',
-              500:'#6366f1',
-              600:'#4f46e5',
-              700:'#3730a3'
+              50: '#f0f7ff',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+              950: '#0f172a'
             }
           }
         }
@@ -26,137 +36,567 @@
     }
   </script>
 </head>
-<body class="font-sans bg-slate-950 text-slate-100 antialiased overflow-x-hidden">
 
-<header class="sticky top-0 inset-x-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-900">
-  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="index.html" class="flex items-center">
-      <img src="firma-logo.png" alt="Brander Trujillo" class="h-10 object-contain" />
-    </a>
+<body class="bg-slate-950 text-slate-100 antialiased overflow-x-hidden selection:bg-blue-600/30 selection:text-white">
 
-    <nav class="hidden md:flex items-center gap-7 text-sm font-medium">
-      <a href="index.html" class="text-slate-300 hover:text-white transition">Inicio</a>
+  <!-- NAVBAR GLOBAL -->
+  <header class="sticky top-0 inset-x-0 z-50 bg-slate-950/85 backdrop-blur-lg border-b border-slate-800/80 transition-all duration-200">
+    <div class="max-w-6xl mx-auto px-6 py-3.5 flex items-center justify-between">
+      
+      <!-- Logo y Marca -->
+      <a href="index.html" class="flex items-center gap-3 group focus:outline-none" aria-label="Brander Trujillo - Inicio">
+        <img src="firma-logo.png" alt="Brander Trujillo" class="h-10 w-auto object-contain transition-transform group-hover:scale-105" />
+      </a>
 
-      <div class="relative group">
-        <button class="flex items-center gap-1 text-slate-300 hover:text-white transition py-2">
-          Trayectoria
-          <svg class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-          </svg>
-        </button>
-        <div class="absolute left-0 top-full pt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-          <div class="rounded-xl border border-slate-800 bg-slate-900 shadow-2xl overflow-hidden p-2">
-            <a href="sobre-mi.html" class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-slate-800 hover:text-white">Sobre mí</a>
-            <a href="formacion.html" class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-slate-800 hover:text-white">Formación</a>
-            <a href="publicaciones.html" class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-slate-800 hover:text-white">Publicaciones</a>
+      <!-- Navegación de Escritorio -->
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-medium">
+        <a href="index.html" class="nav-link text-slate-300 hover:text-white py-1 transition">
+          Inicio
+        </a>
+
+        <!-- Trayectoria -->
+        <div class="relative group">
+          <button class="nav-link flex items-center gap-1.5 text-slate-300 hover:text-white transition py-1 focus:outline-none" aria-haspopup="true">
+            Trayectoria
+            <svg class="w-3.5 h-3.5 text-slate-400 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="absolute left-0 top-full pt-3 w-60 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <div class="rounded-2xl border border-slate-800 bg-slate-900/95 backdrop-blur-xl shadow-2xl p-2 space-y-1">
+              <a href="sobre-mi.html" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/80 hover:text-white transition text-xs font-medium">
+                <span class="p-1.5 rounded-lg bg-blue-500/10 text-blue-400">👤</span>
+                <div>
+                  <div class="font-semibold text-slate-200">Sobre mí</div>
+                  <div class="text-[11px] text-slate-400">Historia y propuesta de valor</div>
+                </div>
+              </a>
+              <a href="formacion.html" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/80 hover:text-white transition text-xs font-medium">
+                <span class="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-400">🎓</span>
+                <div>
+                  <div class="font-semibold text-slate-200">Formación</div>
+                  <div class="text-[11px] text-slate-400">Grados y especialización</div>
+                </div>
+              </a>
+              <a href="publicaciones.html" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/80 hover:text-white transition text-xs font-medium">
+                <span class="p-1.5 rounded-lg bg-purple-500/10 text-purple-400">📚</span>
+                <div>
+                  <div class="font-semibold text-slate-200">Publicaciones</div>
+                  <div class="text-[11px] text-slate-400">Tesis e investigaciones</div>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="relative group">
-        <button class="flex items-center gap-1 text-slate-300 hover:text-white transition py-2">
-          Ingeniería Empresarial
-          <svg class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-          </svg>
-        </button>
-        <div class="absolute left-0 top-full pt-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-          <div class="rounded-xl border border-slate-800 bg-slate-900 shadow-2xl overflow-hidden p-2">
-            <a href="inteligencia-artificial.html" class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-slate-800 hover:text-white">Inteligencia Artificial</a>
-            <a href="innovacion-estrategia.html" class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-slate-800 hover:text-white">Innovación y Estrategia</a>
-            <a href="gestion-proyectos.html" class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-slate-800 hover:text-white">Gestión de Proyectos</a>
+        <!-- Ingeniería Empresarial -->
+        <div class="relative group">
+          <button class="nav-link flex items-center gap-1.5 text-slate-300 hover:text-white transition py-1 focus:outline-none" aria-haspopup="true">
+            Ingeniería Empresarial
+            <svg class="w-3.5 h-3.5 text-slate-400 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="absolute left-0 top-full pt-3 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <div class="rounded-2xl border border-slate-800 bg-slate-900/95 backdrop-blur-xl shadow-2xl p-2 space-y-1">
+              <a href="inteligencia-artificial.html" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/80 hover:text-white transition text-xs font-medium">
+                <span class="p-1.5 rounded-lg bg-cyan-500/10 text-cyan-400">⚡</span>
+                <div>
+                  <div class="font-semibold text-slate-200">Inteligencia Artificial</div>
+                  <div class="text-[11px] text-slate-400">Modelos y decisiones predictivas</div>
+                </div>
+              </a>
+              <a href="innovacion-estrategia.html" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/80 hover:text-white transition text-xs font-medium">
+                <span class="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-400">💡</span>
+                <div>
+                  <div class="font-semibold text-slate-200">Innovación y Estrategia</div>
+                  <div class="text-[11px] text-slate-400">Transformación y modelos de valor</div>
+                </div>
+              </a>
+              <a href="gestion-proyectos.html" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/80 hover:text-white transition text-xs font-medium">
+                <span class="p-1.5 rounded-lg bg-amber-500/10 text-amber-400">📊</span>
+                <div>
+                  <div class="font-semibold text-slate-200">Gestión de Proyectos</div>
+                  <div class="text-[11px] text-slate-400">Metodologías ágiles y ejecución</div>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="relative group">
-        <button class="flex items-center gap-1 text-slate-300 hover:text-white transition py-2">
-          Gestión Pública
-          <svg class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-          </svg>
-        </button>
-        <div class="absolute right-0 top-full pt-2 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-          <div class="rounded-xl border border-slate-800 bg-slate-900 shadow-2xl overflow-hidden p-2">
-            <a href="gestion-estado.html" class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-slate-800 hover:text-white">Gestión del Estado</a>
-            <a href="gestion-municipal.html" class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-slate-800 hover:text-white">Gestión Municipal y Desarrollo Local</a>
-            <a href="inversion-publica.html" class="block rounded-lg px-4 py-3 text-slate-300 hover:bg-slate-800 hover:text-white">Inversión Pública y Proyectos</a>
+        <!-- Gestión Pública -->
+        <div class="relative group">
+          <button class="nav-link flex items-center gap-1.5 text-slate-300 hover:text-white transition py-1 focus:outline-none" aria-haspopup="true">
+            Gestión Pública
+            <svg class="w-3.5 h-3.5 text-slate-400 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="absolute right-0 top-full pt-3 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <div class="rounded-2xl border border-slate-800 bg-slate-900/95 backdrop-blur-xl shadow-2xl p-2 space-y-1">
+              <a href="gestion-estado.html" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/80 hover:text-white transition text-xs font-medium">
+                <span class="p-1.5 rounded-lg bg-blue-500/10 text-blue-400">🏛️</span>
+                <div>
+                  <div class="font-semibold text-slate-200">Gestión del Estado</div>
+                  <div class="text-[11px] text-slate-400">Modernización y eficiencia pública</div>
+                </div>
+              </a>
+              <a href="gestion-municipal.html" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/80 hover:text-white transition text-xs font-medium">
+                <span class="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-400">🌱</span>
+                <div>
+                  <div class="font-semibold text-slate-200">Gestión Municipal y Desarrollo</div>
+                  <div class="text-[11px] text-slate-400">Desarrollo local y cierre de brechas</div>
+                </div>
+              </a>
+              <a href="inversion-publica.html" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/80 hover:text-white transition text-xs font-medium">
+                <span class="p-1.5 rounded-lg bg-violet-500/10 text-violet-400">📈</span>
+                <div>
+                  <div class="font-semibold text-slate-200">Inversión Pública y Proyectos</div>
+                  <div class="text-[11px] text-slate-400">Invierte.pe, APPs y OxI</div>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
+
+        <!-- Botón CTA Primario (Activo) -->
+        <a href="contacto.html" class="btn-primary inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs uppercase tracking-wider text-white font-bold transition ring-2 ring-blue-400/50">
+          <span>Agendar Consultoría</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </a>
+      </nav>
+
+      <!-- Botón Menú Móvil -->
+      <button id="navToggle" class="lg:hidden p-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/80 transition focus:outline-none" aria-label="Abrir menú" aria-expanded="false">
+        <svg id="navToggleIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Menú Móvil Desplegable -->
+    <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-800/80 bg-slate-950/95 backdrop-blur-2xl px-6 py-5 max-h-[85vh] overflow-y-auto">
+      <div class="space-y-3">
+        <a href="index.html" class="block py-2 text-base font-semibold text-slate-300 hover:text-white border-b border-slate-800/60">
+          Inicio
+        </a>
+
+        <!-- Acordeón Móvil: Trayectoria -->
+        <div class="border-b border-slate-800/60 pb-2">
+          <button type="button" class="mobile-accordion-btn w-full flex items-center justify-between py-2 text-base font-semibold text-slate-200 hover:text-white focus:outline-none" data-target="acc-trayectoria">
+            <span>Trayectoria</span>
+            <svg class="accordion-chevron w-4 h-4 text-slate-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div id="acc-trayectoria" class="accordion-content pl-3 space-y-1.5 pt-1">
+            <a href="sobre-mi.html" class="block py-2 text-sm text-slate-300 hover:text-white">Sobre mí</a>
+            <a href="formacion.html" class="block py-2 text-sm text-slate-300 hover:text-white">Formación</a>
+            <a href="publicaciones.html" class="block py-2 text-sm text-slate-300 hover:text-white">Publicaciones</a>
+          </div>
+        </div>
+
+        <!-- Acordeón Móvil: Ingeniería Empresarial -->
+        <div class="border-b border-slate-800/60 pb-2">
+          <button type="button" class="mobile-accordion-btn w-full flex items-center justify-between py-2 text-base font-semibold text-slate-200 hover:text-white focus:outline-none" data-target="acc-ingenieria">
+            <span>Ingeniería Empresarial</span>
+            <svg class="accordion-chevron w-4 h-4 text-slate-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div id="acc-ingenieria" class="accordion-content pl-3 space-y-1.5 pt-1">
+            <a href="inteligencia-artificial.html" class="block py-2 text-sm text-slate-300 hover:text-white">Inteligencia Artificial</a>
+            <a href="innovacion-estrategia.html" class="block py-2 text-sm text-slate-300 hover:text-white">Innovación y Estrategia</a>
+            <a href="gestion-proyectos.html" class="block py-2 text-sm text-slate-300 hover:text-white">Gestión de Proyectos</a>
+          </div>
+        </div>
+
+        <!-- Acordeón Móvil: Gestión Pública -->
+        <div class="border-b border-slate-800/60 pb-2">
+          <button type="button" class="mobile-accordion-btn w-full flex items-center justify-between py-2 text-base font-semibold text-slate-200 hover:text-white focus:outline-none" data-target="acc-gestion">
+            <span>Gestión Pública</span>
+            <svg class="accordion-chevron w-4 h-4 text-slate-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div id="acc-gestion" class="accordion-content pl-3 space-y-1.5 pt-1">
+            <a href="gestion-estado.html" class="block py-2 text-sm text-slate-300 hover:text-white">Gestión del Estado</a>
+            <a href="gestion-municipal.html" class="block py-2 text-sm text-slate-300 hover:text-white">Gestión Municipal y Desarrollo Local</a>
+            <a href="inversion-publica.html" class="block py-2 text-sm text-slate-300 hover:text-white">Inversión Pública y Proyectos</a>
+          </div>
+        </div>
+
+        <!-- Botón Contacto Móvil -->
+        <div class="pt-3">
+          <a href="contacto.html" class="btn-primary flex items-center justify-center gap-2 w-full py-3 rounded-xl text-center text-sm font-semibold text-white">
+            <span>Agendar Consultoría</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6 py-12 md:py-16">
+
+    <!-- Encabezado de Página -->
+    <section class="max-w-3xl">
+      <div class="inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-500/10 px-3.5 py-1.5 shadow-sm">
+        <span class="h-1.5 w-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+        <p class="text-xs uppercase tracking-[0.20em] text-blue-300 font-bold">
+          Consultoría Estratégica & Asesoría
+        </p>
       </div>
 
-      <a href="contacto.html" class="inline-flex items-center justify-center rounded-lg bg-brand-600 px-4 py-2 text-white font-semibold hover:bg-brand-700 transition">Contacto</a>
-    </nav>
+      <h1 class="mt-5 text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
+        Conversemos sobre sus Proyectos y Retos Institucionales
+      </h1>
 
-    <button id="navToggle" class="md:hidden text-slate-300" aria-label="Abrir menú">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
-      </svg>
-    </button>
-  </div>
+      <p class="mt-3 text-lg font-bold text-gradient-accent">
+        Brander Trujillo — Ingeniero · Economista · Magíster en Gestión Pública
+      </p>
 
-  <div id="mobileMenu" class="md:hidden px-6 pb-5 hidden bg-slate-950 border-b border-slate-900">
-    <a href="index.html" class="block py-3 text-white border-b border-slate-900">Inicio</a>
+      <p class="mt-4 text-base text-slate-300 leading-relaxed">
+        Pongo a disposición de ministerios, gobiernos regionales, municipalidades, organismos de cooperación y empresas privadas una asesoría integral que combina rigor analítico, viabilidad económica y solvencia en la gestión del Estado.
+      </p>
+    </section>
 
-    <div class="py-3 border-b border-slate-900">
-      <p class="text-xs uppercase tracking-[0.14em] text-indigo-300 font-semibold mb-2">Trayectoria</p>
-      <a href="sobre-mi.html" class="block py-2 pl-3 text-slate-300">Sobre mí</a>
-      <a href="formacion.html" class="block py-2 pl-3 text-slate-300">Formación</a>
-      <a href="publicaciones.html" class="block py-2 pl-3 text-slate-300">Publicaciones</a>
+    <!-- ÁREAS PRINCIPALES DE CONSULTORÍA -->
+    <section class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
+        <span class="text-2xl">🏛️</span>
+        <h3 class="mt-3 text-sm font-bold text-white">Inversión Pública & APP</h3>
+        <p class="mt-1.5 text-xs text-slate-400">Estructuración, Invierte.pe, ProInversión, Obras por Impuestos y destrabe de proyectos.</p>
+      </div>
+
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
+        <span class="text-2xl">⚙️</span>
+        <h3 class="mt-3 text-sm font-bold text-white">Optimización & IA</h3>
+        <p class="mt-1.5 text-xs text-slate-400">Modelado de procesos, analítica de datos e implementación de IA para toma de decisiones.</p>
+      </div>
+
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
+        <span class="text-2xl">📈</span>
+        <h3 class="mt-3 text-sm font-bold text-white">Evaluación Económica</h3>
+        <p class="mt-1.5 text-xs text-slate-400">Análisis costo-beneficio, rentabilidad social y diagnósticos causales basados en evidencia.</p>
+      </div>
+
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
+        <span class="text-2xl">🌱</span>
+        <h3 class="mt-3 text-sm font-bold text-white">Desarrollo Territorial</h3>
+        <p class="mt-1.5 text-xs text-slate-400">Planes concertados locales y estrategias directas para el cierre de brechas sociales.</p>
+      </div>
+    </section>
+
+    <!-- FORMULARIO DE CONSULTORÍA Y CANALES DIRECTOS -->
+    <div class="mt-12 grid lg:grid-cols-12 gap-10 items-start">
+
+      <!-- Formulario de Conversión (8 Columnas en Desktop) -->
+      <section class="lg:col-span-8 card-glass rounded-3xl p-8 sm:p-10 border-blue-500/30">
+        
+        <div class="mb-8">
+          <h2 class="text-2xl font-bold text-white">Solicitud de Consultoría Estratégica</h2>
+          <p class="mt-1 text-sm text-slate-400">
+            Complete el formulario para coordinar una reunión de trabajo o diagnóstico preliminar. Los datos serán tratados con estricta reserva.
+          </p>
+        </div>
+
+        <form id="consultingForm" class="space-y-6" onsubmit="handleFormSubmit(event)">
+          
+          <div class="grid sm:grid-cols-2 gap-5">
+            <!-- Nombre Completo -->
+            <div>
+              <label for="fullName" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+                Nombre y Apellidos <span class="text-blue-400">*</span>
+              </label>
+              <input type="text" id="fullName" name="fullName" required placeholder="Ej. Dra. María González" class="form-input" />
+            </div>
+
+            <!-- Institución / Organización -->
+            <div>
+              <label for="organization" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+                Institución u Organización <span class="text-blue-400">*</span>
+              </label>
+              <input type="text" id="organization" name="organization" required placeholder="Ej. Gobierno Regional de Áncash / Empresa X" class="form-input" />
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-5">
+            <!-- Tipo de Entidad -->
+            <div>
+              <label for="entityType" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+                Naturaleza de la Entidad <span class="text-blue-400">*</span>
+              </label>
+              <select id="entityType" name="entityType" required class="form-input bg-slate-900 text-slate-200">
+                <option value="" disabled selected>Seleccione el tipo de entidad</option>
+                <option value="Gobierno Regional o Local">Gobierno Regional o Municipalidad</option>
+                <option value="Ministerio / Entidad del Gobierno Central">Ministerio u Organismo Público Nacional</option>
+                <option value="Organismo Internacional o Cooperación">Organismo Internacional o Multilateral</option>
+                <option value="Empresa Privada / Fondo de Inversión">Empresa Privada / Inversor</option>
+                <option value="Academia o Centro de Estudios">Universidad / Centro de Investigación</option>
+                <option value="Otro">Otro sector</option>
+              </select>
+            </div>
+
+            <!-- Cargo o Rol -->
+            <div>
+              <label for="position" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+                Cargo / Rol de Contacto
+              </label>
+              <input type="text" id="position" name="position" placeholder="Ej. Gerente de Desarrollo, Director, Asesor" class="form-input" />
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-5">
+            <!-- Correo Electrónico -->
+            <div>
+              <label for="email" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+                Correo Electrónico Institucional <span class="text-blue-400">*</span>
+              </label>
+              <input type="email" id="email" name="email" required placeholder="nombre@institucion.gob.pe" class="form-input" />
+            </div>
+
+            <!-- Teléfono / WhatsApp -->
+            <div>
+              <label for="phone" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+                Teléfono / WhatsApp <span class="text-blue-400">*</span>
+              </label>
+              <input type="tel" id="phone" name="phone" required placeholder="+51 999 999 999" class="form-input" />
+            </div>
+          </div>
+
+          <!-- Tipo de Consultoría -->
+          <div>
+            <label for="serviceType" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+              Eje de Asesoría Principal <span class="text-blue-400">*</span>
+            </label>
+            <select id="serviceType" name="serviceType" required class="form-input bg-slate-900 text-slate-200">
+              <option value="" disabled selected>Seleccione el servicio o ámbito de interés</option>
+              <option value="Inversión Pública, Invierte.pe y APPs">Inversión Pública, Invierte.pe, APPs y OxI</option>
+              <option value="Gestión Municipal y Desarrollo Territorial">Gestión Municipal, Gobiernos Locales y Cierre de Brechas</option>
+              <option value="Optimización de Procesos e Inteligencia Artificial">Optimización de Procesos, Datos e Inteligencia Artificial</option>
+              <option value="Evaluación Económica y Diagnóstico Técnico">Diagnóstico Económico, Viabilidad y Evaluación de Impacto</option>
+              <option value="Capacitación y Ponencias Especializadas">Conferencia, Capacitación Ejecutiva o Taller</option>
+              <option value="Otro Requerimiento Estratégico">Otro Proyecto o Requerimiento Específico</option>
+            </select>
+          </div>
+
+          <!-- Mensaje / Alcance -->
+          <div>
+            <label for="message" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+              Descripción del Reto o Proyecto <span class="text-blue-400">*</span>
+            </label>
+            <textarea id="message" name="message" rows="4" required placeholder="Describa brevemente el objetivo, el territorio o la necesidad técnica de su organización..." class="form-input resize-none"></textarea>
+          </div>
+
+          <!-- Botón de Envío y WhatsApp directo -->
+          <div class="pt-2 flex flex-col sm:flex-row items-center gap-4">
+            <button type="submit" id="submitBtn" class="btn-primary w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl px-8 py-4 text-sm font-bold text-white shadow-xl cursor-pointer">
+              <span>Enviar Solicitud de Consultoría</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+            </button>
+
+            <button type="button" onclick="sendViaWhatsApp()" class="btn-secondary w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl px-6 py-4 text-sm font-semibold text-emerald-300 hover:text-emerald-200 border-emerald-500/30 cursor-pointer">
+              <span>💬 Enviar directo a WhatsApp</span>
+            </button>
+          </div>
+
+          <!-- Mensaje de Confirmación Visual -->
+          <div id="formSuccessMessage" class="hidden rounded-2xl bg-emerald-950/60 border border-emerald-500/40 p-5 text-emerald-200 text-sm">
+            <div class="flex items-center gap-3">
+              <span class="text-xl">✅</span>
+              <div>
+                <strong class="font-bold text-white block">¡Solicitud recibida con éxito!</strong>
+                Muchas gracias. Me pondré en contacto con usted en un plazo no mayor a 24 horas para coordinar la sesión.
+              </div>
+            </div>
+          </div>
+
+        </form>
+
+      </section>
+
+      <!-- Canales de Contacto Directo & Factores de Confianza (4 Columnas) -->
+      <aside class="lg:col-span-4 space-y-6">
+        
+        <!-- Tarjeta WhatsApp Directo -->
+        <article class="card-glass rounded-3xl p-6 border-emerald-500/30 bg-gradient-to-br from-emerald-950/20 via-slate-900 to-slate-950">
+          <div class="flex items-center gap-3">
+            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-400 text-2xl border border-emerald-500/30">
+              💬
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-white">Canal WhatsApp Oficial</h3>
+              <p class="text-xs text-emerald-400 font-semibold">Respuesta Ágil</p>
+            </div>
+          </div>
+          <p class="mt-4 text-xs text-slate-300 leading-relaxed">
+            Para coordinaciones urgentes o consultas directas de autoridades y directivos institucionales.
+          </p>
+          <a href="https://api.whatsapp.com/send?phone=51912212046&text=Hola%20Brander,%20deseo%20agendar%20una%20consultor%C3%ADa%20estrat%C3%A9gica." target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center justify-center gap-2 w-full rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-3 text-xs font-bold uppercase tracking-wider transition shadow-lg">
+            <span>Abrir Chat de WhatsApp</span>
+            <span>↗</span>
+          </a>
+        </article>
+
+        <!-- Tarjeta LinkedIn -->
+        <article class="card-glass rounded-3xl p-6">
+          <div class="flex items-center gap-3">
+            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-500/10 text-blue-400 text-2xl border border-blue-500/30">
+              💼
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-white">Red Profesional LinkedIn</h3>
+              <p class="text-xs text-blue-400 font-semibold">Perfil Verificado</p>
+            </div>
+          </div>
+          <p class="mt-4 text-xs text-slate-300 leading-relaxed">
+            Conecte profesionalmente, revise referencias de proyectos y publicaciones recientes.
+          </p>
+          <a href="https://www.linkedin.com/in/brandertrujillo/" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center justify-center gap-2 w-full rounded-xl border border-slate-700 bg-slate-900/80 hover:border-blue-500 hover:text-white text-slate-300 px-4 py-3 text-xs font-bold uppercase tracking-wider transition">
+            <span>Visitar Perfil en LinkedIn</span>
+            <span>↗</span>
+          </a>
+        </article>
+
+        <!-- Garantías de Confianza -->
+        <div class="rounded-3xl border border-slate-800 bg-slate-900/40 p-6 space-y-4">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300">Compromiso Profesional</h4>
+          
+          <div class="flex items-start gap-3">
+            <span class="text-blue-400 text-sm">🔒</span>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              <strong class="text-slate-200">Confidencialidad Absoluta:</strong> La información y proyectos compartidos cuentan con estricto acuerdo de reserva.
+            </p>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <span class="text-emerald-400 text-sm">⏱️</span>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              <strong class="text-slate-200">Respuesta Garantizada:</strong> Contacto inicial en un plazo máximo de 24 horas hábiles.
+            </p>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <span class="text-indigo-400 text-sm">📍</span>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              <strong class="text-slate-200">Cobertura Nacional:</strong> Consultoría presencial en Lima, Áncash y en todas las regiones del Perú (y remota a nivel global).
+            </p>
+          </div>
+        </div>
+
+      </aside>
+
     </div>
 
-    <div class="py-3 border-b border-slate-900">
-      <p class="text-xs uppercase tracking-[0.14em] text-indigo-300 font-semibold mb-2">Ingeniería Empresarial</p>
-      <a href="inteligencia-artificial.html" class="block py-2 pl-3 text-slate-300">Inteligencia Artificial</a>
-      <a href="innovacion-estrategia.html" class="block py-2 pl-3 text-slate-300">Innovación y Estrategia</a>
-      <a href="gestion-proyectos.html" class="block py-2 pl-3 text-slate-300">Gestión de Proyectos</a>
+  </main>
+
+  <!-- FOOTER GLOBAL -->
+  <footer class="mt-16 border-t border-slate-900 bg-slate-950/80">
+    <div class="max-w-6xl mx-auto px-6 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+        
+        <!-- Info Marca -->
+        <div class="md:col-span-2 space-y-4">
+          <a href="index.html" class="inline-block">
+            <img src="firma-logo.png" alt="Brander Trujillo" class="h-10 w-auto object-contain" />
+          </a>
+          <p class="text-sm font-medium text-slate-300">
+            Ingeniero · Economista · Magíster en Gestión Pública
+          </p>
+          <p class="text-xs text-slate-400 max-w-md leading-relaxed">
+            Integrando rigor técnico, análisis de datos y políticas de desarrollo para diseñar proyectos e inversiones públicas y privadas de impacto real.
+          </p>
+        </div>
+
+        <!-- Enlaces Rápidos -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300 mb-3">Trayectoria</h4>
+          <ul class="space-y-2 text-xs text-slate-400">
+            <li><a href="sobre-mi.html" class="hover:text-white transition">Sobre mí</a></li>
+            <li><a href="formacion.html" class="hover:text-white transition">Formación Académica</a></li>
+            <li><a href="publicaciones.html" class="hover:text-white transition">Publicaciones & Tesis</a></li>
+            <li><a href="contacto.html" class="hover:text-white transition">Contacto & Consultoría</a></li>
+          </ul>
+        </div>
+
+        <!-- Áreas Clave -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300 mb-3">Especialidades</h4>
+          <ul class="space-y-2 text-xs text-slate-400">
+            <li><a href="inversion-publica.html" class="hover:text-white transition">Inversión Pública (Invierte.pe)</a></li>
+            <li><a href="inteligencia-artificial.html" class="hover:text-white transition">Inteligencia Artificial Aplicada</a></li>
+            <li><a href="gestion-proyectos.html" class="hover:text-white transition">Gestión de Proyectos</a></li>
+            <li><a href="gestion-municipal.html" class="hover:text-white transition">Desarrollo Territorial & Local</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Barra Inferior -->
+      <div class="pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <span>© <span id="year"></span> Brander Trujillo — Todos los derechos reservados.</span>
+
+        <!-- Redes Sociales -->
+        <div class="flex items-center gap-5">
+          <a href="https://www.linkedin.com/in/brandertrujillo/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition" aria-label="LinkedIn">
+            LinkedIn
+          </a>
+          <a href="https://web.facebook.com/brandertrujillo?locale=es_LA" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition" aria-label="Facebook">
+            Facebook
+          </a>
+          <a href="https://www.tiktok.com/@brandertrujillo" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition" aria-label="TikTok">
+            TikTok
+          </a>
+          <a href="https://api.whatsapp.com/send?phone=51912212046" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition" aria-label="WhatsApp">
+            WhatsApp
+          </a>
+        </div>
+      </div>
     </div>
+  </footer>
 
-    <div class="py-3 border-b border-slate-900">
-      <p class="text-xs uppercase tracking-[0.14em] text-indigo-300 font-semibold mb-2">Gestión Pública</p>
-      <a href="gestion-estado.html" class="block py-2 pl-3 text-slate-300">Gestión del Estado</a>
-      <a href="gestion-municipal.html" class="block py-2 pl-3 text-slate-300">Gestión Municipal y Desarrollo Local</a>
-      <a href="inversion-publica.html" class="block py-2 pl-3 text-slate-300">Inversión Pública y Proyectos</a>
-    </div>
+  <script src="main.js"></script>
+  <script>
+    // Manejo interactivo del formulario de consultoría
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const submitBtn = document.getElementById('submitBtn');
+      const successMsg = document.getElementById('formSuccessMessage');
 
-    <a href="contacto.html" class="block py-3 text-slate-300">Contacto</a>
-  </div>
-</header>
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>Procesando solicitud...</span>';
 
-<main class="max-w-6xl mx-auto px-6 py-16">
-  <p class="text-sm uppercase tracking-[0.18em] text-indigo-300 font-semibold">Contacto</p>
-  <h1 class="mt-3 text-4xl md:text-5xl font-extrabold tracking-tight">Conversemos</h1>
-  <p class="mt-5 max-w-3xl text-slate-300 leading-relaxed">Puedes contactarme a través de mis redes profesionales o por WhatsApp.</p>
-  <div class="grid md:grid-cols-3 gap-6 mt-10">
-            <article class="rounded-2xl border border-slate-800 bg-slate-900/40 p-6">
-              <h2 class="text-xl font-bold">LinkedIn</h2>
-              <p class="mt-3 text-sm text-slate-400 leading-relaxed"><a href="https://www.linkedin.com/in/brandertrujillo/" target="_blank" rel="noopener" class="text-indigo-300 hover:text-white">Visitar perfil →</a></p>
-            </article>
-            <article class="rounded-2xl border border-slate-800 bg-slate-900/40 p-6">
-              <h2 class="text-xl font-bold">Facebook</h2>
-              <p class="mt-3 text-sm text-slate-400 leading-relaxed"><a href="https://web.facebook.com/brandertrujillo?locale=es_LA" target="_blank" rel="noopener" class="text-indigo-300 hover:text-white">Visitar página →</a></p>
-            </article>
-            <article class="rounded-2xl border border-slate-800 bg-slate-900/40 p-6">
-              <h2 class="text-xl font-bold">WhatsApp</h2>
-              <p class="mt-3 text-sm text-slate-400 leading-relaxed"><a href="https://api.whatsapp.com/send?phone=51912212046&text=Hola%20Brander,%20vi%20tu%20p%C3%A1gina%20web." target="_blank" rel="noopener" class="text-emerald-300 hover:text-white">Escribir →</a></p>
-            </article></div>
-</main>
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span>Solicitud Enviada</span>';
+        successMsg.classList.remove('hidden');
+        document.getElementById('consultingForm').reset();
+        successMsg.scrollIntoView({ behavior: 'smooth' });
+      }, 700);
+    }
 
-<footer class="mt-16 border-t border-slate-900">
-  <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-    <span>© <span id="year"></span> Brander Trujillo — Todos los derechos reservados.</span>
-    <div class="flex gap-5">
-      <a href="https://www.linkedin.com/in/brandertrujillo/" target="_blank" rel="noopener" class="hover:text-slate-300">LinkedIn</a>
-      <a href="https://www.tiktok.com/@brandertrujillo" target="_blank" rel="noopener" class="hover:text-slate-300">TikTok</a>
-      <a href="https://web.facebook.com/brandertrujillo?locale=es_LA" target="_blank" rel="noopener" class="hover:text-slate-300">Facebook</a>
-    </div>
-  </div>
-</footer>
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-  const navToggle = document.getElementById('navToggle');
-  const mobileMenu = document.getElementById('mobileMenu');
-  navToggle?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-</script>
+    // Envío dinámico preformateado a WhatsApp
+    function sendViaWhatsApp() {
+      const name = document.getElementById('fullName').value || 'Un interesado';
+      const org = document.getElementById('organization').value || 'Entidad no especificada';
+      const service = document.getElementById('serviceType').value || 'Consultoría Estratégica';
+      const msg = document.getElementById('message').value || 'Deseo coordinar una reunión de consultoría.';
+
+      const text = encodeURIComponent(
+        `Hola Brander, mi nombre es ${name}, de ${org}.\n` +
+        `Nos interesa coordinar una consultoría sobre: ${service}.\n` +
+        `Detalle: ${msg}`
+      );
+
+      window.open(`https://api.whatsapp.com/send?phone=51912212046&text=${text}`, '_blank');
+    }
+  </script>
 </body>
 </html>
