@@ -11,7 +11,7 @@
   --bg-card: #0f172a;
   --bg-card-hover: #172554;
   --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-glow: rgba(59, 130, 246, 0.35);
+  --border-glow: rgba(59, 130, 246, 0.4);
   --brand-blue: #2563eb;
   --brand-blue-light: #38bdf8;
   --brand-navy: #1e3a8a;
@@ -44,36 +44,40 @@ main {
   width: 8px;
   height: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: #030712;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #1e293b;
   border-radius: 9999px;
+  transition: background 0.2s ease;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #334155;
 }
 
 /* Selección de texto elegante */
 ::selection {
-  background-color: rgba(59, 130, 246, 0.3);
+  background-color: rgba(59, 130, 246, 0.35);
   color: #ffffff;
 }
 
 /* Gradientes y Efectos de Fondo */
 .bg-radial-gradient {
-  background: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.15), transparent 70%);
+  background: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.18), transparent 70%);
 }
 
 .bg-radial-mesh {
-  background-image: 
+  background-image:
     radial-gradient(at 100% 0%, rgba(30, 58, 138, 0.25) 0px, transparent 50%),
     radial-gradient(at 0% 100%, rgba(14, 165, 233, 0.12) 0px, transparent 50%);
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #ffffff 30%, #93c5fd 100%);
+  background: linear-gradient(135deg, #ffffff 40%, #93c5fd 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -84,34 +88,74 @@ main {
   -webkit-text-fill-color: transparent;
 }
 
-/* Tarjetas y Contenedores */
-.card-glass {
+/* ==========================================================================
+   ANIMACIONES AL HACER SCROLL (FADE-IN & SLIDE-UP)
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ==========================================================================
+   TARJETAS INTERACTIVAS CON ELEVACIÓN Y TILT SUTIL
+   ========================================================================== */
+.card-glass,
+.card-interactive {
   background: rgba(15, 23, 42, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border-subtle);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.35s ease;
+  will-change: transform, box-shadow;
 }
 
-.card-glass:hover {
+.card-glass:hover,
+.card-interactive:hover {
   border-color: var(--border-glow);
-  transform: translateY(-3px);
-  box-shadow: 0 20px 30px -10px rgba(15, 23, 42, 0.8), 0 0 20px -5px rgba(59, 130, 246, 0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 22px 35px -10px rgba(3, 7, 18, 0.85),
+              0 0 25px -5px rgba(59, 130, 246, 0.22);
+  background: rgba(15, 23, 42, 0.9);
 }
 
-/* Botones con Micro-animación */
+/* ==========================================================================
+   BOTONES CON MICRO-INTERACCIONES MODERNAS
+   ========================================================================== */
 .btn-primary {
+  position: relative;
   background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
   color: #ffffff;
-  font-weight: 600;
-  transition: all 0.25s ease;
+  font-weight: 700;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+  overflow: hidden;
 }
 
 .btn-primary:hover {
   background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -4px rgba(37, 99, 235, 0.55),
+              0 0 15px rgba(56, 189, 248, 0.3);
+}
+
+.btn-primary:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
 }
 
 .btn-secondary {
@@ -119,17 +163,24 @@ main {
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: #f1f5f9;
   font-weight: 600;
-  transition: all 0.25s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-secondary:hover {
-  background: rgba(51, 65, 85, 0.8);
-  border-color: rgba(147, 197, 253, 0.4);
+  background: rgba(51, 65, 85, 0.85);
+  border-color: rgba(147, 197, 253, 0.45);
   color: #ffffff;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.6);
 }
 
-/* Navbar Global Styles */
+.btn-secondary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* ==========================================================================
+   NAVBAR & ENLACES
+   ========================================================================== */
 .nav-link {
   position: relative;
   transition: color 0.2s ease;
@@ -176,21 +227,24 @@ main {
   border: 1px solid rgba(99, 102, 241, 0.25);
 }
 
-/* Campos de Formulario */
+/* ==========================================================================
+   CAMPOS DE FORMULARIO
+   ========================================================================== */
 .form-input {
   width: 100%;
   background: rgba(15, 23, 42, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 0.75rem;
-  padding: 0.75rem 1rem;
+  padding: 0.85rem 1.1rem;
   color: #f8fafc;
   outline: none;
+  font-size: 0.95rem;
   transition: all 0.2s ease;
 }
 
 .form-input:focus {
   border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.28);
   background: rgba(15, 23, 42, 0.95);
 }
 

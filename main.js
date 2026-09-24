@@ -1,10 +1,10 @@
 /**
  * BRANDER TRUJILLO - Scripts Globales
- * Manejo de navegación, menú responsivo y utilidades interactivas
+ * Manejo de navegación, menú responsivo y dinamismo interactivo
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Actualizar año en footer
+  // 1. Actualizar año dinámico en footer
   const yearSpan = document.getElementById('year');
   if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
@@ -60,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (content) {
         const isOpen = content.classList.contains('open');
-        // Cerrar otros acordeones si se desea
         document.querySelectorAll('.accordion-content').forEach(c => {
           if (c !== content) c.classList.remove('open');
         });
@@ -91,4 +90,48 @@ document.addEventListener('DOMContentLoaded', () => {
       link.classList.remove('text-slate-300', 'text-slate-400');
     }
   });
+
+  // 5. Animaciones de entrada al hacer scroll (Intersection Observer)
+  const reveals = document.querySelectorAll('.reveal');
+  if (reveals.length > 0) {
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      reveals.forEach(el => revealObserver.observe(el));
+    } else {
+      reveals.forEach(el => el.classList.add('active'));
+    }
+  }
+
+  // 6. Efecto de inclinación sutil (tilt 3D) en tarjetas de escritorio
+  if (window.matchMedia('(min-width: 1024px)').matches) {
+    const interactiveCards = document.querySelectorAll('.card-glass, .card-interactive');
+    interactiveCards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -3.5;
+        const rotateY = ((x - centerX) / centerX) * 3.5;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+      });
+    });
+  }
 });
