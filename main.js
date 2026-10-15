@@ -80,14 +80,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 4. Detección automática del enlace activo en Desktop & Mobile
   const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-  const allNavLinks = document.querySelectorAll('header nav a, #mobileMenu a');
+  const allNavLinks = document.querySelectorAll('header nav a.nav-link, #mobileMenu a:not(.btn-primary)');
+
+  const trayectoriaPages = ['trayectoria.html', 'sobre-mi.html', 'formacion.html', 'publicaciones.html'];
+  const blogPages = [
+    'blog.html',
+    'inteligencia-artificial.html',
+    'innovacion-estrategia.html',
+    'gestion-proyectos.html',
+    'gestion-estado.html',
+    'gestion-municipal.html',
+    'inversion-publica.html'
+  ];
 
   allNavLinks.forEach(link => {
     const href = link.getAttribute('href');
-    if (href === currentPath || (currentPath === '' && href === 'index.html')) {
+    const isTrayectoria = href === 'trayectoria.html' && trayectoriaPages.includes(currentPath);
+    const isBlog = href === 'blog.html' && blogPages.includes(currentPath);
+    const isDirectMatch = href === currentPath || (currentPath === '' && href === 'index.html');
+
+    if (isDirectMatch || isTrayectoria || isBlog) {
       link.classList.add('active');
       link.classList.add('text-white');
       link.classList.remove('text-slate-300', 'text-slate-400');
+    } else {
+      link.classList.remove('active');
+      link.classList.remove('text-white');
+      link.classList.add('text-slate-300');
     }
   });
 

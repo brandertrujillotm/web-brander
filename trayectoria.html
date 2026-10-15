@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="es" style="scroll-behavior: smooth;">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+    content="Trayectoria profesional de Brander Trujillo — Ingeniero Empresarial, Economista y Magíster en Gestión Pública. Conoce mi perfil, formación académica en USIL e investigaciones publicadas." />
+  <meta name="author" content="Brander Trujillo" />
+  <title>Trayectoria | Brander Trujillo</title>
+
+  <link rel="icon" type="image/png" href="brander-favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'] },
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              200: '#bae0fd',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+              950: '#0f172a'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-slate-950 text-slate-100 antialiased overflow-x-hidden selection:bg-blue-600/30 selection:text-white">
+
+  <!-- NAVBAR GLOBAL SIMPLIFICADO -->
+  <header class="sticky top-0 inset-x-0 z-50 bg-slate-950/85 backdrop-blur-lg border-b border-slate-800/80 transition-all duration-200">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+
+      <!-- Logo y Marca -->
+      <a href="index.html" class="flex items-center gap-3 group focus:outline-none" aria-label="Brander Trujillo - Inicio">
+        <img src="firma-logo.png" alt="Brander Trujillo" class="h-10 w-auto object-contain transition-transform group-hover:scale-105" />
+      </a>
+
+      <!-- Navegación de Escritorio: 4 ENLACES DIRECTOS -->
+      <nav class="hidden lg:flex items-center gap-9 text-sm font-medium">
+        <a href="index.html" class="nav-link text-slate-300 hover:text-white py-1 transition">
+          Inicio
+        </a>
+        <a href="trayectoria.html" class="nav-link text-slate-300 hover:text-white py-1 transition active">
+          Trayectoria
+        </a>
+        <a href="blog.html" class="nav-link text-slate-300 hover:text-white py-1 transition">
+          Blog
+        </a>
+        <a href="contacto.html" class="nav-link text-slate-300 hover:text-white py-1 transition">
+          Contacto
+        </a>
+      </nav>
+
+      <!-- Botón Menú Móvil -->
+      <button id="navToggle" class="lg:hidden p-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/80 transition focus:outline-none" aria-label="Abrir menú" aria-expanded="false">
+        <svg id="navToggleIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Menú Móvil Desplegable Simplificado -->
+    <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-800/80 bg-slate-950/95 backdrop-blur-2xl px-6 py-5">
+      <div class="space-y-3">
+        <a href="index.html" class="block py-2 text-base font-semibold text-slate-300 hover:text-white border-b border-slate-800/60">
+          Inicio
+        </a>
+        <a href="trayectoria.html" class="block py-2 text-base font-semibold text-blue-400 hover:text-white border-b border-slate-800/60">
+          Trayectoria
+        </a>
+        <a href="blog.html" class="block py-2 text-base font-semibold text-slate-300 hover:text-white border-b border-slate-800/60">
+          Blog
+        </a>
+        <a href="contacto.html" class="block py-2 text-base font-semibold text-slate-300 hover:text-white">
+          Contacto
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-6 py-12 md:py-20 space-y-24">
+
+    <!-- ============================================================== -->
+    <!-- SECCIÓN 1: ¿QUIÉN SOY? (DIRECTO, HUMANO Y PROFESIONAL)        -->
+    <!-- ============================================================== -->
+    <section id="quien-soy" class="scroll-mt-24 reveal max-w-4xl">
+      <div id="perfil" class="scroll-mt-24"></div>
+
+      <div class="inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-500/10 px-3.5 py-1.5 shadow-sm mb-4">
+        <span class="h-1.5 w-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+        <p class="text-xs uppercase tracking-[0.20em] text-blue-300 font-bold">
+          Perfil Profesional
+        </p>
+      </div>
+
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-tight">
+        ¿Quién soy?
+      </h1>
+
+      <p class="mt-3 text-xl sm:text-2xl font-bold text-gradient-accent">
+        Brander Trujillo — Ingeniero · Economista · Magíster en Gestión Pública
+      </p>
+
+      <!-- Narrativa en Primera Persona -->
+      <div class="mt-8 space-y-4 text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
+        <p>
+          Nací en San Juan, distrito de Pontó, provincia de Huari (Áncash).
+        </p>
+
+        <p>
+          Soy ingeniero, economista y magíster en Gestión Pública, con una visión multidisciplinaria orientada al análisis, la planificación estratégica y el desarrollo.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ============================================================== -->
+    <!-- SECCIÓN 2: FORMACIÓN ACADÉMICA & ESPECIALIZACIONES            -->
+    <!-- ============================================================== -->
+    <section id="formacion" class="scroll-mt-24 space-y-12 reveal">
+      
+      <div>
+        <div class="inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-500/10 px-3.5 py-1.5 shadow-sm mb-4">
+          <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+          <p class="text-xs uppercase tracking-[0.20em] text-emerald-300 font-bold">
+            Fundamentos & Competencias
+          </p>
+        </div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white">
+          Formación Académica
+        </h2>
+        <p class="mt-2 text-base text-slate-400 max-w-2xl">
+          Estructura académica de posgrado y pregrado, complementada con especializaciones técnicas orientadas a la acción.
+        </p>
+      </div>
+
+      <!-- A. GRADOS PRINCIPALES -->
+      <div class="space-y-6">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">
+          A. Grados Principales
+        </h3>
+
+        <!-- 1. Maestría en Gestión Pública -->
+        <article class="card-glass rounded-3xl p-7 sm:p-8 border-blue-500/30">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <span class="badge-tech inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+              Posgrado / Grado de Maestro
+            </span>
+            <span class="text-xs text-slate-400">Escuela de Posgrado USIL · Lima, Perú</span>
+          </div>
+
+          <h4 class="text-2xl font-bold text-white">
+            Maestría en Gestión Pública
+          </h4>
+          <p class="mt-1 text-sm font-semibold text-blue-400">
+            Universidad San Ignacio de Loyola (USIL)
+          </p>
+
+          <p class="mt-3 text-sm text-slate-300 leading-relaxed">
+            Formación orientada a la modernización de la gestión del Estado, presupuesto por resultados, Asociaciones Público-Privadas (APPs) y estructuración de proyectos bajo Invierte.pe. Tesis defendida y publicada en el repositorio institucional sobre destrabe de infraestructura educativa.
+          </p>
+        </article>
+
+        <!-- 2. Ingeniería Empresarial -->
+        <article class="card-glass rounded-3xl p-7 sm:p-8 border-slate-800/80">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <span class="badge-eco inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+              Grado Universitario · Becario Beca 18
+            </span>
+            <span class="text-xs text-slate-400">USIL · Lima, Perú</span>
+          </div>
+
+          <h4 class="text-2xl font-bold text-white">
+            Ingeniería Empresarial
+          </h4>
+          <p class="mt-1 text-sm font-semibold text-indigo-400">
+            Universidad San Ignacio de Loyola (USIL)
+          </p>
+
+          <p class="mt-3 text-sm text-slate-300 leading-relaxed">
+            Formación orientada al modelamiento de procesos organizacionales (BPMN), evaluación económico-financiera de proyectos, arquitectura de negocios, sistemas de información integrados y metodologías Lean para maximizar la productividad operativa.
+          </p>
+        </article>
+
+        <!-- 3. Formación en Economía -->
+        <article class="card-glass rounded-3xl p-7 sm:p-8 border-slate-800/80">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <span class="badge-public inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+              Formación Cuantitativa & Económica
+            </span>
+            <span class="text-xs text-slate-400">UNTRM · Perú</span>
+          </div>
+
+          <h4 class="text-2xl font-bold text-white">
+            Formación en Economía
+          </h4>
+          <p class="mt-1 text-sm font-semibold text-cyan-400">
+            Ciencia Económica & Econometría Aplicada
+          </p>
+
+          <p class="mt-3 text-sm text-slate-300 leading-relaxed">
+            Rigor en análisis causal de políticas públicas, econometría aplicada, estructuración financiera, diseño presupuestal, evaluación de rentabilidad social y aseguramiento de la sostenibilidad financiera y fiscal.
+          </p>
+        </article>
+      </div>
+
+      <!-- B. ESPECIALIZACIONES CLAVE -->
+      <div class="pt-4 space-y-6">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">
+          B. Especializaciones Clave
+        </h3>
+
+        <div class="grid md:grid-cols-3 gap-5">
+          
+          <!-- Especialización 1 -->
+          <div class="card-glass rounded-2xl p-6 border-slate-800/80 hover:border-blue-500/40 transition">
+            <span class="text-2xl block mb-3">📋</span>
+            <h4 class="text-base font-bold text-white mb-2">Gestión de Proyectos</h4>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4">
+              Metodologías ágiles (Scrum, Kanban) y predictivas (enfoque PMI). Estándares rigurosos de control de alcance, costos, cronograma y gestión preventiva de riesgos.
+            </p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="text-[10px] font-semibold text-blue-300 bg-blue-500/10 px-2 py-0.5 rounded">PMI / PMBOK</span>
+              <span class="text-[10px] font-semibold text-blue-300 bg-blue-500/10 px-2 py-0.5 rounded">Scrum</span>
+              <span class="text-[10px] font-semibold text-blue-300 bg-blue-500/10 px-2 py-0.5 rounded">Control de Riesgos</span>
+            </div>
+          </div>
+
+          <!-- Especialización 2 -->
+          <div class="card-glass rounded-2xl p-6 border-slate-800/80 hover:border-indigo-500/40 transition">
+            <span class="text-2xl block mb-3">📊</span>
+            <h4 class="text-base font-bold text-white mb-2">Analítica de Datos & IA</h4>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4">
+              Modelamiento de datos, visualización en dashboards de BI y adopción práctica de herramientas de Inteligencia Artificial como soporte analítico para la toma de decisiones.
+            </p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="text-[10px] font-semibold text-indigo-300 bg-indigo-500/10 px-2 py-0.5 rounded">Power BI</span>
+              <span class="text-[10px] font-semibold text-indigo-300 bg-indigo-500/10 px-2 py-0.5 rounded">Modelos de IA</span>
+              <span class="text-[10px] font-semibold text-indigo-300 bg-indigo-500/10 px-2 py-0.5 rounded">Analítica de Gestión</span>
+            </div>
+          </div>
+
+          <!-- Especialización 3 -->
+          <div class="card-glass rounded-2xl p-6 border-slate-800/80 hover:border-emerald-500/40 transition">
+            <span class="text-2xl block mb-3">🏛️</span>
+            <h4 class="text-base font-bold text-white mb-2">Inversión Pública</h4>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4">
+              Ciclo integral de proyectos bajo Invierte.pe (PMI, Formulación y Ejecución), estructuración en Obras por Impuestos (OxI) y esquemas de Asociaciones Público-Privadas (APPs).
+            </p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="text-[10px] font-semibold text-emerald-300 bg-emerald-500/10 px-2 py-0.5 rounded">Invierte.pe</span>
+              <span class="text-[10px] font-semibold text-emerald-300 bg-emerald-500/10 px-2 py-0.5 rounded">Obras por Impuestos</span>
+              <span class="text-[10px] font-semibold text-emerald-300 bg-emerald-500/10 px-2 py-0.5 rounded">APPs</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ============================================================== -->
+    <!-- SECCIÓN 3: PUBLICACIONES (MIS 3 INVESTIGACIONES)               -->
+    <!-- ============================================================== -->
+    <section id="publicaciones" class="scroll-mt-24 space-y-8 reveal">
+      
+      <div>
+        <div class="inline-flex items-center gap-2 rounded-full border border-purple-400/20 bg-purple-500/10 px-3.5 py-1.5 shadow-sm mb-4">
+          <span class="h-1.5 w-1.5 rounded-full bg-purple-400"></span>
+          <p class="text-xs uppercase tracking-[0.20em] text-purple-300 font-bold">
+            Evidencia & Repositorio Institucional USIL
+          </p>
+        </div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white">
+          Publicaciones & Tesis
+        </h2>
+        <p class="mt-2 text-base text-slate-400 max-w-2xl">
+          Tres investigaciones académicas aprobadas y publicadas en acceso abierto en el repositorio institucional de la Universidad San Ignacio de Loyola.
+        </p>
+      </div>
+
+      <div class="space-y-6">
+
+        <!-- 1) Tesis de Maestría USIL -->
+        <article id="tesis" class="scroll-mt-24 card-glass rounded-3xl p-7 sm:p-9 border-blue-500/40 relative overflow-hidden bg-gradient-to-br from-slate-900/90 to-slate-950">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <span class="inline-flex rounded-full border border-blue-400/30 bg-blue-500/10 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-blue-300">
+              Tesis de Grado · Maestría USIL
+            </span>
+            <span class="inline-flex items-center gap-1.5 text-xs text-emerald-400 font-semibold bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+              <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+              Acceso Abierto (Open Access)
+            </span>
+          </div>
+
+          <h3 class="text-xl sm:text-2xl font-extrabold text-white leading-snug">
+            Factores Limitantes en Asociaciones Público-Privadas (APPs) de Infraestructura Educativa: Análisis del periodo 2002-2022 adjudicado por ProInversión
+          </h3>
+
+          <p class="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed">
+            <strong class="text-white">Resumen:</strong> Evaluación crítica de las barreras burocráticas, normativas y financieras en las adjudicaciones de infraestructura escolar en el Perú, identificando cuellos de botella en la estructuración y ejecución contractual para formular reformas de política pública orientadas al destrabe efectivo de inversiones.
+          </p>
+
+          <!-- Badges -->
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="text-xs font-semibold text-blue-300 bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-lg">APPs</span>
+            <span class="text-xs font-semibold text-blue-300 bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-lg">ProInversión</span>
+            <span class="text-xs font-semibold text-blue-300 bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-lg">Infraestructura Educativa</span>
+            <span class="text-xs font-semibold text-blue-300 bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-lg">Gestión Pública</span>
+          </div>
+
+          <!-- Handle & Botón -->
+          <div class="mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-5 border-t border-slate-800/80">
+            <div class="text-xs text-slate-400 font-mono">
+              Handle: <a href="https://hdl.handle.net/20.500.14005/15705" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">20.500.14005/15705</a>
+            </div>
+
+            <a href="https://hdl.handle.net/20.500.14005/15705" target="_blank" rel="noopener noreferrer"
+              class="btn-primary inline-flex items-center justify-center gap-2 rounded-xl px-6 py-2.5 text-xs uppercase tracking-wider font-bold text-white shadow-lg">
+              <span>Ver en Repositorio USIL</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 2) Tesis de Grado en Ingeniería Empresarial USIL -->
+        <article class="card-glass rounded-3xl p-7 sm:p-9 border-slate-800/80">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <span class="inline-flex rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-300">
+              Tesis de Grado · Ingeniería Empresarial USIL
+            </span>
+            <span class="inline-flex items-center gap-1.5 text-xs text-emerald-400 font-semibold bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+              <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+              Acceso Abierto (Open Access)
+            </span>
+          </div>
+
+          <h3 class="text-xl sm:text-2xl font-extrabold text-white leading-snug">
+            Aplicación del modelo SERVQUAL para medir la calidad en el servicio de la empresa Serpost
+          </h3>
+
+          <p class="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed">
+            <strong class="text-white">Resumen:</strong> Aplicación del modelo econométrico y métrico SERVQUAL para cuantificar las brechas existentes entre las expectativas y las percepciones reales de los usuarios en los servicios de la empresa pública postal del Perú (Serpost S.A.), identificando factores clave en fiabilidad y capacidad de respuesta para modernizar la atención ciudadana.
+          </p>
+
+          <!-- Badges -->
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="text-xs font-semibold text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-lg">Modelo SERVQUAL</span>
+            <span class="text-xs font-semibold text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-lg">Ingeniería Empresarial</span>
+            <span class="text-xs font-semibold text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-lg">Calidad de Servicio</span>
+            <span class="text-xs font-semibold text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-lg">Serpost</span>
+          </div>
+
+          <!-- Handle & Botón -->
+          <div class="mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-5 border-t border-slate-800/80">
+            <div class="text-xs text-slate-400 font-mono">
+              Handle: <a href="https://hdl.handle.net/20.500.14005/12289" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">20.500.14005/12289</a>
+            </div>
+
+            <a href="https://hdl.handle.net/20.500.14005/12289" target="_blank" rel="noopener noreferrer"
+              class="btn-primary inline-flex items-center justify-center gap-2 rounded-xl px-6 py-2.5 text-xs uppercase tracking-wider font-bold text-white shadow-lg">
+              <span>Ver en Repositorio USIL</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 3) Trabajo de Grado en Productividad / Lean USIL -->
+        <article class="card-glass rounded-3xl p-7 sm:p-9 border-slate-800/80">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <span class="inline-flex rounded-full border border-indigo-400/30 bg-indigo-500/10 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-indigo-300">
+              Trabajo de Grado · Ingeniería & Productividad USIL
+            </span>
+            <span class="inline-flex items-center gap-1.5 text-xs text-emerald-400 font-semibold bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+              <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+              Acceso Abierto (Open Access)
+            </span>
+          </div>
+
+          <h3 class="text-xl sm:text-2xl font-extrabold text-white leading-snug">
+            Implementación de la Metodología 5S para mejorar la productividad en el taller de confección de una empresa textil
+          </h3>
+
+          <p class="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed">
+            <strong class="text-white">Resumen:</strong> Estudio de ingeniería aplicada orientado a la eliminación de desperdicios operativos (Muda), ordenamiento de líneas de manufactura y estandarización de flujos de trabajo mediante los 5 principios japoneses (Seiri, Seiton, Seiso, Seiketsu, Shitsuke), demostrando mejoras cuantitativas en tiempos de ciclo y eficiencia operativa.
+          </p>
+
+          <!-- Badges -->
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="text-xs font-semibold text-indigo-300 bg-indigo-500/10 border border-indigo-500/20 px-3 py-1 rounded-lg">Metodología 5S</span>
+            <span class="text-xs font-semibold text-indigo-300 bg-indigo-500/10 border border-indigo-500/20 px-3 py-1 rounded-lg">Lean Manufacturing</span>
+            <span class="text-xs font-semibold text-indigo-300 bg-indigo-500/10 border border-indigo-500/20 px-3 py-1 rounded-lg">Productividad</span>
+            <span class="text-xs font-semibold text-indigo-300 bg-indigo-500/10 border border-indigo-500/20 px-3 py-1 rounded-lg">Optimización de Procesos</span>
+          </div>
+
+          <!-- Handle & Botón -->
+          <div class="mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-5 border-t border-slate-800/80">
+            <div class="text-xs text-slate-400 font-mono">
+              Handle: <a href="https://hdl.handle.net/20.500.14005/11623" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">20.500.14005/11623</a>
+            </div>
+
+            <a href="https://hdl.handle.net/20.500.14005/11623" target="_blank" rel="noopener noreferrer"
+              class="btn-primary inline-flex items-center justify-center gap-2 rounded-xl px-6 py-2.5 text-xs uppercase tracking-wider font-bold text-white shadow-lg">
+              <span>Ver en Repositorio USIL</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+
+    <!-- ============================================================== -->
+    <!-- BANNER FINAL DIRECTO DE CONTACTO                               -->
+    <!-- ============================================================== -->
+    <section class="card-glass rounded-3xl p-8 sm:p-12 text-center border-blue-500/30 relative overflow-hidden reveal">
+      <div class="ambient-glow-animated absolute -top-12 -left-12 w-64 h-64 rounded-full bg-blue-600/15 blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 max-w-xl mx-auto space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
+          ¿Conversemos sobre un proyecto o asesoría?
+        </h2>
+
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+          Pongo a disposición mi experiencia multidisciplinaria para diseñar soluciones viables, optimizar procesos y estructurar proyectos con impacto real.
+        </p>
+
+        <div class="pt-3 flex flex-wrap justify-center gap-4">
+          <a href="contacto.html" class="btn-primary rounded-xl px-8 py-3.5 text-sm font-bold text-white shadow-xl hover:-translate-y-0.5 transition-all">
+            Contactar
+          </a>
+          <a href="https://api.whatsapp.com/send?phone=51912212046&text=Hola%20Brander,%20le%C3%AD%20tu%20perfil%20en%20tu%20web%20y%20me%20gustar%C3%ADa%20conversar."
+            target="_blank" rel="noopener noreferrer"
+            class="btn-secondary rounded-xl px-6 py-3.5 text-sm font-semibold text-emerald-300 hover:text-emerald-200 border-emerald-500/30 hover:border-emerald-500/50 hover:-translate-y-0.5 transition-all">
+            💬 Conversar por WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER GLOBAL SIMPLIFICADO -->
+  <footer class="mt-16 border-t border-slate-900 bg-slate-950/80">
+    <div class="max-w-6xl mx-auto px-6 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+
+        <div class="md:col-span-2 space-y-4">
+          <a href="index.html" class="inline-block">
+            <img src="firma-logo.png" alt="Brander Trujillo" class="h-10 w-auto object-contain" />
+          </a>
+          <p class="text-sm font-medium text-slate-300">
+            Ingeniero · Economista · Magíster en Gestión Pública
+          </p>
+          <p class="text-xs text-slate-400 max-w-md leading-relaxed">
+            Integrando rigor técnico, análisis de datos y políticas de desarrollo para diseñar proyectos e inversiones
+            públicas y privadas de impacto real.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300 mb-3">Navegación</h4>
+          <ul class="space-y-2 text-xs text-slate-400">
+            <li><a href="index.html" class="hover:text-white transition">Inicio</a></li>
+            <li><a href="trayectoria.html" class="hover:text-white transition">Trayectoria</a></li>
+            <li><a href="blog.html" class="hover:text-white transition">Blog</a></li>
+            <li><a href="contacto.html" class="hover:text-white transition">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300 mb-3">Temas del Blog</h4>
+          <ul class="space-y-2 text-xs text-slate-400">
+            <li><a href="blog.html?cat=inversion" class="hover:text-white transition">Inversión Pública (Invierte.pe)</a></li>
+            <li><a href="blog.html?cat=ia" class="hover:text-white transition">Inteligencia Artificial Aplicada</a></li>
+            <li><a href="blog.html?cat=proyectos" class="hover:text-white transition">Gestión de Proyectos</a></li>
+            <li><a href="blog.html?cat=municipal" class="hover:text-white transition">Desarrollo Territorial & Local</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div
+        class="pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <span>© <span id="year"></span> Brander Trujillo — Todos los derechos reservados.</span>
+
+        <div class="flex items-center gap-5">
+          <a href="https://www.linkedin.com/in/brandertrujillo/" target="_blank" rel="noopener noreferrer"
+            class="hover:text-blue-400 transition" aria-label="LinkedIn">
+            LinkedIn
+          </a>
+          <a href="https://web.facebook.com/brandertrujillo?locale=es_LA" target="_blank" rel="noopener noreferrer"
+            class="hover:text-blue-400 transition" aria-label="Facebook">
+            Facebook
+          </a>
+          <a href="https://www.tiktok.com/@brandertrujillo" target="_blank" rel="noopener noreferrer"
+            class="hover:text-blue-400 transition" aria-label="TikTok">
+            TikTok
+          </a>
+          <a href="https://api.whatsapp.com/send?phone=51912212046" target="_blank" rel="noopener noreferrer"
+            class="hover:text-emerald-400 transition" aria-label="WhatsApp">
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+
+</html>

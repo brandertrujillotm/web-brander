@@ -39,132 +39,28 @@
 
 <body class="bg-slate-950 text-slate-100 antialiased overflow-x-hidden selection:bg-blue-600/30 selection:text-white">
 
-  <!-- NAVBAR GLOBAL -->
+      <!-- NAVBAR GLOBAL SIMPLIFICADO -->
   <header class="sticky top-0 inset-x-0 z-50 bg-slate-950/85 backdrop-blur-lg border-b border-slate-800/80 transition-all duration-200">
-    <div class="max-w-6xl mx-auto px-6 py-3.5 flex items-center justify-between">
-      
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+
       <!-- Logo y Marca -->
       <a href="index.html" class="flex items-center gap-3 group focus:outline-none" aria-label="Brander Trujillo - Inicio">
         <img src="firma-logo.png" alt="Brander Trujillo" class="h-10 w-auto object-contain transition-transform group-hover:scale-105" />
       </a>
 
-      <!-- Navegación de Escritorio -->
-      <nav class="hidden lg:flex items-center gap-6 text-sm font-medium">
+      <!-- Navegación de Escritorio: 4 ENLACES DIRECTOS -->
+      <nav class="hidden lg:flex items-center gap-9 text-sm font-medium">
         <a href="index.html" class="nav-link text-slate-300 hover:text-white py-1 transition">
           Inicio
         </a>
-
-        <!-- Trayectoria -->
-        <div class="relative group">
-          <button class="nav-link flex items-center gap-1.5 text-slate-300 hover:text-white transition py-1 focus:outline-none" aria-haspopup="true">
-            Trayectoria
-            <svg class="w-3.5 h-3.5 text-slate-400 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
-            </svg>
-          </button>
-          <div class="absolute left-0 top-full pt-3 w-60 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-            <div class="rounded-2xl border border-slate-800 bg-slate-900/95 backdrop-blur-xl shadow-2xl p-2 space-y-1">
-              <a href="sobre-mi.html" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/80 hover:text-white transition text-xs font-medium">
-                <span class="p-1.5 rounded-lg bg-blue-500/10 text-blue-400">👤</span>
-                <div>
-                  <div class="font-semibold text-slate-200">Sobre mí</div>
-                  <div class="text-[11px] text-slate-400">Historia y propuesta de valor</div>
-                </div>
-              </a>
-              <a href="formacion.html" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/80 hover:text-white transition text-xs font-medium">
-                <span class="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-400">🎓</span>
-                <div>
-                  <div class="font-semibold text-slate-200">Formación</div>
-                  <div class="text-[11px] text-slate-400">Grados y especialización</div>
-                </div>
-              </a>
-              <a href="publicaciones.html" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/80 hover:text-white transition text-xs font-medium">
-                <span class="p-1.5 rounded-lg bg-purple-500/10 text-purple-400">📚</span>
-                <div>
-                  <div class="font-semibold text-slate-200">Publicaciones</div>
-                  <div class="text-[11px] text-slate-400">Tesis e investigaciones</div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Ingeniería Empresarial (Activo) -->
-        <div class="relative group">
-          <button class="nav-link flex items-center gap-1.5 text-white active transition py-1 focus:outline-none" aria-haspopup="true">
-            Ingeniería Empresarial
-            <svg class="w-3.5 h-3.5 text-slate-400 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
-            </svg>
-          </button>
-          <div class="absolute left-0 top-full pt-3 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-            <div class="rounded-2xl border border-slate-800 bg-slate-900/95 backdrop-blur-xl shadow-2xl p-2 space-y-1">
-              <a href="inteligencia-artificial.html" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-slate-800/80 text-white transition text-xs font-semibold">
-                <span class="p-1.5 rounded-lg bg-cyan-500/20 text-cyan-400">⚡</span>
-                <div>
-                  <div class="font-semibold text-white">Inteligencia Artificial</div>
-                  <div class="text-[11px] text-cyan-300">Modelos y decisiones predictivas</div>
-                </div>
-              </a>
-              <a href="innovacion-estrategia.html" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/80 hover:text-white transition text-xs font-medium">
-                <span class="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-400">💡</span>
-                <div>
-                  <div class="font-semibold text-slate-200">Innovación y Estrategia</div>
-                  <div class="text-[11px] text-slate-400">Transformación y modelos de valor</div>
-                </div>
-              </a>
-              <a href="gestion-proyectos.html" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/80 hover:text-white transition text-xs font-medium">
-                <span class="p-1.5 rounded-lg bg-amber-500/10 text-amber-400">📊</span>
-                <div>
-                  <div class="font-semibold text-slate-200">Gestión de Proyectos</div>
-                  <div class="text-[11px] text-slate-400">Metodologías ágiles y ejecución</div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Gestión Pública -->
-        <div class="relative group">
-          <button class="nav-link flex items-center gap-1.5 text-slate-300 hover:text-white transition py-1 focus:outline-none" aria-haspopup="true">
-            Gestión Pública
-            <svg class="w-3.5 h-3.5 text-slate-400 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
-            </svg>
-          </button>
-          <div class="absolute right-0 top-full pt-3 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-            <div class="rounded-2xl border border-slate-800 bg-slate-900/95 backdrop-blur-xl shadow-2xl p-2 space-y-1">
-              <a href="gestion-estado.html" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/80 hover:text-white transition text-xs font-medium">
-                <span class="p-1.5 rounded-lg bg-blue-500/10 text-blue-400">🏛️</span>
-                <div>
-                  <div class="font-semibold text-slate-200">Gestión del Estado</div>
-                  <div class="text-[11px] text-slate-400">Modernización y eficiencia pública</div>
-                </div>
-              </a>
-              <a href="gestion-municipal.html" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/80 hover:text-white transition text-xs font-medium">
-                <span class="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-400">🌱</span>
-                <div>
-                  <div class="font-semibold text-slate-200">Gestión Municipal y Desarrollo</div>
-                  <div class="text-[11px] text-slate-400">Desarrollo local y cierre de brechas</div>
-                </div>
-              </a>
-              <a href="inversion-publica.html" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/80 hover:text-white transition text-xs font-medium">
-                <span class="p-1.5 rounded-lg bg-violet-500/10 text-violet-400">📈</span>
-                <div>
-                  <div class="font-semibold text-slate-200">Inversión Pública y Proyectos</div>
-                  <div class="text-[11px] text-slate-400">Invierte.pe, APPs y OxI</div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Botón CTA Primario -->
-        <a href="contacto.html" class="btn-primary inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs uppercase tracking-wider text-white font-bold transition">
-          <span>Agendar Consultoría</span>
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-          </svg>
+        <a href="trayectoria.html" class="nav-link text-slate-300 hover:text-white py-1 transition">
+          Trayectoria
+        </a>
+        <a href="blog.html" class="nav-link text-slate-300 hover:text-white py-1 transition">
+          Blog
+        </a>
+        <a href="contacto.html" class="nav-link text-slate-300 hover:text-white py-1 transition">
+          Contacto
         </a>
       </nav>
 
@@ -176,67 +72,21 @@
       </button>
     </div>
 
-    <!-- Menú Móvil Desplegable -->
-    <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-800/80 bg-slate-950/95 backdrop-blur-2xl px-6 py-5 max-h-[85vh] overflow-y-auto">
+    <!-- Menú Móvil Desplegable Simplificado -->
+    <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-800/80 bg-slate-950/95 backdrop-blur-2xl px-6 py-5">
       <div class="space-y-3">
         <a href="index.html" class="block py-2 text-base font-semibold text-slate-300 hover:text-white border-b border-slate-800/60">
           Inicio
         </a>
-
-        <!-- Acordeón Móvil: Trayectoria -->
-        <div class="border-b border-slate-800/60 pb-2">
-          <button type="button" class="mobile-accordion-btn w-full flex items-center justify-between py-2 text-base font-semibold text-slate-200 hover:text-white focus:outline-none" data-target="acc-trayectoria">
-            <span>Trayectoria</span>
-            <svg class="accordion-chevron w-4 h-4 text-slate-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-            </svg>
-          </button>
-          <div id="acc-trayectoria" class="accordion-content pl-3 space-y-1.5 pt-1">
-            <a href="sobre-mi.html" class="block py-2 text-sm text-slate-300 hover:text-white">Sobre mí</a>
-            <a href="formacion.html" class="block py-2 text-sm text-slate-300 hover:text-white">Formación</a>
-            <a href="publicaciones.html" class="block py-2 text-sm text-slate-300 hover:text-white">Publicaciones</a>
-          </div>
-        </div>
-
-        <!-- Acordeón Móvil: Ingeniería Empresarial -->
-        <div class="border-b border-slate-800/60 pb-2">
-          <button type="button" class="mobile-accordion-btn w-full flex items-center justify-between py-2 text-base font-semibold text-white focus:outline-none" data-target="acc-ingenieria">
-            <span>Ingeniería Empresarial</span>
-            <svg class="accordion-chevron w-4 h-4 text-slate-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-            </svg>
-          </button>
-          <div id="acc-ingenieria" class="accordion-content open pl-3 space-y-1.5 pt-1">
-            <a href="inteligencia-artificial.html" class="block py-2 text-sm text-blue-400 font-semibold">Inteligencia Artificial</a>
-            <a href="innovacion-estrategia.html" class="block py-2 text-sm text-slate-300 hover:text-white">Innovación y Estrategia</a>
-            <a href="gestion-proyectos.html" class="block py-2 text-sm text-slate-300 hover:text-white">Gestión de Proyectos</a>
-          </div>
-        </div>
-
-        <!-- Acordeón Móvil: Gestión Pública -->
-        <div class="border-b border-slate-800/60 pb-2">
-          <button type="button" class="mobile-accordion-btn w-full flex items-center justify-between py-2 text-base font-semibold text-slate-200 hover:text-white focus:outline-none" data-target="acc-gestion">
-            <span>Gestión Pública</span>
-            <svg class="accordion-chevron w-4 h-4 text-slate-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-            </svg>
-          </button>
-          <div id="acc-gestion" class="accordion-content pl-3 space-y-1.5 pt-1">
-            <a href="gestion-estado.html" class="block py-2 text-sm text-slate-300 hover:text-white">Gestión del Estado</a>
-            <a href="gestion-municipal.html" class="block py-2 text-sm text-slate-300 hover:text-white">Gestión Municipal y Desarrollo Local</a>
-            <a href="inversion-publica.html" class="block py-2 text-sm text-slate-300 hover:text-white">Inversión Pública y Proyectos</a>
-          </div>
-        </div>
-
-        <!-- Botón Contacto Móvil -->
-        <div class="pt-3">
-          <a href="contacto.html" class="btn-primary flex items-center justify-center gap-2 w-full py-3 rounded-xl text-center text-sm font-semibold text-white">
-            <span>Agendar Consultoría</span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-            </svg>
-          </a>
-        </div>
+        <a href="trayectoria.html" class="block py-2 text-base font-semibold text-slate-300 hover:text-white border-b border-slate-800/60">
+          Trayectoria
+        </a>
+        <a href="blog.html" class="block py-2 text-base font-semibold text-slate-300 hover:text-white border-b border-slate-800/60">
+          Blog
+        </a>
+        <a href="contacto.html" class="block py-2 text-base font-semibold text-slate-300 hover:text-white">
+          Contacto
+        </a>
       </div>
     </div>
   </header>
@@ -333,12 +183,11 @@
 
   </main>
 
-  <!-- FOOTER GLOBAL -->
+    <!-- FOOTER GLOBAL SIMPLIFICADO -->
   <footer class="mt-16 border-t border-slate-900 bg-slate-950/80">
     <div class="max-w-6xl mx-auto px-6 py-12">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
-        
-        <!-- Info Marca -->
+
         <div class="md:col-span-2 space-y-4">
           <a href="index.html" class="inline-block">
             <img src="firma-logo.png" alt="Brander Trujillo" class="h-10 w-auto object-contain" />
@@ -347,50 +196,52 @@
             Ingeniero · Economista · Magíster en Gestión Pública
           </p>
           <p class="text-xs text-slate-400 max-w-md leading-relaxed">
-            Integrando rigor técnico, análisis de datos y políticas de desarrollo para diseñar proyectos e inversiones públicas y privadas de impacto real.
+            Integrando rigor técnico, análisis de datos y políticas de desarrollo para diseñar proyectos e inversiones
+            públicas y privadas de impacto real.
           </p>
         </div>
 
-        <!-- Enlaces Rápidos -->
         <div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300 mb-3">Trayectoria</h4>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300 mb-3">Navegación</h4>
           <ul class="space-y-2 text-xs text-slate-400">
-            <li><a href="sobre-mi.html" class="hover:text-white transition">Sobre mí</a></li>
-            <li><a href="formacion.html" class="hover:text-white transition">Formación Académica</a></li>
-            <li><a href="publicaciones.html" class="hover:text-white transition">Publicaciones & Tesis</a></li>
-            <li><a href="contacto.html" class="hover:text-white transition">Contacto & Consultoría</a></li>
+            <li><a href="index.html" class="hover:text-white transition">Inicio</a></li>
+            <li><a href="trayectoria.html" class="hover:text-white transition">Trayectoria</a></li>
+            <li><a href="blog.html" class="hover:text-white transition">Blog</a></li>
+            <li><a href="contacto.html" class="hover:text-white transition">Contacto</a></li>
           </ul>
         </div>
 
-        <!-- Áreas Clave -->
         <div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300 mb-3">Especialidades</h4>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300 mb-3">Temas del Blog</h4>
           <ul class="space-y-2 text-xs text-slate-400">
-            <li><a href="inversion-publica.html" class="hover:text-white transition">Inversión Pública (Invierte.pe)</a></li>
-            <li><a href="inteligencia-artificial.html" class="hover:text-white transition">Inteligencia Artificial Aplicada</a></li>
-            <li><a href="gestion-proyectos.html" class="hover:text-white transition">Gestión de Proyectos</a></li>
-            <li><a href="gestion-municipal.html" class="hover:text-white transition">Desarrollo Territorial & Local</a></li>
+            <li><a href="blog.html?cat=inversion" class="hover:text-white transition">Inversión Pública (Invierte.pe)</a></li>
+            <li><a href="blog.html?cat=ia" class="hover:text-white transition">Inteligencia Artificial Aplicada</a></li>
+            <li><a href="blog.html?cat=proyectos" class="hover:text-white transition">Gestión de Proyectos</a></li>
+            <li><a href="blog.html?cat=municipal" class="hover:text-white transition">Desarrollo Territorial & Local</a></li>
           </ul>
         </div>
 
       </div>
 
-      <!-- Barra Inferior -->
-      <div class="pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <div
+        class="pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
         <span>© <span id="year"></span> Brander Trujillo — Todos los derechos reservados.</span>
 
-        <!-- Redes Sociales -->
         <div class="flex items-center gap-5">
-          <a href="https://www.linkedin.com/in/brandertrujillo/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/brandertrujillo/" target="_blank" rel="noopener noreferrer"
+            class="hover:text-blue-400 transition" aria-label="LinkedIn">
             LinkedIn
           </a>
-          <a href="https://web.facebook.com/brandertrujillo?locale=es_LA" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition" aria-label="Facebook">
+          <a href="https://web.facebook.com/brandertrujillo?locale=es_LA" target="_blank" rel="noopener noreferrer"
+            class="hover:text-blue-400 transition" aria-label="Facebook">
             Facebook
           </a>
-          <a href="https://www.tiktok.com/@brandertrujillo" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition" aria-label="TikTok">
+          <a href="https://www.tiktok.com/@brandertrujillo" target="_blank" rel="noopener noreferrer"
+            class="hover:text-blue-400 transition" aria-label="TikTok">
             TikTok
           </a>
-          <a href="https://api.whatsapp.com/send?phone=51912212046" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition" aria-label="WhatsApp">
+          <a href="https://api.whatsapp.com/send?phone=51912212046" target="_blank" rel="noopener noreferrer"
+            class="hover:text-emerald-400 transition" aria-label="WhatsApp">
             WhatsApp
           </a>
         </div>
