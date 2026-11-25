@@ -1,0 +1,1751 @@
+<!doctype html>
+<html lang="es" style="scroll-behavior: smooth;">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+    content="¿Cómo funciona realmente el Estado peruano? Un recorrido claro, visual y sin jerga burocrática para entender quién decide, quién ejecuta y quién controla en el Perú." />
+  <meta name="author" content="Brander Trujillo" />
+  <title>¿Cómo funciona realmente el Estado peruano? | Blog Brander Trujillo</title>
+
+  <link rel="icon" type="image/png" href="brander-favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+            display: ['"Montserrat"', '"Plus Jakarta Sans"', 'sans-serif']
+          },
+          colors: {
+            brand: {
+              royal: '#041473',
+              royalMid: '#061B8C',
+              cobalt: '#0A2CB8',
+              electric: '#0055FF',
+              glow: '#3B82F6',
+              glowLight: '#60A5FA',
+              ink: '#0F172A',
+              inkMuted: '#475569'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Barra de progreso de lectura */
+    #reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, #38BDF8 0%, #60A5FA 65%, #FFFFFF 100%);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.90);
+      z-index: 1200;
+      transition: width 0.08s linear;
+      pointer-events: none;
+    }
+
+    /* Conexiones SVG sobre fondo claro */
+    .org-branch {
+      stroke: #CBD5E1;
+      stroke-width: 2;
+      fill: none;
+      transition: stroke 0.3s ease, stroke-width 0.3s ease;
+    }
+
+    .org-branch.active {
+      stroke: #0055FF;
+      stroke-width: 3;
+      stroke-dasharray: 8 6;
+      animation: branchFlow 1.2s linear infinite;
+    }
+
+    @keyframes branchFlow {
+      to { stroke-dashoffset: -28; }
+    }
+
+    /* Nodos del Mapa Interactivo sobre fondo blanco (#FFFFFF) */
+    .org-node {
+      background: #F4F7FB;
+      border: 1px solid #E2E8F0;
+      color: #0F172A;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+
+    .org-node:hover {
+      background: #FFFFFF;
+      border-color: #0055FF;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(4, 20, 115, 0.08);
+    }
+
+    .org-node .org-node-sub {
+      color: #64748B;
+    }
+
+    .org-node.active {
+      background: #041473;
+      color: #FFFFFF;
+      border-color: #041473;
+      transform: translateY(-3px);
+      box-shadow: 0 14px 28px -8px rgba(4, 20, 115, 0.35);
+    }
+
+    .org-node.active .org-node-sub {
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    /* Animación suave de paneles */
+    @keyframes panelReveal {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel-animate {
+      animation: panelReveal 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Chips / Tabs sobre fondo claro */
+    .case-tab {
+      background: #F4F7FB;
+      border: 1px solid #E2E8F0;
+      color: #334155;
+      transition: all 0.22s ease;
+      cursor: pointer;
+    }
+
+    .filter-pill {
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      color: #334155;
+      transition: all 0.22s ease;
+      cursor: pointer;
+    }
+
+    .case-tab:hover,
+    .filter-pill:hover {
+      border-color: #0055FF;
+      color: #041473;
+      background: #FFFFFF;
+      box-shadow: 0 8px 24px rgba(4, 20, 115, 0.08);
+    }
+
+    .case-tab.active,
+    .filter-pill.active {
+      background: #0055FF;
+      color: #FFFFFF;
+      border-color: #0055FF;
+      box-shadow: 0 10px 22px -8px rgba(0, 85, 255, 0.45);
+    }
+
+    .quick-topic {
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      color: #334155;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .quick-topic:hover {
+      border-color: #0055FF;
+      color: #0055FF;
+      background: #EFF6FF;
+    }
+
+    /* Stepper interactivo sobre fondo claro */
+    .step-node {
+      background: #FFFFFF;
+      border: 1.5px solid #E2E8F0;
+      color: #334155;
+      transition: all 0.24s ease;
+      cursor: pointer;
+    }
+
+    .step-node:hover {
+      border-color: #0055FF;
+      box-shadow: 0 8px 24px rgba(4, 20, 115, 0.08);
+    }
+
+    .step-node.is-done {
+      background: #EFF6FF;
+      border-color: #93C5FD;
+      color: #041473;
+    }
+
+    .step-node.is-active {
+      background: #041473;
+      border-color: #041473;
+      color: #FFFFFF;
+      box-shadow: 0 12px 24px -8px rgba(4, 20, 115, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .step-node.is-active .step-num {
+      background: rgba(255, 255, 255, 0.20);
+      color: #FFFFFF;
+    }
+
+    /* Tarjetas giratorias 3D ("Antes 2013 vs. Hoy") sobre fondo claro */
+    .flip-scene {
+      perspective: 1200px;
+      cursor: pointer;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      min-height: 235px;
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .flip-scene.is-flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .flip-front {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      color: #0F172A;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .flip-scene:hover .flip-front {
+      border-color: #0055FF;
+      box-shadow: 0 8px 24px rgba(4, 20, 115, 0.08);
+    }
+
+    .flip-back {
+      background: #FFFFFF;
+      border: 1.5px solid #0055FF;
+      color: #334155;
+      transform: rotateY(180deg);
+      box-shadow: 0 14px 30px -10px rgba(4, 20, 115, 0.14);
+    }
+
+    @media (max-width: 639px) {
+      .flip-card-inner {
+        min-height: 265px;
+      }
+    }
+
+    /* Opciones del quiz sobre tarjeta #F4F7FB */
+    .quiz-option {
+      background: #FFFFFF;
+      border: 1.5px solid #E2E8F0;
+      color: #0F172A;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .quiz-option:hover:not(:disabled) {
+      background: #EFF6FF;
+      border-color: #0055FF;
+      box-shadow: 0 8px 20px rgba(4, 20, 115, 0.08);
+    }
+
+    .quiz-option.is-correct {
+      background: #ECFDF5;
+      border-color: #10B981;
+      color: #065F46;
+    }
+
+    .quiz-option.is-wrong {
+      background: #FEF2F2;
+      border-color: #EF4444;
+      color: #991B1B;
+    }
+
+    .quiz-option:disabled {
+      cursor: default;
+    }
+  </style>
+</head>
+
+<body class="article-editorial antialiased overflow-x-hidden selection:bg-[#0055FF]/20 selection:text-[#041473]">
+
+  <!-- BARRA DE PROGRESO DE LECTURA -->
+  <div id="reading-progress" role="progressbar" aria-label="Progreso de lectura" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+  <!-- NAVBAR GLOBAL SIMPLIFICADO (DISEÑO AZUL ACTUAL) -->
+  <header class="site-header sticky top-0 inset-x-0 z-50 transition-all duration-200">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+
+      <!-- Logo y Marca -->
+      <a href="index.html" class="flex items-center gap-3 group focus:outline-none" aria-label="Brander Trujillo - Inicio">
+        <img src="firma-logo.png" alt="Brander Trujillo" class="h-10 w-auto object-contain transition-transform group-hover:scale-105 drop-shadow-sm" />
+      </a>
+
+      <!-- Navegación de Escritorio: 4 ENLACES DIRECTOS -->
+      <nav class="hidden lg:flex items-center gap-9 text-sm font-medium">
+        <a href="index.html" class="nav-link text-white/80 hover:text-white py-1 transition">
+          Inicio
+        </a>
+        <a href="trayectoria.html" class="nav-link text-white/80 hover:text-white py-1 transition">
+          Trayectoria
+        </a>
+        <a href="blog.html" class="nav-link text-white py-1 transition active">
+          Blog
+        </a>
+        <a href="contacto.html" class="nav-link text-white/80 hover:text-white py-1 transition">
+          Contacto
+        </a>
+      </nav>
+
+      <!-- Botón Menú Móvil -->
+      <button id="navToggle" class="lg:hidden p-2 rounded-xl text-white/85 hover:text-white hover:bg-white/15 transition focus:outline-none" aria-label="Abrir menú" aria-expanded="false">
+        <svg id="navToggleIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Menú Móvil Desplegable Simplificado -->
+    <div id="mobileMenu" class="hidden lg:hidden site-mobile-menu px-6 py-5">
+      <div class="space-y-3">
+        <a href="index.html" class="block py-2 text-base font-semibold text-white/80 hover:text-white border-b border-white/15">
+          Inicio
+        </a>
+        <a href="trayectoria.html" class="block py-2 text-base font-semibold text-white/80 hover:text-white border-b border-white/15">
+          Trayectoria
+        </a>
+        <a href="blog.html" class="block py-2 text-base font-semibold text-[#60A5FA] hover:text-white border-b border-white/15">
+          Blog
+        </a>
+        <a href="contacto.html" class="block py-2 text-base font-semibold text-white/80 hover:text-white">
+          Contacto
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- BARRA SUPERIOR FLOTANTE DE REDES SOCIALES -->
+  <div class="social-top-bar" aria-label="Redes sociales">
+    <a href="https://web.facebook.com/brandertrujillomeza" target="_blank" rel="noopener noreferrer" class="social-card" aria-label="Facebook">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 23.403.597 24 1.326 24h11.495v-9.294H9.691v-3.622h3.13V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.403 24 24 23.403 24 22.674V1.326C24 .597 23.403 0 22.675 0z"/>
+      </svg>
+      <span>Facebook</span>
+    </a>
+    <a href="https://www.tiktok.com/@brandertrujillo" target="_blank" rel="noopener noreferrer" class="social-card" aria-label="TikTok">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+      </svg>
+      <span>TikTok</span>
+    </a>
+    <a href="https://www.linkedin.com/in/brandertrujillo/" target="_blank" rel="noopener noreferrer" class="social-card" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+      </svg>
+      <span>LinkedIn</span>
+    </a>
+  </div>
+
+  <!-- ÍNDICE LATERAL FLOTANTE (SOLO ESCRITORIO ANCHO · SCROLL-SPY) -->
+  <nav class="roadmap-rail" aria-label="Hoja de ruta del artículo">
+    <div class="roadmap-rail-title">Hoja de ruta</div>
+    <a href="#etapa-1" class="roadmap-rail-link is-active" data-stage-link="etapa-1">
+      <span class="roadmap-rail-num">01</span>
+      <span>Mapa general</span>
+    </a>
+    <a href="#etapa-2" class="roadmap-rail-link" data-stage-link="etapa-2">
+      <span class="roadmap-rail-num">02</span>
+      <span>Buscador diario</span>
+    </a>
+    <a href="#etapa-3" class="roadmap-rail-link" data-stage-link="etapa-3">
+      <span class="roadmap-rail-num">03</span>
+      <span>Casos en ruta</span>
+    </a>
+    <a href="#etapa-4" class="roadmap-rail-link" data-stage-link="etapa-4">
+      <span class="roadmap-rail-num">04</span>
+      <span>Cambios 2013</span>
+    </a>
+    <a href="#etapa-5" class="roadmap-rail-link" data-stage-link="etapa-5">
+      <span class="roadmap-rail-num">05</span>
+      <span>Reto 1 min</span>
+    </a>
+  </nav>
+
+  <!-- HERO DEL ARTÍCULO (PALETA CLARA EDITORIAL SOBRE #F4F7FB · MAX 920PX) -->
+  <header class="relative roadmap-container pt-5 pb-10 md:pt-7 md:pb-12">
+    <div class="editorial-hero-card rounded-3xl p-7 sm:p-10">
+      <div class="mb-5">
+        <a href="blog.html" class="inline-flex items-center gap-2 text-xs font-bold text-[#041473] hover:text-[#0055FF] transition group">
+          <span class="group-hover:-translate-x-1 transition-transform">←</span>
+          <span>Volver al Blog</span>
+        </a>
+      </div>
+
+      <!-- Metadatos funcionales -->
+      <div class="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs font-medium text-[#64748B] mb-4">
+        <span class="font-bold text-[#041473]">Gestión del Estado</span>
+        <span aria-hidden="true">•</span>
+        <span>Por <strong class="text-[#0F172A]">Brander Trujillo</strong></span>
+        <span aria-hidden="true">•</span>
+        <span>6 min de lectura</span>
+      </div>
+
+      <h1 class="font-display text-3xl sm:text-4xl md:text-[2.75rem] font-black tracking-tight text-[#041473] leading-[1.10]">
+        ¿Cómo funciona realmente el Estado peruano?
+      </h1>
+
+      <p class="mt-4 text-base sm:text-lg text-[#475569] leading-relaxed max-w-2xl">
+        Un recorrido claro, visual y sin jerga burocrática para entender quién decide, quién ejecuta y quién controla en el Perú.
+      </p>
+
+      <!-- HOJA DE RUTA EN 5 ETAPAS (STEPPER CONECTADO) -->
+      <div class="mt-7 pt-6 border-t border-[#E2E8F0]">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-xs font-bold uppercase tracking-wider text-[#64748B]">Hoja de ruta en 5 etapas</span>
+          <span class="text-[11px] font-semibold text-[#64748B]">Haz clic en cualquier etapa para avanzar</span>
+        </div>
+        <nav class="roadmap-stepper" aria-label="Etapas del artículo">
+          <a href="#etapa-1" class="roadmap-step is-active" data-stage-link="etapa-1">
+            <span class="roadmap-step-dot">01</span>
+            <span class="roadmap-step-label">Mapa general</span>
+          </a>
+          <a href="#etapa-2" class="roadmap-step" data-stage-link="etapa-2">
+            <span class="roadmap-step-dot">02</span>
+            <span class="roadmap-step-label">Quién resuelve qué</span>
+          </a>
+          <a href="#etapa-3" class="roadmap-step" data-stage-link="etapa-3">
+            <span class="roadmap-step-dot">03</span>
+            <span class="roadmap-step-label">Estado en movimiento</span>
+          </a>
+          <a href="#etapa-4" class="roadmap-step" data-stage-link="etapa-4">
+            <span class="roadmap-step-dot">04</span>
+            <span class="roadmap-step-label">Cambios desde 2013</span>
+          </a>
+          <a href="#etapa-5" class="roadmap-step" data-stage-link="etapa-5">
+            <span class="roadmap-step-dot">05</span>
+            <span class="roadmap-step-label">Ponlo a prueba</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================================================================== -->
+  <!-- CUERPO DE LECTURA EDITORIAL EN 5 ETAPAS (#FFFFFF ↔ #F4F7FB · MAX 920PX)  -->
+  <!-- ======================================================================== -->
+  <main class="article-reading-area">
+
+    <!-- ====================================================================== -->
+    <!-- ETAPA 01 (#FFFFFF) — EL MAPA GENERAL: ¿CÓMO SE DIVIDE EL ESTADO?       -->
+    <!-- ====================================================================== -->
+    <section id="etapa-1" class="editorial-band editorial-band--white roadmap-stage" data-stage="etapa-1">
+      <div class="roadmap-container space-y-6">
+        <div class="space-y-3">
+          <div class="flex items-center gap-3">
+            <span class="stage-num">01</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-[#041473] leading-tight">
+              El mapa general: ¿Cómo se divide el Estado?
+            </h2>
+          </div>
+          <p class="text-sm sm:text-base text-[#334155] leading-relaxed">
+            Para evitar que una sola persona concentre todo el poder, el Perú reparte las funciones públicas bajo dos principios: <strong class="text-[#0F172A]">separación de poderes</strong> (quien gobierna, quien legisla, quien juzga y quien controla) y <strong class="text-[#0F172A]">descentralización</strong> (autoridades regionales y locales elegidas en tu territorio). Toca cualquiera de los 6 grandes bloques para explorar su rol.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <!-- Nodo Raíz + Conexiones SVG -->
+          <div class="flex flex-col items-center">
+            <div class="px-6 py-3 rounded-2xl bg-[#041473] text-white text-center shadow-md">
+              <span class="block text-sm sm:text-base font-extrabold">🇵🇪 Estado Peruano</span>
+              <span class="block text-[11px] text-white/80">Un solo país · Poderes separados y contrapesos</span>
+            </div>
+
+            <svg id="org-svg" class="hidden lg:block w-full h-14 overflow-visible" viewBox="0 0 900 56" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="450" y1="0" x2="450" y2="20" stroke="#94A3B8" stroke-width="2" />
+              <path id="branch-ejecutivo"   class="org-branch active" d="M 450 20 L 150 20 L 150 56" />
+              <path id="branch-legislativo" class="org-branch"        d="M 450 20 L 450 56" />
+              <path id="branch-judicial"    class="org-branch"        d="M 450 20 L 750 20 L 750 56" />
+              <path id="branch-autonomos"   class="org-branch"        d="M 450 20 L 150 20 L 150 56" />
+              <path id="branch-subnacional" class="org-branch"        d="M 450 20 L 450 56" />
+              <path id="branch-fondos"      class="org-branch"        d="M 450 20 L 750 20 L 750 56" />
+            </svg>
+          </div>
+
+          <!-- 6 Nodos Clicables -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5" role="tablist" aria-label="Bloques del Estado peruano">
+            <button type="button" class="org-node active rounded-2xl p-4 text-left flex items-start gap-3" data-node="ejecutivo" role="tab" aria-selected="true">
+              <span class="text-2xl shrink-0" aria-hidden="true">🏛️</span>
+              <div>
+                <div class="font-extrabold text-sm leading-snug">Poder Ejecutivo</div>
+                <div class="org-node-sub text-xs mt-1">Presidencia, PCM y 18 Ministerios</div>
+              </div>
+            </button>
+
+            <button type="button" class="org-node rounded-2xl p-4 text-left flex items-start gap-3" data-node="legislativo" role="tab" aria-selected="false">
+              <span class="text-2xl shrink-0" aria-hidden="true">📜</span>
+              <div>
+                <div class="font-extrabold text-sm leading-snug">Poder Legislativo</div>
+                <div class="org-node-sub text-xs mt-1">Congreso: Senado y Cámara de Diputados</div>
+              </div>
+            </button>
+
+            <button type="button" class="org-node rounded-2xl p-4 text-left flex items-start gap-3" data-node="judicial" role="tab" aria-selected="false">
+              <span class="text-2xl shrink-0" aria-hidden="true">⚖️</span>
+              <div>
+                <div class="font-extrabold text-sm leading-snug">Poder Judicial</div>
+                <div class="org-node-sub text-xs mt-1">Cortes, Juzgados, AMAG y Fuero Militar</div>
+              </div>
+            </button>
+
+            <button type="button" class="org-node rounded-2xl p-4 text-left flex items-start gap-3" data-node="autonomos" role="tab" aria-selected="false">
+              <span class="text-2xl shrink-0" aria-hidden="true">🛡️</span>
+              <div>
+                <div class="font-extrabold text-sm leading-snug">Organismos Autónomos (10 OCAs)</div>
+                <div class="org-node-sub text-xs mt-1">Electoral, Control/Economía y Justicia</div>
+              </div>
+            </button>
+
+            <button type="button" class="org-node rounded-2xl p-4 text-left flex items-start gap-3" data-node="subnacional" role="tab" aria-selected="false">
+              <span class="text-2xl shrink-0" aria-hidden="true">🗺️</span>
+              <div>
+                <div class="font-extrabold text-sm leading-snug">Gobiernos Regionales y Locales</div>
+                <div class="org-node-sub text-xs mt-1">25 GORE + Municipalidades del país</div>
+              </div>
+            </button>
+
+            <button type="button" class="org-node rounded-2xl p-4 text-left flex items-start gap-3" data-node="fondos" role="tab" aria-selected="false">
+              <span class="text-2xl shrink-0" aria-hidden="true">🏥</span>
+              <div>
+                <div class="font-extrabold text-sm leading-snug">Fondos Intangibles</div>
+                <div class="org-node-sub text-xs mt-1">EsSalud y ONP / FCR</div>
+              </div>
+            </button>
+          </div>
+
+          <!-- Ficha Amigable Dinámica en 3 Columnas -->
+          <div id="org-detail-panel" class="editorial-card--tint rounded-2xl p-6 sm:p-7 panel-animate" role="tabpanel" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================== -->
+    <!-- ETAPA 02 (#F4F7FB) — QUIÉN RESUELVE QUÉ EN TU DÍA A DÍA                -->
+    <!-- ====================================================================== -->
+    <section id="etapa-2" class="editorial-band editorial-band--tint roadmap-stage" data-stage="etapa-2">
+      <div class="roadmap-container space-y-6">
+        <div class="space-y-3">
+          <div class="flex items-center gap-3">
+            <span class="stage-num">02</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-[#041473] leading-tight">
+              Quién resuelve qué en tu día a día
+            </h2>
+          </div>
+          <p class="text-sm sm:text-base text-[#334155] leading-relaxed">
+            En la práctica, un <strong class="text-[#0F172A]">Ministerio</strong> diseña y ejecuta políticas públicas bajo dirección del Ejecutivo, mientras que un <strong class="text-[#0F172A]">Organismo Autónomo (OCA)</strong> controla, arbitra o garantiza derechos con total independencia. Busca cualquier tema cotidiano para ubicar a la entidad responsable:
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <!-- Buscador + Filtros -->
+          <div class="flex flex-col md:flex-row gap-3 md:items-center justify-between">
+            <div class="relative flex-1">
+              <svg class="w-4 h-4 text-[#64748B] absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+              </svg>
+              <input
+                type="text"
+                id="entity-search"
+                placeholder="Escribe un tema: DNI, carreteras, colegios, hospitales, impuestos..."
+                class="w-full rounded-xl bg-white text-[#0F172A] placeholder:text-[#64748B] pl-11 pr-10 py-3 text-sm font-medium border border-[#CBD5E1] focus:outline-none focus:border-[#0055FF] focus:ring-2 focus:ring-[#0055FF]/20 transition"
+                autocomplete="off"
+              />
+              <button
+                type="button"
+                id="clear-search"
+                class="hidden absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-slate-200 hover:bg-slate-300 text-[#0F172A] text-xs font-bold flex items-center justify-center transition"
+                aria-label="Limpiar búsqueda">
+                ×
+              </button>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2 shrink-0" role="group" aria-label="Filtrar entidades">
+              <button type="button" class="filter-pill active px-3.5 py-2.5 rounded-xl text-xs font-bold" data-filter="todos">
+                Todos (29)
+              </button>
+              <button type="button" class="filter-pill px-3.5 py-2.5 rounded-xl text-xs font-bold" data-filter="ministerio">
+                Ministerios (18)
+              </button>
+              <button type="button" class="filter-pill px-3.5 py-2.5 rounded-xl text-xs font-bold" data-filter="autonomo">
+                Autónomos (10)
+              </button>
+            </div>
+          </div>
+
+          <!-- Chips rápidos cotidianos -->
+          <div class="flex flex-wrap items-center justify-between gap-3 text-xs">
+            <div class="flex flex-wrap items-center gap-1.5 text-[#64748B]">
+              <span class="font-semibold">Búsqueda rápida:</span>
+              <button type="button" class="quick-topic px-2.5 py-1 rounded-lg font-semibold" data-term="dni">Mi DNI</button>
+              <button type="button" class="quick-topic px-2.5 py-1 rounded-lg font-semibold" data-term="carreteras">Carreteras</button>
+              <button type="button" class="quick-topic px-2.5 py-1 rounded-lg font-semibold" data-term="colegios">Colegios</button>
+              <button type="button" class="quick-topic px-2.5 py-1 rounded-lg font-semibold" data-term="hospitales">Hospitales</button>
+              <button type="button" class="quick-topic px-2.5 py-1 rounded-lg font-semibold" data-term="elecciones">Elecciones</button>
+              <button type="button" class="quick-topic px-2.5 py-1 rounded-lg font-semibold" data-term="impuestos">Impuestos</button>
+              <button type="button" class="quick-topic px-2.5 py-1 rounded-lg font-semibold" data-term="obras">Obras</button>
+              <button type="button" class="quick-topic px-2.5 py-1 rounded-lg font-semibold" data-term="tipo de cambio">Tipo de cambio</button>
+            </div>
+            <span id="entity-count" class="text-[#64748B] font-bold">Mostrando 6 de 29 entidades</span>
+          </div>
+
+          <!-- Cuadrícula compacta uniforme -->
+          <div id="entity-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5"></div>
+
+          <!-- Control de vista compacta / expandida -->
+          <div id="entity-expand-wrap" class="flex justify-center pt-2">
+            <button type="button" id="entity-expand-btn" class="btn-editorial-outline px-5 py-2.5 text-xs font-bold cursor-pointer">
+              Ver todas las entidades ↓
+            </button>
+          </div>
+
+          <div id="entity-empty" class="hidden text-center py-8 bg-white rounded-2xl border border-[#E2E8F0] space-y-2">
+            <p class="text-sm font-bold text-[#0F172A]">No encontramos resultados para esa palabra.</p>
+            <p class="text-xs text-[#64748B]">Intenta con temas como <em>posta, colegio, bancos, riego, licitaciones</em> o borra el texto.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================== -->
+    <!-- ETAPA 03 (#FFFFFF) — EL ESTADO EN MOVIMIENTO: ¿CÓMO SE CONECTAN?       -->
+    <!-- ====================================================================== -->
+    <section id="etapa-3" class="editorial-band editorial-band--white roadmap-stage" data-stage="etapa-3">
+      <div class="roadmap-container space-y-6">
+        <div class="space-y-3">
+          <div class="flex items-center gap-3">
+            <span class="stage-num">03</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-[#041473] leading-tight">
+              El Estado en movimiento: ¿Cómo se conectan?
+            </h2>
+          </div>
+          <p class="text-sm sm:text-base text-[#334155] leading-relaxed">
+            Conocer cada entidad por separado no basta: lo verdaderamente útil es ver cómo se coordinan y se pasan la posta en un caso real. Elige una historia y recórrela paso a paso.
+          </p>
+        </div>
+
+        <!-- Selector de 3 historias cotidianas -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3" role="tablist" aria-label="Casos reales del Estado peruano">
+          <button type="button" class="case-tab active rounded-2xl p-4 text-left" data-case="obra" role="tab" aria-selected="true">
+            <div class="text-lg mb-1" aria-hidden="true">🚧</div>
+            <div class="text-sm font-extrabold leading-snug">¿Cómo llega una obra a tu distrito?</div>
+          </button>
+
+          <button type="button" class="case-tab rounded-2xl p-4 text-left" data-case="ley" role="tab" aria-selected="false">
+            <div class="text-lg mb-1" aria-hidden="true">📘</div>
+            <div class="text-sm font-extrabold leading-snug">¿Cómo nace una ley?</div>
+          </button>
+
+          <button type="button" class="case-tab rounded-2xl p-4 text-left" data-case="voto" role="tab" aria-selected="false">
+            <div class="text-lg mb-1" aria-hidden="true">🗳️</div>
+            <div class="text-sm font-extrabold leading-snug">¿Quién cuida tu voto y tu identidad?</div>
+          </button>
+        </div>
+
+        <!-- Panel del Stepper -->
+        <div class="editorial-card--tint rounded-3xl p-6 sm:p-7 space-y-5">
+          <div id="stepper-nodes" class="grid grid-cols-2 lg:grid-cols-4 gap-3"></div>
+
+          <div class="w-full h-2 rounded-full bg-slate-200 overflow-hidden">
+            <div id="stepper-progress" class="h-full bg-gradient-to-r from-[#041473] to-[#0055FF] transition-all duration-300" style="width: 25%"></div>
+          </div>
+
+          <div id="stepper-detail" class="panel-animate rounded-2xl bg-white border border-[#E2E8F0] p-5 sm:p-6"></div>
+
+          <div class="flex items-center justify-between gap-3 pt-1">
+            <button type="button" id="step-prev" class="btn-editorial-outline px-5 py-2.5 text-xs sm:text-sm cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed">
+              ← Paso anterior
+            </button>
+            <span id="step-counter" class="text-xs font-extrabold text-[#64748B]">Paso 1 de 4</span>
+            <button type="button" id="step-next" class="btn-primary px-6 py-2.5 text-xs sm:text-sm font-bold cursor-pointer">
+              Siguiente paso →
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================== -->
+    <!-- ETAPA 04 (#F4F7FB) — LO QUE CAMBIÓ: DEL ORGANIGRAMA DE 2013 A HOY      -->
+    <!-- ====================================================================== -->
+    <section id="etapa-4" class="editorial-band editorial-band--tint roadmap-stage" data-stage="etapa-4">
+      <div class="roadmap-container space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div class="space-y-3">
+            <div class="flex items-center gap-3">
+              <span class="stage-num">04</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-[#041473] leading-tight">
+                Lo que cambió: del organigrama de 2013 a hoy
+              </h2>
+            </div>
+            <p class="text-sm sm:text-base text-[#334155] leading-relaxed max-w-2xl">
+              El Estado evoluciona y el clásico organigrama oficial de la PCM (2013) tuvo reformas institucionales clave. Haz clic en cada tarjeta para girarla y comparar el <strong class="text-[#0F172A]">antes vs. hoy</strong>.
+            </p>
+          </div>
+          <button type="button" id="toggle-all-compare" class="btn-editorial-outline self-start sm:self-auto px-4 py-2 text-xs shrink-0 cursor-pointer">
+            Girar todas
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+          <!-- Tarjeta 3D 1: Congreso -->
+          <div class="flip-scene" tabindex="0" role="button" aria-pressed="false" aria-label="Girar tarjeta Congreso Bicameral">
+            <div class="flip-card-inner">
+              <div class="flip-face flip-front">
+                <div class="space-y-3">
+                  <div class="flex flex-wrap items-center gap-2 text-xs font-bold">
+                    <span class="px-2.5 py-1 rounded-md bg-[#F4F7FB] text-[#64748B] border border-[#E2E8F0] line-through">2013: Congreso Unicameral</span>
+                    <span class="text-[#0055FF]" aria-hidden="true">→</span>
+                    <span class="px-2.5 py-1 rounded-md bg-[#0055FF] text-white">Hoy</span>
+                  </div>
+                  <h3 class="text-lg sm:text-xl font-extrabold text-[#041473] leading-snug">
+                    Congreso Bicameral: Senado y Cámara de Diputados
+                  </h3>
+                  <p class="text-xs font-bold text-[#0055FF]">Ley N.° 31988 · Reforma Constitucional</p>
+                </div>
+                <div class="flex items-center justify-between pt-3 border-t border-[#E2E8F0] text-xs font-bold text-[#0055FF]">
+                  <span>Clic para girar la tarjeta</span>
+                  <span aria-hidden="true">↻</span>
+                </div>
+              </div>
+              <div class="flip-face flip-back">
+                <div class="space-y-2.5">
+                  <div class="text-xs font-extrabold uppercase tracking-wider text-[#0055FF]">Antes vs. Hoy · Ley N.° 31988</div>
+                  <p class="text-sm text-[#334155] leading-relaxed">
+                    <strong class="text-[#0F172A]">Antes (2013):</strong> Una sola cámara de 130 congresistas proponía y aprobaba todas las leyes en un mismo espacio.
+                  </p>
+                  <p class="text-sm text-[#334155] leading-relaxed">
+                    <strong class="text-[#0F172A]">Hoy:</strong> Se restablece la bicameralidad con <strong class="text-[#041473]">Diputados</strong> (debate inicial) y <strong class="text-[#041473]">Senado</strong> (cámara revisora y designación de altas autoridades).
+                  </p>
+                </div>
+                <div class="text-right text-xs font-bold text-[#64748B]">Volver al frente ↺</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tarjeta 3D 2: JNJ -->
+          <div class="flip-scene" tabindex="0" role="button" aria-pressed="false" aria-label="Girar tarjeta Junta Nacional de Justicia">
+            <div class="flip-card-inner">
+              <div class="flip-face flip-front">
+                <div class="space-y-3">
+                  <div class="flex flex-wrap items-center gap-2 text-xs font-bold">
+                    <span class="px-2.5 py-1 rounded-md bg-[#F4F7FB] text-[#64748B] border border-[#E2E8F0] line-through">2013: CNM</span>
+                    <span class="text-[#0055FF]" aria-hidden="true">→</span>
+                    <span class="px-2.5 py-1 rounded-md bg-[#0055FF] text-white">Hoy</span>
+                  </div>
+                  <h3 class="text-lg sm:text-xl font-extrabold text-[#041473] leading-snug">
+                    Junta Nacional de Justicia (JNJ)
+                  </h3>
+                  <p class="text-xs font-bold text-[#0055FF]">Ley N.° 30904 · Referéndum 2018</p>
+                </div>
+                <div class="flex items-center justify-between pt-3 border-t border-[#E2E8F0] text-xs font-bold text-[#0055FF]">
+                  <span>Clic para girar la tarjeta</span>
+                  <span aria-hidden="true">↻</span>
+                </div>
+              </div>
+              <div class="flip-face flip-back">
+                <div class="space-y-2.5">
+                  <div class="text-xs font-extrabold uppercase tracking-wider text-[#0055FF]">Antes vs. Hoy · Ley N.° 30904</div>
+                  <p class="text-sm text-[#334155] leading-relaxed">
+                    <strong class="text-[#0F172A]">Antes (2013):</strong> El CNM nombraba jueces y fiscales mediante cuotas que perdieron credibilidad institucional.
+                  </p>
+                  <p class="text-sm text-[#334155] leading-relaxed">
+                    <strong class="text-[#0F172A]">Hoy:</strong> La <strong class="text-[#041473]">JNJ</strong> evalúa, nombra y sanciona a jueces, fiscales y jefes de ONPE y RENIEC por concurso público de méritos.
+                  </p>
+                </div>
+                <div class="text-right text-xs font-bold text-[#64748B]">Volver al frente ↺</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tarjeta 3D 3: MIDAGRI -->
+          <div class="flip-scene" tabindex="0" role="button" aria-pressed="false" aria-label="Girar tarjeta MIDAGRI">
+            <div class="flip-card-inner">
+              <div class="flip-face flip-front">
+                <div class="space-y-3">
+                  <div class="flex flex-wrap items-center gap-2 text-xs font-bold">
+                    <span class="px-2.5 py-1 rounded-md bg-[#F4F7FB] text-[#64748B] border border-[#E2E8F0] line-through">2013: Min. de Agricultura</span>
+                    <span class="text-[#0055FF]" aria-hidden="true">→</span>
+                    <span class="px-2.5 py-1 rounded-md bg-[#0055FF] text-white">Hoy</span>
+                  </div>
+                  <h3 class="text-lg sm:text-xl font-extrabold text-[#041473] leading-snug">
+                    MIDAGRI (Desarrollo Agrario y Riego)
+                  </h3>
+                  <p class="text-xs font-bold text-[#0055FF]">Ley N.° 31075 · Enfoque Rural y Riego</p>
+                </div>
+                <div class="flex items-center justify-between pt-3 border-t border-[#E2E8F0] text-xs font-bold text-[#0055FF]">
+                  <span>Clic para girar la tarjeta</span>
+                  <span aria-hidden="true">↻</span>
+                </div>
+              </div>
+              <div class="flip-face flip-back">
+                <div class="space-y-2.5">
+                  <div class="text-xs font-extrabold uppercase tracking-wider text-[#0055FF]">Antes vs. Hoy · Ley N.° 31075</div>
+                  <p class="text-sm text-[#334155] leading-relaxed">
+                    <strong class="text-[#0F172A]">Antes (2013):</strong> Tenía una estructura tradicional centrada en producción agrícola primaria.
+                  </p>
+                  <p class="text-sm text-[#334155] leading-relaxed">
+                    <strong class="text-[#0F172A]">Hoy:</strong> El <strong class="text-[#041473]">MIDAGRI</strong> prioriza la agricultura familiar, la infraestructura de riego tecnificado y la gestión del agua rural.
+                  </p>
+                </div>
+                <div class="text-right text-xs font-bold text-[#64748B]">Volver al frente ↺</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tarjeta 3D 4: OECE -->
+          <div class="flip-scene" tabindex="0" role="button" aria-pressed="false" aria-label="Girar tarjeta OECE">
+            <div class="flip-card-inner">
+              <div class="flip-face flip-front">
+                <div class="space-y-3">
+                  <div class="flex flex-wrap items-center gap-2 text-xs font-bold">
+                    <span class="px-2.5 py-1 rounded-md bg-[#F4F7FB] text-[#64748B] border border-[#E2E8F0] line-through">2013: OSCE</span>
+                    <span class="text-[#0055FF]" aria-hidden="true">→</span>
+                    <span class="px-2.5 py-1 rounded-md bg-[#0055FF] text-white">Hoy</span>
+                  </div>
+                  <h3 class="text-lg sm:text-xl font-extrabold text-[#041473] leading-snug">
+                    OECE (Contrataciones Públicas Eficientes)
+                  </h3>
+                  <p class="text-xs font-bold text-[#0055FF]">Ley N.° 32069 · Compras con Valor</p>
+                </div>
+                <div class="flex items-center justify-between pt-3 border-t border-[#E2E8F0] text-xs font-bold text-[#0055FF]">
+                  <span>Clic para girar la tarjeta</span>
+                  <span aria-hidden="true">↻</span>
+                </div>
+              </div>
+              <div class="flip-face flip-back">
+                <div class="space-y-2.5">
+                  <div class="text-xs font-extrabold uppercase tracking-wider text-[#0055FF]">Antes vs. Hoy · Ley N.° 32069</div>
+                  <p class="text-sm text-[#334155] leading-relaxed">
+                    <strong class="text-[#0F172A]">Antes (2013):</strong> El OSCE supervisaba licitaciones bajo un enfoque formalista centrado en trámites.
+                  </p>
+                  <p class="text-sm text-[#334155] leading-relaxed">
+                    <strong class="text-[#0F172A]">Hoy:</strong> El <strong class="text-[#041473]">OECE</strong> impulsa compras públicas digitales, trazables y orientadas a obtener mejor calidad por cada sol invertido.
+                  </p>
+                </div>
+                <div class="text-right text-xs font-bold text-[#64748B]">Volver al frente ↺</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================== -->
+    <!-- ETAPA 05 (#FFFFFF) — PONLO A PRUEBA EN 1 MINUTO + FUENTE Y CIERRE      -->
+    <!-- ====================================================================== -->
+    <section id="etapa-5" class="editorial-band editorial-band--white roadmap-stage border-b-0" data-stage="etapa-5">
+      <div class="roadmap-container space-y-8">
+        <div class="space-y-3">
+          <div class="flex items-center gap-3">
+            <span class="stage-num">05</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-[#041473] leading-tight">
+              Ponlo a prueba en 1 minuto
+            </h2>
+          </div>
+          <p class="text-sm sm:text-base text-[#334155] leading-relaxed">
+            Valida lo aprendido con 4 situaciones reales del día a día en el Perú y descubre qué tan claro tienes el mapa del Estado.
+          </p>
+        </div>
+
+        <!-- Tarjeta centrada del Quiz -->
+        <div class="editorial-card--tint rounded-3xl p-6 sm:p-8 shadow-sm">
+          <div id="quiz-header" class="flex items-center justify-between gap-4 mb-4">
+            <span id="quiz-step-label" class="text-xs font-extrabold uppercase tracking-wider text-[#0055FF]">
+              Caso 1 de 4
+            </span>
+            <span id="quiz-score-live" class="text-xs font-bold text-[#64748B]">
+              Aciertos: 0
+            </span>
+          </div>
+
+          <div id="quiz-progress-track" class="w-full h-2 rounded-full bg-slate-200 overflow-hidden mb-6">
+            <div id="quiz-progress-fill" class="h-full bg-gradient-to-r from-[#041473] to-[#0055FF] transition-all duration-300" style="width: 25%"></div>
+          </div>
+
+          <div id="quiz-body" class="space-y-5">
+            <h3 id="quiz-question" class="text-lg sm:text-xl font-extrabold text-[#0F172A] leading-snug"></h3>
+
+            <div id="quiz-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+
+            <div id="quiz-feedback" class="hidden rounded-2xl p-4 text-sm leading-relaxed border"></div>
+
+            <div class="flex justify-end pt-2">
+              <button type="button" id="quiz-next-btn" class="hidden btn-primary px-7 py-3 text-sm font-bold cursor-pointer">
+                Siguiente caso →
+              </button>
+            </div>
+          </div>
+
+          <div id="quiz-result" class="hidden text-center py-4 space-y-5">
+            <div id="quiz-result-icon" class="text-5xl">🏆</div>
+            <div class="space-y-2">
+              <h3 id="quiz-result-title" class="text-2xl sm:text-3xl font-extrabold text-[#041473]"></h3>
+              <p id="quiz-result-msg" class="text-sm sm:text-base text-[#334155] max-w-lg mx-auto"></p>
+            </div>
+            <button type="button" id="quiz-restart-btn" class="btn-primary px-8 py-3.5 text-sm font-bold cursor-pointer">
+              Volver a intentar
+            </button>
+          </div>
+        </div>
+
+        <!-- Bloque discreto de Nota Metodológica / Fuente + Cierre -->
+        <div class="pt-6 border-t border-[#E2E8F0] space-y-6">
+          <aside class="rounded-2xl bg-[#F4F7FB] border border-[#E2E8F0] p-5 text-xs sm:text-sm text-[#64748B] leading-relaxed">
+            <strong class="text-[#0F172A]">Nota metodológica y fuente base:</strong>
+            Elaboración propia actualizada a partir del <em>Organigrama del Estado peruano</em> (Secretaría de Gestión Pública - PCM, 2013) y el marco normativo vigente (incluyendo bicameralidad Ley N.° 31988, JNJ Ley N.° 30904, MIDAGRI Ley N.° 31075 y OECE Ley N.° 32069).
+          </aside>
+
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3.5">
+              <img src="fotoperfil.jpg" alt="Brander Trujillo" class="w-12 h-12 rounded-xl object-cover shrink-0 border border-[#E2E8F0]" />
+              <div>
+                <div class="text-sm font-extrabold text-[#0F172A]">Brander Trujillo</div>
+                <div class="text-xs text-[#64748B]">Ingeniero y Economista · Magíster en Gestión Pública</div>
+              </div>
+            </div>
+            <div class="flex flex-wrap items-center gap-2.5">
+              <a href="blog.html" class="btn-editorial-outline px-5 py-2.5 text-xs font-bold inline-flex items-center gap-1.5">
+                <span>←</span>
+                <span>Volver al Blog</span>
+              </a>
+              <a href="contacto.html" class="btn-primary px-5 py-2.5 text-xs font-bold inline-flex items-center gap-1.5">
+                <span>Escríbeme</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER GLOBAL SIMPLIFICADO (DISEÑO AZUL ACTUAL) -->
+  <footer class="site-footer mt-0">
+    <div class="max-w-6xl mx-auto px-6 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+
+        <div class="md:col-span-2 space-y-4">
+          <a href="index.html" class="inline-block">
+            <img src="firma-logo.png" alt="Brander Trujillo" class="h-10 w-auto object-contain" />
+          </a>
+          <p class="text-sm font-semibold text-white">
+            Ingeniero · Economista · Magíster en Gestión Pública
+          </p>
+          <p class="text-xs text-white/80 max-w-md leading-relaxed">
+            Integrando rigor técnico, análisis de datos y políticas de desarrollo para diseñar proyectos e inversiones
+            públicas y privadas de impacto real.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Navegación</h4>
+          <ul class="space-y-2 text-xs text-white/80">
+            <li><a href="index.html" class="hover:text-[#60A5FA] transition">Inicio</a></li>
+            <li><a href="trayectoria.html" class="hover:text-[#60A5FA] transition">Trayectoria</a></li>
+            <li><a href="blog.html" class="hover:text-[#60A5FA] transition">Blog</a></li>
+            <li><a href="contacto.html" class="hover:text-[#60A5FA] transition">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Temas del Blog</h4>
+          <ul class="space-y-2 text-xs text-white/80">
+            <li><a href="blog.html?cat=inversion" class="hover:text-[#60A5FA] transition">Inversión Pública (Invierte.pe)</a></li>
+            <li><a href="blog.html?cat=ia" class="hover:text-[#60A5FA] transition">Inteligencia Artificial Aplicada</a></li>
+            <li><a href="blog.html?cat=proyectos" class="hover:text-[#60A5FA] transition">Gestión de Proyectos</a></li>
+            <li><a href="blog.html?cat=municipal" class="hover:text-[#60A5FA] transition">Desarrollo Territorial & Local</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div
+        class="pt-8 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/75">
+        <span>© <span id="year"></span> Brander Trujillo — Todos los derechos reservados.</span>
+
+        <div class="flex items-center gap-5">
+          <a href="https://web.facebook.com/brandertrujillomeza" target="_blank" rel="noopener noreferrer"
+            class="hover:text-[#60A5FA] transition" aria-label="Facebook">
+            Facebook
+          </a>
+          <a href="https://www.tiktok.com/@brandertrujillo" target="_blank" rel="noopener noreferrer"
+            class="hover:text-[#60A5FA] transition" aria-label="TikTok">
+            TikTok
+          </a>
+          <a href="https://www.linkedin.com/in/brandertrujillo/" target="_blank" rel="noopener noreferrer"
+            class="hover:text-[#60A5FA] transition" aria-label="LinkedIn">
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // ======================================================================
+      // 0. BARRA DE PROGRESO DE LECTURA
+      // ======================================================================
+      const progressBar = document.getElementById('reading-progress');
+      const updateReadingProgress = () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+        progressBar.style.width = `${pct.toFixed(1)}%`;
+        progressBar.setAttribute('aria-valuenow', Math.round(pct));
+      };
+      updateReadingProgress();
+      window.addEventListener('scroll', updateReadingProgress, { passive: true });
+
+      // ======================================================================
+      // 0B. SCROLL-SPY PARA LA HOJA DE RUTA (HERO STEPPER + ÍNDICE LATERAL)
+      // ======================================================================
+      const stageSections = Array.from(document.querySelectorAll('.roadmap-stage[data-stage]'));
+      const stageLinks = Array.from(document.querySelectorAll('[data-stage-link]'));
+
+      function setActiveStage(stageId) {
+        stageLinks.forEach(link => {
+          const isMatch = link.dataset.stageLink === stageId;
+          link.classList.toggle('is-active', isMatch);
+          if (isMatch) {
+            link.setAttribute('aria-current', 'step');
+          } else {
+            link.removeAttribute('aria-current');
+          }
+        });
+      }
+
+      const updateScrollSpy = () => {
+        const triggerY = window.scrollY + 190;
+        let currentId = stageSections[0]?.dataset.stage || 'etapa-1';
+        for (const sec of stageSections) {
+          if (sec.offsetTop <= triggerY) {
+            currentId = sec.dataset.stage;
+          }
+        }
+        if ((window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 40)) {
+          currentId = stageSections[stageSections.length - 1]?.dataset.stage || currentId;
+        }
+        setActiveStage(currentId);
+      };
+
+      stageLinks.forEach(link => {
+        link.addEventListener('click', () => setActiveStage(link.dataset.stageLink));
+      });
+
+      updateScrollSpy();
+      window.addEventListener('scroll', updateScrollSpy, { passive: true });
+
+      // ======================================================================
+      // 1. MAPA VISUAL INTERACTIVO DEL ESTADO (6 NODOS + CONEXIONES SVG)
+      // ======================================================================
+      const orgData = {
+        ejecutivo: {
+          icon: '🏛️',
+          title: 'Poder Ejecutivo',
+          tag: 'El motor que gestiona y ejecuta el país',
+          simple: 'Es quien administra el presupuesto nacional, hace cumplir las leyes y maneja los servicios públicos grandes como hospitales nacionales, escuelas, policías y carreteras.',
+          members: [
+            'Presidencia de la República',
+            'Presidencia del Consejo de Ministros (PCM)',
+            '18 Ministerios (Salud, Educación, Economía, MTC, MIDAGRI, etc.)',
+            'Organismos técnicos adscritos (SUNAT, OECE, SERVIR, INDECOPI)'
+          ],
+          daily: 'Lo ves cuando te atiendes en una posta médica del MINSA, tus hijos reciben libros escolares del MINEDU o se construye una carretera nacional.'
+        },
+        legislativo: {
+          icon: '📜',
+          title: 'Poder Legislativo',
+          tag: 'Congreso Bicameral (Ley N.° 31988)',
+          simple: 'Representa a los ciudadanos de todo el país: crea, cambia o deroga las leyes, aprueba el presupuesto de cada año y fiscaliza las acciones del Gobierno.',
+          members: [
+            'Cámara de Diputados (propone y debate primero las leyes)',
+            'Senado (revisa las normas y designa altas autoridades)',
+            'Comisiones ordinarias, investigadoras y Mesa Directiva'
+          ],
+          daily: 'Lo notas cada vez que se aprueba una nueva norma laboral, una rebaja de impuestos o el presupuesto que financia proyectos en tu región.'
+        },
+        judicial: {
+          icon: '⚖️',
+          title: 'Poder Judicial',
+          tag: 'Quien resuelve conflictos y dicta sentencias',
+          simple: 'Se encarga de impartir justicia de manera independiente. Cuando hay un conflicto entre personas, empresas o con el Estado, un juez escucha a ambas partes y decide según la ley.',
+          members: [
+            'Corte Suprema de Justicia (máxima instancia)',
+            'Cortes Superiores en cada región del país',
+            'Juzgados Especializados, Mixtos y Juzgados de Paz',
+            'Academia de la Magistratura (AMAG) y Fuero Militar Policial'
+          ],
+          daily: 'Entra en acción si tramitas una demanda de alimentos, reclamas un contrato incumplido o se juzga un delito penal.'
+        },
+        autonomos: {
+          icon: '🛡️',
+          title: 'Organismos Autónomos (10 OCAs)',
+          tag: 'Árbitros independientes que cuidan las reglas',
+          simple: 'No dependen ni del Presidente ni del Congreso. Existen para garantizar elecciones limpias, estabilidad de tu dinero, control del gasto y defensa de tus derechos.',
+          members: [
+            'Electoral: JNE, ONPE y RENIEC',
+            'Control y Economía: BCRP, SBS y Contraloría (CGR)',
+            'Justicia y Derechos: JNJ, Ministerio Público, Defensoría del Pueblo y Tribunal Constitucional'
+          ],
+          daily: 'Los ves cuando sacas tu DNI (RENIEC), revisas el tipo de cambio (BCRP), votas en elecciones (ONPE/JNE) o se audita una obra pública (Contraloría).'
+        },
+        subnacional: {
+          icon: '🗺️',
+          title: 'Gobiernos Regionales y Locales',
+          tag: 'El Estado más cercano a tu barrio y distrito',
+          simple: 'Son las autoridades que eliges en tu región, provincia y distrito para atender necesidades locales de forma directa, sin esperar decisiones desde Lima.',
+          members: [
+            '25 Gobiernos Regionales (GORE)',
+            '196 Municipalidades Provinciales',
+            'Más de 1,690 Municipalidades Distritales'
+          ],
+          daily: 'Los sientes todos los días en el recojo de basura, el serenazgo, las licencias de negocio, el mantenimiento de tu pista distrital o un canal de riego rural.'
+        },
+        fondos: {
+          icon: '🏥',
+          title: 'Fondos Intangibles',
+          tag: 'Dinero protegido solo para salud y pensiones',
+          simple: 'Administran los aportes que trabajadores y empleadores hacen mes a mes. Por la Constitución, ese dinero es intangible: ningún gobierno puede desviarlo para otros gastos.',
+          members: [
+            'EsSalud (Seguro Social de Salud)',
+            'ONP (Oficina de Normalización Previsional)',
+            'FCR (Fondo Consolidado de Reservas Previsionales)'
+          ],
+          daily: 'Lo ves cuando te atiendes en un hospital de EsSalud o cuando un adulto mayor recibe su pensión mensual de jubilación a través de la ONP.'
+        }
+      };
+
+      const orgPanel = document.getElementById('org-detail-panel');
+      const orgButtons = document.querySelectorAll('.org-node');
+      const orgBranches = document.querySelectorAll('.org-branch');
+
+      function renderOrgNode(key) {
+        const d = orgData[key];
+        if (!d) return;
+
+        orgBranches.forEach(b => b.classList.remove('active'));
+        const activeBranch = document.getElementById(`branch-${key}`);
+        if (activeBranch) activeBranch.classList.add('active');
+
+        orgPanel.classList.remove('panel-animate');
+        void orgPanel.offsetWidth;
+        orgPanel.classList.add('panel-animate');
+
+        orgPanel.innerHTML = `
+          <div class="flex items-center gap-3.5 pb-5 border-b border-[#E2E8F0]">
+            <span class="w-12 h-12 rounded-2xl bg-white border border-[#E2E8F0] flex items-center justify-center text-2xl shrink-0">${d.icon}</span>
+            <div>
+              <h3 class="text-xl sm:text-2xl font-extrabold text-[#041473]">${d.title}</h3>
+              <p class="text-xs font-bold text-[#0055FF]">${d.tag}</p>
+            </div>
+          </div>
+
+          <div class="mt-5 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="rounded-2xl bg-white border border-[#E2E8F0] p-4 space-y-2">
+              <div class="text-xs font-extrabold uppercase tracking-wider text-[#041473]">💬 En palabras simples</div>
+              <p class="text-sm text-[#334155] leading-relaxed">${d.simple}</p>
+            </div>
+
+            <div class="rounded-2xl bg-white border border-[#E2E8F0] p-4 space-y-2">
+              <div class="text-xs font-extrabold uppercase tracking-wider text-[#041473]">🧩 Quiénes lo integran</div>
+              <ul class="space-y-1.5 text-xs sm:text-sm text-[#0F172A] font-medium">
+                ${d.members.map(m => `<li class="flex items-start gap-2"><span class="text-[#0055FF] font-bold">•</span><span>${m}</span></li>`).join('')}
+              </ul>
+            </div>
+
+            <div class="rounded-2xl bg-[#EFF6FF] border border-[#BFDBFE] p-4 space-y-2">
+              <div class="text-xs font-extrabold uppercase tracking-wider text-[#0055FF]">✨ En tu día a día</div>
+              <p class="text-sm text-[#0F172A] leading-relaxed">${d.daily}</p>
+            </div>
+          </div>
+        `;
+      }
+
+      orgButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          orgButtons.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+          renderOrgNode(btn.dataset.node);
+        });
+      });
+
+      renderOrgNode('ejecutivo');
+
+      // ======================================================================
+      // 2. SIMULADOR PASO A PASO: "SIGUE LA RUTA DE UN CASO REAL"
+      // ======================================================================
+      const casesData = {
+        obra: {
+          steps: [
+            {
+              entity: 'Municipalidad Distrital',
+              short: 'Identifica y formula',
+              icon: '🏘️',
+              desc: 'Tu municipio escucha la necesidad del barrio (por ejemplo, una pista o agua potable) y prepara el estudio técnico para demostrar que la obra sirve a la comunidad.'
+            },
+            {
+              entity: 'MEF / Invierte.pe',
+              short: 'Viabilidad y presupuesto',
+              icon: '💰',
+              desc: 'Bajo las reglas de Invierte.pe del Ministerio de Economía y Finanzas, el proyecto obtiene viabilidad y se asegura el presupuesto público para financiarlo.'
+            },
+            {
+              entity: 'OECE (Ley N.° 32069)',
+              short: 'Licitación transparente',
+              icon: '📋',
+              desc: 'Se convoca un concurso público supervisado por el OECE para elegir a la empresa constructora que ofrezca la mejor calidad y precio justo.'
+            },
+            {
+              entity: 'Contraloría (CGR)',
+              short: 'Control y vigilancia',
+              icon: '🔍',
+              desc: 'Durante y después de la construcción, la Contraloría verifica que la obra se entregue bien hecha, en plazo y sin sobrevaloraciones ni corrupción.'
+            }
+          ]
+        },
+        ley: {
+          steps: [
+            {
+              entity: 'Iniciativa Legislativa',
+              short: 'Nace la propuesta',
+              icon: '💡',
+              desc: 'Una propuesta de ley puede nacer del Presidente, de los parlamentarios, de instituciones autónomas o incluso de los propios ciudadanos reuniendo firmas.'
+            },
+            {
+              entity: 'Cámara de Diputados',
+              short: 'Primer debate y voto',
+              icon: '🗣️',
+              desc: 'En el sistema bicameral (Ley N.° 31988), la propuesta entra primero por Diputados: se analiza en comisión técnica y se vota en el Pleno.'
+            },
+            {
+              entity: 'Senado de la República',
+              short: 'Cámara revisora',
+              icon: '📑',
+              desc: 'El Senado revisa el texto con mirada técnica y de largo plazo: puede aprobarlo, mejorarlo con observaciones o rechazarlo si tiene vacíos.'
+            },
+            {
+              entity: 'Poder Ejecutivo',
+              short: 'Promulgación oficial',
+              icon: '✍️',
+              desc: 'Si todo está listo, la Presidencia promulga la ley y se publica en el diario oficial El Peruano. Desde el día siguiente empieza a regir para todo el país.'
+            }
+          ]
+        },
+        voto: {
+          steps: [
+            {
+              entity: 'RENIEC',
+              short: 'Tu DNI y el padrón',
+              icon: '🪪',
+              desc: 'Todo empieza con tu identidad: el RENIEC mantiene actualizado tu DNI y arma el padrón oficial con todos los peruanos habilitados para votar.'
+            },
+            {
+              entity: 'ONPE',
+              short: 'Organiza y cuenta',
+              icon: '🗳️',
+              desc: 'La ONPE diseña la cédula, sortea a los miembros de mesa, instala tu local de votación y realiza el cómputo oficial de las actas.'
+            },
+            {
+              entity: 'Jurado Nacional (JNE)',
+              short: 'Fiscaliza y proclama',
+              icon: '⚖️',
+              desc: 'El JNE actúa como árbitro electoral: vigila que las reglas se cumplan, resuelve apelaciones o tachas y proclama oficialmente a los ganadores.'
+            },
+            {
+              entity: 'Ciudadanía y Autoridades',
+              short: 'Mandato democrático',
+              icon: '🇵🇪',
+              desc: 'Con las credenciales entregadas, las autoridades electas asumen funciones y tú puedes vigilar que cumplan sus promesas durante su gestión.'
+            }
+          ]
+        }
+      };
+
+      let activeCaseKey = 'obra';
+      let activeStepIdx = 0;
+
+      const caseTabs = document.querySelectorAll('.case-tab');
+      const stepperNodesEl = document.getElementById('stepper-nodes');
+      const stepperProgressEl = document.getElementById('stepper-progress');
+      const stepperDetailEl = document.getElementById('stepper-detail');
+      const stepCounterEl = document.getElementById('step-counter');
+      const stepPrevBtn = document.getElementById('step-prev');
+      const stepNextBtn = document.getElementById('step-next');
+
+      function renderStepper() {
+        const steps = casesData[activeCaseKey].steps;
+        const currentStep = steps[activeStepIdx];
+
+        stepperNodesEl.innerHTML = steps.map((s, idx) => {
+          const stateClass = idx === activeStepIdx ? 'is-active' : (idx < activeStepIdx ? 'is-done' : '');
+          return `
+            <button type="button" class="step-node ${stateClass} rounded-2xl p-3.5 text-left flex flex-col justify-between gap-2" data-step="${idx}">
+              <div class="flex items-center justify-between w-full">
+                <span class="step-num w-6 h-6 rounded-full bg-[#F4F7FB] text-[#041473] text-xs font-extrabold flex items-center justify-center">${idx + 1}</span>
+                <span class="text-lg" aria-hidden="true">${s.icon}</span>
+              </div>
+              <div>
+                <div class="text-xs sm:text-sm font-extrabold leading-tight">${s.entity}</div>
+                <div class="text-[11px] opacity-80 mt-0.5">${s.short}</div>
+              </div>
+            </button>
+          `;
+        }).join('');
+
+        stepperNodesEl.querySelectorAll('.step-node').forEach(btn => {
+          btn.addEventListener('click', () => {
+            activeStepIdx = parseInt(btn.dataset.step, 10);
+            renderStepper();
+          });
+        });
+
+        stepperProgressEl.style.width = `${((activeStepIdx + 1) / steps.length) * 100}%`;
+        stepCounterEl.textContent = `Paso ${activeStepIdx + 1} de ${steps.length}`;
+        stepPrevBtn.disabled = activeStepIdx === 0;
+        stepNextBtn.textContent = activeStepIdx < steps.length - 1 ? 'Siguiente paso →' : 'Reiniciar ruta ↺';
+
+        stepperDetailEl.classList.remove('panel-animate');
+        void stepperDetailEl.offsetWidth;
+        stepperDetailEl.classList.add('panel-animate');
+
+        stepperDetailEl.innerHTML = `
+          <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-[#F4F7FB] border border-[#E2E8F0] flex items-center justify-center text-2xl shrink-0">
+              ${currentStep.icon}
+            </div>
+            <div class="space-y-1.5">
+              <div class="text-xs font-extrabold uppercase tracking-wider text-[#0055FF]">
+                Paso ${activeStepIdx + 1} · ${currentStep.short}
+              </div>
+              <h3 class="text-lg sm:text-xl font-extrabold text-[#041473]">
+                ${currentStep.entity}
+              </h3>
+              <p class="text-sm sm:text-base text-[#334155] leading-relaxed">
+                ${currentStep.desc}
+              </p>
+            </div>
+          </div>
+        `;
+      }
+
+      caseTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          caseTabs.forEach(t => {
+            t.classList.remove('active');
+            t.setAttribute('aria-selected', 'false');
+          });
+          tab.classList.add('active');
+          tab.setAttribute('aria-selected', 'true');
+          activeCaseKey = tab.dataset.case;
+          activeStepIdx = 0;
+          renderStepper();
+        });
+      });
+
+      stepPrevBtn.addEventListener('click', () => {
+        if (activeStepIdx > 0) {
+          activeStepIdx--;
+          renderStepper();
+        }
+      });
+
+      stepNextBtn.addEventListener('click', () => {
+        const len = casesData[activeCaseKey].steps.length;
+        activeStepIdx = activeStepIdx < len - 1 ? activeStepIdx + 1 : 0;
+        renderStepper();
+      });
+
+      renderStepper();
+
+      // ======================================================================
+      // 3. BUSCADOR Y FILTRO INSTANTÁNEO (18 MINISTERIOS + 10 OCAS + OECE)
+      // ======================================================================
+      const entities = [
+        // 18 Ministerios
+        { sigla: 'MRE', nombre: 'Ministerio de Relaciones Exteriores', tipo: 'ministerio', rol: 'Maneja la política exterior, consulados peruanos y tratados internacionales.', tags: 'diplomacia cancilleria embajadas pasaporte consulados exterior' },
+        { sigla: 'MINDEF', nombre: 'Ministerio de Defensa', tipo: 'ministerio', rol: 'Dirige las Fuerzas Armadas, la defensa nacional y el apoyo ante emergencias.', tags: 'ejercito marina fuerza aerea defensa fronteras emergencias indeci' },
+        { sigla: 'MEF', nombre: 'Ministerio de Economía y Finanzas', tipo: 'ministerio', rol: 'Maneja el presupuesto del país, los impuestos (vía SUNAT) e Invierte.pe.', tags: 'economia finanzas presupuesto impuestos tributos sunat invierte dinero canon' },
+        { sigla: 'MININTER', nombre: 'Ministerio del Interior', tipo: 'ministerio', rol: 'Cuida el orden interno y la seguridad ciudadana a través de la Policía (PNP).', tags: 'policia seguridad ciudadana comisaria pnp migraciones pasaporte delincuencia' },
+        { sigla: 'MINJUSDH', nombre: 'Ministerio de Justicia y Derechos Humanos', tipo: 'ministerio', rol: 'Ofrece defensa pública gratuita y supervisa registros públicos (SUNARP) y penales.', tags: 'justicia derechos humanos sunarp registros publicos notarias inpe carceles' },
+        { sigla: 'MINEDU', nombre: 'Ministerio de Educación', tipo: 'ministerio', rol: 'Rige la educación nacional, colegios públicos, currículo escolar y becas (PRONABEC).', tags: 'educacion colegios escuelas universidades docentes profesores beca 18 pronabec' },
+        { sigla: 'MINSA', nombre: 'Ministerio de Salud', tipo: 'ministerio', rol: 'Dirige hospitales y postas públicas, campañas de vacunación y el seguro SIS.', tags: 'salud hospitales postas medicos vacunas sis medicamentos clinicas' },
+        { sigla: 'MIDAGRI', nombre: 'Ministerio de Desarrollo Agrario y Riego', tipo: 'ministerio', rol: 'Apoya a la agricultura familiar, riego tecnificado y gestión del agua agraria (ANA).', tags: 'agricultura agrario riego agua campo ganaderia ana senasa minagri cosecha' },
+        { sigla: 'MTPE', nombre: 'Ministerio de Trabajo y Promoción del Empleo', tipo: 'ministerio', rol: 'Promueve el empleo formal y protege tus derechos laborales (con SUNAFIL).', tags: 'trabajo empleo sueldo planilla sunafil derechos laborales contratos' },
+        { sigla: 'PRODUCE', nombre: 'Ministerio de la Producción', tipo: 'ministerio', rol: 'Impulsa a las mypes, la industria nacional, el emprendimiento y la pesca.', tags: 'mypes empresas industria pesca emprendimiento produccion comercio' },
+        { sigla: 'MINCETUR', nombre: 'Ministerio de Comercio Exterior y Turismo', tipo: 'ministerio', rol: 'Promueve el turismo en el Perú, las exportaciones y los acuerdos comerciales.', tags: 'turismo exportaciones tlc comercio exterior hoteles artesania promperu' },
+        { sigla: 'MINEM', nombre: 'Ministerio de Energía y Minas', tipo: 'ministerio', rol: 'Formula las políticas de electricidad, gas natural, hidrocarburos y minería.', tags: 'mineria energia luz electricidad gas petroleo hidrocarburos minas' },
+        { sigla: 'MTC', nombre: 'Ministerio de Transportes y Comunicaciones', tipo: 'ministerio', rol: 'Construye carreteras nacionales, puentes y regula brevetes e internet.', tags: 'carreteras transporte brevetes licencias conducir internet telecomunicaciones vias puentes trenes' },
+        { sigla: 'MVCS', nombre: 'Ministerio de Vivienda, Construcción y Saneamiento', tipo: 'ministerio', rol: 'Impulsa proyectos de agua potable, desagüe y bonos de vivienda como Techo Propio.', tags: 'agua potable desague saneamiento vivienda construccion techo propio urbanismo' },
+        { sigla: 'MIMP', nombre: 'Ministerio de la Mujer y Poblaciones Vulnerables', tipo: 'ministerio', rol: 'Protege a mujeres, niñez, adultos mayores y personas con discapacidad (CEM / CONADIS).', tags: 'mujer violencia familia ninos adultos mayores discapacidad cem conadis' },
+        { sigla: 'MINAM', nombre: 'Ministerio del Ambiente', tipo: 'ministerio', rol: 'Cuida los bosques, áreas naturales protegidas y la calidad ambiental (OEFA / SERNANP).', tags: 'ambiente ecologia clima bosques agua contaminacion oefa sernanp reciclaje' },
+        { sigla: 'MINCUL', nombre: 'Ministerio de Cultura', tipo: 'ministerio', rol: 'Protege sitios arqueológicos, museos, arte y derechos de pueblos indígenas.', tags: 'cultura museos patrimonio arqueologia machu picchu idiomas indigenas arte' },
+        { sigla: 'MIDIS', nombre: 'Ministerio de Desarrollo e Inclusión Social', tipo: 'ministerio', rol: 'Opera programas contra la pobreza como Juntos, Pensión 65 y Cuna Más.', tags: 'pobreza programas sociales pension 65 juntos cuna mas inclusion social' },
+
+        // 10 OCAs
+        { sigla: 'JNE', nombre: 'Jurado Nacional de Elecciones', tipo: 'autonomo', rol: 'Fiscaliza las elecciones, resuelve conflictos electorales y proclama resultados.', tags: 'elecciones voto partidos politicos candidatos democracia electoral' },
+        { sigla: 'ONPE', nombre: 'Oficina Nacional de Procesos Electorales', tipo: 'autonomo', rol: 'Organiza tu mesa de sufragio, diseña la cédula y cuenta los votos.', tags: 'elecciones votacion mesas sufragio cedulas referendum electoral' },
+        { sigla: 'RENIEC', nombre: 'Registro Nacional de Identificación y Estado Civil', tipo: 'autonomo', rol: 'Emite tu DNI, registra actas de nacimiento o matrimonio y arma el padrón electoral.', tags: 'dni identidad partidas nacimiento matrimonio defuncion padron elecciones' },
+        { sigla: 'BCRP', nombre: 'Banco Central de Reserva del Perú', tipo: 'autonomo', rol: 'Cuida el valor del sol, controla la inflación y vigila la estabilidad del tipo de cambio.', tags: 'moneda soles dolar tipo de cambio inflacion economia bancos reservas' },
+        { sigla: 'SBS', nombre: 'Superintendencia de Banca, Seguros y AFP', tipo: 'autonomo', rol: 'Supervisa bancos, cajas, aseguradoras y AFP para cuidar tus ahorros.', tags: 'bancos cajas seguros afp ahorros creditos financiero lavado activos' },
+        { sigla: 'CGR', nombre: 'Contraloría General de la República', tipo: 'autonomo', rol: 'Audita obras y presupuestos públicos para prevenir y detectar corrupción.', tags: 'corrupcion auditoria obras publicas sobrevaloracion control gasto fiscalizar' },
+        { sigla: 'JNJ', nombre: 'Junta Nacional de Justicia', tipo: 'autonomo', rol: 'Selecciona, evalúa y destituye a jueces, fiscales y jefes de ONPE y RENIEC.', tags: 'jueces fiscales magistrados cnm nombramiento justicia merito' },
+        { sigla: 'MPFN', nombre: 'Ministerio Público (Fiscalía)', tipo: 'autonomo', rol: 'Investiga delitos desde el primer minuto y acusa ante el Poder Judicial.', tags: 'fiscalia delitos denuncias investigacion penal crimen justicia' },
+        { sigla: 'DP', nombre: 'Defensoría del Pueblo', tipo: 'autonomo', rol: 'Te defiende cuando una entidad pública vulnera tus derechos o brinda un mal servicio.', tags: 'derechos reclamos servicios publicos abusos ciudadanos defensoria quejas' },
+        { sigla: 'TC', nombre: 'Tribunal Constitucional', tipo: 'autonomo', rol: 'Máximo guardián de la Constitución; decide si una ley es inconstitucional.', tags: 'constitucion leyes inconstitucional amparo habeas corpus derechos' },
+
+        // OECE
+        { sigla: 'OECE', nombre: 'Organismo Especializado para las Contrataciones Públicas Eficientes', tipo: 'tecnico', rol: 'Reemplaza al OSCE (Ley N.° 32069): supervisa compras públicas, licitaciones y el RNP.', tags: 'oece osce contrataciones publicas licitaciones compras estado rnp proveedores obras mef' }
+      ];
+
+      let currentFilter = 'todos';
+      let isExpanded = false;
+      const INITIAL_LIMIT = 6;
+      const featuredSiglas = ['RENIEC', 'MINSA', 'MINEDU', 'MTC', 'MEF', 'CGR'];
+      const searchInput = document.getElementById('entity-search');
+      const clearBtn = document.getElementById('clear-search');
+      const filterBtns = document.querySelectorAll('.filter-pill');
+      const quickTopics = document.querySelectorAll('.quick-topic');
+      const grid = document.getElementById('entity-grid');
+      const countEl = document.getElementById('entity-count');
+      const emptyEl = document.getElementById('entity-empty');
+      const expandWrap = document.getElementById('entity-expand-wrap');
+      const expandBtn = document.getElementById('entity-expand-btn');
+
+      const normalizeText = (str) =>
+        str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+      function renderEntities() {
+        const query = normalizeText(searchInput.value.trim());
+        clearBtn.classList.toggle('hidden', query.length === 0);
+
+        let filtered = entities.filter(e => {
+          const matchesFilter = currentFilter === 'todos' || e.tipo === currentFilter;
+          if (!matchesFilter) return false;
+          if (!query) return true;
+          return normalizeText(`${e.sigla} ${e.nombre} ${e.rol} ${e.tags}`).includes(query);
+        });
+
+        // En vista inicial "Todos" sin búsqueda, priorizar las 6 entidades más cotidianas primero
+        if (!query && currentFilter === 'todos') {
+          filtered = [
+            ...featuredSiglas.map(s => filtered.find(e => e.sigla === s)).filter(Boolean),
+            ...filtered.filter(e => !featuredSiglas.includes(e.sigla))
+          ];
+        }
+
+        if (filtered.length === 0) {
+          grid.innerHTML = '';
+          emptyEl.classList.remove('hidden');
+          expandWrap.classList.add('hidden');
+          countEl.textContent = 'Mostrando 0 entidades';
+          return;
+        }
+
+        emptyEl.classList.add('hidden');
+
+        const shouldTruncate = !query && !isExpanded && filtered.length > INITIAL_LIMIT;
+        const visibleList = shouldTruncate ? filtered.slice(0, INITIAL_LIMIT) : filtered;
+
+        if (!query && filtered.length > INITIAL_LIMIT) {
+          expandWrap.classList.remove('hidden');
+          expandBtn.textContent = isExpanded
+            ? 'Mostrar vista compacta ↑'
+            : `Ver las ${filtered.length} entidades ↓`;
+        } else {
+          expandWrap.classList.add('hidden');
+        }
+
+        countEl.textContent = shouldTruncate
+          ? `Mostrando ${visibleList.length} de ${filtered.length} entidades`
+          : `Mostrando ${visibleList.length} ${visibleList.length === 1 ? 'entidad' : 'entidades'}`;
+
+        grid.innerHTML = visibleList.map(e => {
+          const badgeLabel =
+            e.tipo === 'ministerio' ? 'Ministerio' :
+            e.tipo === 'autonomo' ? 'Autónomo (OCA)' : 'Técnico · MEF';
+          const badgeClass =
+            e.tipo === 'ministerio' ? 'bg-[#EFF6FF] text-[#041473] border-[#BFDBFE]' :
+            e.tipo === 'autonomo' ? 'bg-sky-50 text-[#0A2CB8] border-sky-200' :
+            'bg-emerald-50 text-emerald-800 border-emerald-200';
+
+          return `
+            <div class="editorial-card editorial-card-hover rounded-2xl p-4 h-full flex flex-col justify-between gap-2">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-1.5">
+                  <span class="text-xs font-black tracking-wide text-[#0055FF]">${e.sigla}</span>
+                  <span class="text-[10px] font-bold px-2 py-0.5 rounded-md border ${badgeClass}">${badgeLabel}</span>
+                </div>
+                <h3 class="text-sm font-extrabold text-[#0F172A] leading-snug">${e.nombre}</h3>
+                <p class="mt-1.5 text-xs text-[#334155] leading-relaxed">${e.rol}</p>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      searchInput.addEventListener('input', renderEntities);
+      clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchInput.focus();
+        renderEntities();
+      });
+
+      expandBtn.addEventListener('click', () => {
+        isExpanded = !isExpanded;
+        renderEntities();
+      });
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentFilter = btn.dataset.filter;
+          isExpanded = false;
+          renderEntities();
+        });
+      });
+
+      quickTopics.forEach(btn => {
+        btn.addEventListener('click', () => {
+          currentFilter = 'todos';
+          filterBtns.forEach(b => b.classList.toggle('active', b.dataset.filter === 'todos'));
+          searchInput.value = btn.dataset.term;
+          renderEntities();
+        });
+      });
+
+      renderEntities();
+
+      // ======================================================================
+      // 4. TARJETAS GIRATORIAS 3D (2013 VS. HOY)
+      // ======================================================================
+      const flipScenes = document.querySelectorAll('.flip-scene');
+      const toggleAllBtn = document.getElementById('toggle-all-compare');
+
+      const updateToggleAllText = () => {
+        const allFlipped = Array.from(flipScenes).every(c => c.classList.contains('is-flipped'));
+        toggleAllBtn.textContent = allFlipped ? 'Volver al frente' : 'Girar todas';
+      };
+
+      flipScenes.forEach(scene => {
+        const toggleFlip = () => {
+          const isFlipped = scene.classList.toggle('is-flipped');
+          scene.setAttribute('aria-pressed', isFlipped);
+          updateToggleAllText();
+        };
+        scene.addEventListener('click', toggleFlip);
+        scene.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleFlip();
+          }
+        });
+      });
+
+      toggleAllBtn.addEventListener('click', () => {
+        const allFlipped = Array.from(flipScenes).every(c => c.classList.contains('is-flipped'));
+        flipScenes.forEach(s => {
+          s.classList.toggle('is-flipped', !allFlipped);
+          s.setAttribute('aria-pressed', !allFlipped);
+        });
+        updateToggleAllText();
+      });
+
+      // ======================================================================
+      // 5. RETO RÁPIDO "¿A QUÉ ENTIDAD ACUDIRÍAS?" (QUIZ DE 4 CASOS)
+      // ======================================================================
+      const quizQuestions = [
+        {
+          question: '1. Ves indicios de sobrevaloración en una obra pública de tu zona y quieres que se audite el gasto. ¿A quién acudes?',
+          options: [
+            'Contraloría General de la República (CGR)',
+            'Banco Central de Reserva (BCRP)',
+            'Ministerio de Relaciones Exteriores (MRE)',
+            'Jurado Nacional de Elecciones (JNE)'
+          ],
+          correct: 0,
+          explanation: 'La Contraloría (CGR) es el organismo autónomo encargado de auditar obras y cuidar que el dinero público se use correctamente.'
+        },
+        {
+          question: '2. Quieres verificar el tipo de cambio oficial y qué hace el país para controlar la inflación. ¿Qué entidad ves?',
+          options: [
+            'Defensoría del Pueblo',
+            'Banco Central de Reserva del Perú (BCRP)',
+            'Ministerio de la Producción (PRODUCE)',
+            'SUNARP'
+          ],
+          correct: 1,
+          explanation: 'El BCRP preserva la estabilidad monetaria, cuida el valor del sol y gestiona las reservas internacionales del Perú.'
+        },
+        {
+          question: '3. En tu barrio necesitan arreglar una pista vecinal y mejorar el recojo de basura. ¿A quién le toca?',
+          options: [
+            'Al Poder Judicial',
+            'Al Senado de la República',
+            'A tu Municipalidad Distrital',
+            'A la Junta Nacional de Justicia (JNJ)'
+          ],
+          correct: 2,
+          explanation: 'Tu Municipalidad Distrital es la encargada directa de las calles vecinales, limpieza pública, parques y serenazgo.'
+        },
+        {
+          question: '4. Se aprueba una norma que contradice la Constitución y se busca dejarla sin efecto. ¿Quién decide al final?',
+          options: [
+            'La ONPE',
+            'El Ministerio de Economía y Finanzas (MEF)',
+            'EsSalud',
+            'El Tribunal Constitucional (TC)'
+          ],
+          correct: 3,
+          explanation: 'El Tribunal Constitucional (TC) es el máximo guardián de la Constitución y resuelve demandas de inconstitucionalidad.'
+        }
+      ];
+
+      let quizIdx = 0;
+      let quizScore = 0;
+
+      const stepLabel = document.getElementById('quiz-step-label');
+      const scoreLive = document.getElementById('quiz-score-live');
+      const progressFill = document.getElementById('quiz-progress-fill');
+      const questionEl = document.getElementById('quiz-question');
+      const optionsEl = document.getElementById('quiz-options');
+      const feedbackEl = document.getElementById('quiz-feedback');
+      const nextBtn = document.getElementById('quiz-next-btn');
+      const quizHeader = document.getElementById('quiz-header');
+      const quizTrack = document.getElementById('quiz-progress-track');
+      const quizBody = document.getElementById('quiz-body');
+      const quizResult = document.getElementById('quiz-result');
+      const resultIcon = document.getElementById('quiz-result-icon');
+      const resultTitle = document.getElementById('quiz-result-title');
+      const resultMsg = document.getElementById('quiz-result-msg');
+      const restartBtn = document.getElementById('quiz-restart-btn');
+
+      function loadQuizQuestion() {
+        const q = quizQuestions[quizIdx];
+        stepLabel.textContent = `Caso ${quizIdx + 1} de ${quizQuestions.length}`;
+        scoreLive.textContent = `Aciertos: ${quizScore}`;
+        progressFill.style.width = `${((quizIdx + 1) / quizQuestions.length) * 100}%`;
+
+        questionEl.textContent = q.question;
+        feedbackEl.classList.add('hidden');
+        nextBtn.classList.add('hidden');
+
+        optionsEl.innerHTML = q.options.map((opt, idx) => `
+          <button type="button" class="quiz-option rounded-xl p-4 text-left text-sm font-semibold flex items-center gap-3" data-idx="${idx}">
+            <span class="w-6 h-6 rounded-full bg-[#F4F7FB] border border-[#CBD5E1] text-[#041473] text-xs font-extrabold flex items-center justify-center shrink-0">${String.fromCharCode(65 + idx)}</span>
+            <span>${opt}</span>
+          </button>
+        `).join('');
+
+        optionsEl.querySelectorAll('.quiz-option').forEach(btn => {
+          btn.addEventListener('click', () => handleAnswer(parseInt(btn.dataset.idx, 10)));
+        });
+      }
+
+      function handleAnswer(selectedIdx) {
+        const q = quizQuestions[quizIdx];
+        const allBtns = optionsEl.querySelectorAll('.quiz-option');
+        allBtns.forEach(b => (b.disabled = true));
+
+        if (selectedIdx === q.correct) {
+          quizScore++;
+          allBtns[selectedIdx].classList.add('is-correct');
+          feedbackEl.className = 'rounded-2xl p-4 text-sm leading-relaxed border bg-emerald-50 border-emerald-300 text-emerald-900';
+          feedbackEl.innerHTML = `<strong class="block font-extrabold text-emerald-800 mb-1">✅ ¡Exacto!</strong>${q.explanation}`;
+        } else {
+          allBtns[selectedIdx].classList.add('is-wrong');
+          allBtns[q.correct].classList.add('is-correct');
+          feedbackEl.className = 'rounded-2xl p-4 text-sm leading-relaxed border bg-red-50 border-red-300 text-red-900';
+          feedbackEl.innerHTML = `<strong class="block font-extrabold text-red-800 mb-1">❌ Casi... era: ${q.options[q.correct]}</strong>${q.explanation}`;
+        }
+
+        scoreLive.textContent = `Aciertos: ${quizScore}`;
+        feedbackEl.classList.remove('hidden');
+        nextBtn.textContent = quizIdx < quizQuestions.length - 1 ? 'Siguiente caso →' : 'Ver mi puntaje →';
+        nextBtn.classList.remove('hidden');
+      }
+
+      nextBtn.addEventListener('click', () => {
+        quizIdx++;
+        if (quizIdx < quizQuestions.length) {
+          loadQuizQuestion();
+        } else {
+          showQuizResult();
+        }
+      });
+
+      function showQuizResult() {
+        quizHeader.classList.add('hidden');
+        quizTrack.classList.add('hidden');
+        quizBody.classList.add('hidden');
+        quizResult.classList.remove('hidden');
+
+        resultTitle.textContent = `Lograste ${quizScore} de ${quizQuestions.length}`;
+        if (quizScore === 4) {
+          resultIcon.textContent = '🏆';
+          resultMsg.textContent = '¡Impecable! Tienes clarísimo a qué entidad acudir y cómo se reparten las funciones en el Estado peruano.';
+        } else if (quizScore >= 2) {
+          resultIcon.textContent = '👏';
+          resultMsg.textContent = '¡Muy bien! Ya dominas lo esencial. Si quieres afinar algún detalle, dale una mirada al mapa o al buscador arriba.';
+        } else {
+          resultIcon.textContent = '🧭';
+          resultMsg.textContent = '¡Buen comienzo! Recorre el mapa visual y el paso a paso de casos reales y vuelve a probar.';
+        }
+      }
+
+      restartBtn.addEventListener('click', () => {
+        quizIdx = 0;
+        quizScore = 0;
+        quizResult.classList.add('hidden');
+        quizHeader.classList.remove('hidden');
+        quizTrack.classList.remove('hidden');
+        quizBody.classList.remove('hidden');
+        loadQuizQuestion();
+      });
+
+      loadQuizQuestion();
+    });
+  </script>
+</body>
+
+</html>

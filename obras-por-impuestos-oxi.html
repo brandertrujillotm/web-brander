@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="es" style="scroll-behavior: smooth;">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Obras por Impuestos (OxI): Guía interactiva en 3D sobre la Ley N° 29230 como alternativa estratégica de inversión en municipalidades distritales del Perú, por Brander Trujillo." />
+  <meta name="author" content="Brander Trujillo" />
+  <title>Obras por Impuestos (OxI) en Municipalidades Distritales | Blog Brander Trujillo</title>
+
+  <link rel="icon" type="image/png" href="brander-favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'] },
+          colors: {
+            brand: {
+              royal: '#041473',
+              royalMid: '#061B8C',
+              cobalt: '#0A2CB8',
+              electric: '#0055FF',
+              glow: '#3B82F6',
+              glowLight: '#60A5FA',
+              ink: '#0F172A',
+              inkMuted: '#475569'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Barra de progreso de lectura */
+    #reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, #38BDF8 0%, #60A5FA 65%, #FFFFFF 100%);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.90);
+      z-index: 1200;
+      transition: width 0.08s linear;
+      pointer-events: none;
+    }
+
+    .blog-prose {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.8;
+    }
+
+    /* Botones de fases sobre fondo claro editorial */
+    .phase-btn {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      color: #0F172A;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+
+    .phase-btn:hover {
+      border-color: #0055FF;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(4, 20, 115, 0.08);
+    }
+
+    .phase-btn .phase-label {
+      color: #0055FF;
+    }
+
+    .phase-btn .phase-name {
+      color: #0F172A;
+    }
+
+    .phase-btn .phase-sub {
+      color: #64748B;
+    }
+
+    .phase-btn.active {
+      background: #041473;
+      border-color: #041473;
+      color: #FFFFFF;
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px -8px rgba(4, 20, 115, 0.35);
+    }
+
+    .phase-btn.active .phase-label {
+      color: #BFDBFE;
+    }
+
+    .phase-btn.active .phase-name {
+      color: #FFFFFF;
+    }
+
+    .phase-btn.active .phase-sub {
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    /* Animaciones de flujo SVG */
+    @keyframes dash {
+      to { stroke-dashoffset: -40; }
+    }
+    .animated-path {
+      stroke-dasharray: 8, 8;
+      animation: dash 1.5s linear infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+    .floating {
+      animation: float 3s ease-in-out infinite;
+    }
+    #canvas-container {
+      position: relative;
+      width: 100%;
+      height: 440px;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 45%, #0A2CB8 0%, #061B8C 58%, #041473 100%);
+      border: 1px solid #CBD5E1;
+    }
+    .label-3d {
+      position: absolute;
+      pointer-events: none;
+      background: rgba(4, 20, 115, 0.92);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: white;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      box-shadow: 0 6px 18px rgba(2, 10, 64, 0.68);
+    }
+  </style>
+</head>
+<body class="article-editorial antialiased overflow-x-hidden selection:bg-[#0055FF]/20 selection:text-[#041473]">
+
+  <!-- BARRA DE PROGRESO DE LECTURA -->
+  <div id="reading-progress" aria-hidden="true"></div>
+
+
+  <!-- NAVBAR GLOBAL SIMPLIFICADO -->
+  <header class="site-header sticky top-0 inset-x-0 z-50 transition-all duration-200">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+
+      <!-- Logo y Marca -->
+      <a href="index.html" class="flex items-center gap-3 group focus:outline-none" aria-label="Brander Trujillo - Inicio">
+        <img src="firma-logo.png" alt="Brander Trujillo" class="h-10 w-auto object-contain transition-transform group-hover:scale-105 drop-shadow-sm" />
+      </a>
+
+      <!-- Navegación de Escritorio: 4 ENLACES DIRECTOS -->
+      <nav class="hidden lg:flex items-center gap-9 text-sm font-medium">
+        <a href="index.html" class="nav-link text-white/80 hover:text-white py-1 transition">
+          Inicio
+        </a>
+        <a href="trayectoria.html" class="nav-link text-white/80 hover:text-white py-1 transition">
+          Trayectoria
+        </a>
+        <a href="blog.html" class="nav-link text-white py-1 transition active">
+          Blog
+        </a>
+        <a href="contacto.html" class="nav-link text-white/80 hover:text-white py-1 transition">
+          Contacto
+        </a>
+      </nav>
+
+      <!-- Botón Menú Móvil -->
+      <button id="navToggle" class="lg:hidden p-2 rounded-xl text-white/85 hover:text-white hover:bg-white/15 transition focus:outline-none" aria-label="Abrir menú" aria-expanded="false">
+        <svg id="navToggleIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Menú Móvil Desplegable Simplificado -->
+    <div id="mobileMenu" class="hidden lg:hidden site-mobile-menu px-6 py-5">
+      <div class="space-y-3">
+        <a href="index.html" class="block py-2 text-base font-semibold text-white/80 hover:text-white border-b border-white/15">
+          Inicio
+        </a>
+        <a href="trayectoria.html" class="block py-2 text-base font-semibold text-white/80 hover:text-white border-b border-white/15">
+          Trayectoria
+        </a>
+        <a href="blog.html" class="block py-2 text-base font-semibold text-[#60A5FA] hover:text-white border-b border-white/15">
+          Blog
+        </a>
+        <a href="contacto.html" class="block py-2 text-base font-semibold text-white/80 hover:text-white">
+          Contacto
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- BARRA SUPERIOR DE REDES SOCIALES -->
+  <div class="social-top-bar" aria-label="Redes sociales">
+    <a href="https://web.facebook.com/brandertrujillomeza" target="_blank" rel="noopener noreferrer" class="social-card" aria-label="Facebook">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 23.403.597 24 1.326 24h11.495v-9.294H9.691v-3.622h3.13V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.403 24 24 23.403 24 22.674V1.326C24 .597 23.403 0 22.675 0z"/>
+      </svg>
+      <span>Facebook</span>
+    </a>
+    <a href="https://www.tiktok.com/@brandertrujillo" target="_blank" rel="noopener noreferrer" class="social-card" aria-label="TikTok">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+      </svg>
+      <span>TikTok</span>
+    </a>
+    <a href="https://www.linkedin.com/in/brandertrujillo/" target="_blank" rel="noopener noreferrer" class="social-card" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+      </svg>
+      <span>LinkedIn</span>
+    </a>
+  </div>
+
+    <!-- CABECERA DEL ARTÍCULO DE BLOG (HERO EDITORIAL CLARO SOBRE #F4F7FB) -->
+    <header class="relative max-w-5xl mx-auto px-4 sm:px-8 pt-5 pb-10 md:pt-7 md:pb-12">
+        <div class="editorial-hero-card rounded-3xl p-7 sm:p-10 md:p-12">
+            <!-- Enlace de retorno al blog -->
+            <div class="mb-5">
+                <a href="blog.html" class="inline-flex items-center gap-2 text-xs font-bold text-[#041473] hover:text-[#0055FF] transition group">
+                    <span class="group-hover:-translate-x-1 transition-transform">←</span>
+                    <span>Volver al Blog</span>
+                </a>
+            </div>
+            <!-- Metadatos del Post -->
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs font-medium text-[#64748B] mb-4">
+                <span class="font-bold text-[#041473]">Inversión Pública Subnacional • Ley N° 29230</span>
+                <span aria-hidden="true">•</span>
+                <span>Por <strong class="text-[#0F172A]">Brander Trujillo</strong></span>
+                <span aria-hidden="true">•</span>
+                <span>Lectura interactiva: 10 min</span>
+                <span aria-hidden="true">•</span>
+                <span>Fuentes: MEF, ProInversión, AFIN/EY, Salinas Rivas y Sánchez Povis</span>
+            </div>
+
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[#041473] leading-tight">
+                Obras por Impuestos (OxI): La Alternativa Estratégica para Acelerar la Inversión en las Municipalidades Distritales del Perú
+            </h1>
+
+            <p class="mt-5 text-[#475569] text-base sm:text-lg leading-relaxed">
+                ¿Cómo pueden los gobiernos locales transformar sus recursos futuros de Canon, Sobrecanon, Regalías y fondos determinados en colegios, saneamiento, pistas y desarrollo productivo hoy mismo sin endeudarse? Analizamos a fondo el mecanismo de <strong class="text-[#0F172A]">Obras por Impuestos (OxI)</strong>, sus alcances integrales, cómo superar sus <strong class="text-[#0F172A]">6 cuellos de botella críticos</strong> y su enorme potencial en distritos de regiones mineras como la provincia de Huari (Áncash).
+            </p>
+
+            <!-- Tarjeta de Resumen Ejecutivo para Lectores Web -->
+            <div class="mt-7 p-5 rounded-2xl bg-[#F4F7FB] border border-[#E2E8F0] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div class="flex items-center gap-3.5">
+                    <div class="w-11 h-11 rounded-full bg-white border border-[#E2E8F0] flex items-center justify-center text-xl shrink-0 shadow-sm">🏛️</div>
+                    <div>
+                        <div class="text-xs font-bold text-[#041473] uppercase tracking-wider">Guía Práctica para Gobiernos Locales y Mancomunidades</div>
+                        <div class="text-xs sm:text-sm text-[#475569] mt-0.5">Diseñado para alcaldes distritales, gerentes municipales, equipos de Invierte.pe y empresas privadas financistas.</div>
+                    </div>
+                </div>
+                <button onclick="copyBlogSnippet()" id="btn-copy-blog" class="btn-editorial-outline px-4 py-2 text-xs font-bold shrink-0">
+                    📋 Copiar Resumen para Redes
+                </button>
+            </div>
+        
+            <!-- Pestañas de Salto Rápido del Artículo -->
+            <div class="mt-7 pt-6 border-t border-[#E2E8F0] flex flex-wrap items-center gap-2">
+                <span class="text-xs text-[#64748B] font-semibold mr-1">Salta directo a:</span>
+                <a href="#introduccion" class="editorial-jump-pill">1. El Reto Distrital</a>
+                <a href="#ecosistema-3d" class="editorial-jump-pill">2. Maqueta 3D</a>
+                <a href="#alcances-oxi" class="editorial-jump-pill">3. Alcances y 6 Cuellos</a>
+                <a href="#fases-oxi" class="editorial-jump-pill">4. Las 4 Fases</a>
+                <a href="#simulador" class="editorial-jump-pill--accent">5. Simulador CIPRL</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL DEL BLOG (ÁREA DE LECTURA EDITORIAL CLARA) -->
+    <main class="article-reading-area blog-prose">
+
+        <!-- BANDA 1 (#FFFFFF): LA PARADOJA DE LAS MUNICIPALIDADES DISTRITALES Y EL ENFOQUE WIN-WIN -->
+        <section id="introduccion" class="editorial-band editorial-band--white">
+            <article class="max-w-5xl mx-auto px-4 sm:px-8 py-14 sm:py-16 space-y-8">
+                <div class="max-w-3xl mx-auto space-y-5">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-[#041473] leading-tight">
+                        1. El reto de los gobiernos locales y la nueva relación público-privada
+                    </h2>
+                    <p class="text-[#334155] text-base leading-relaxed">
+                        En el Perú, cientos de <strong class="text-[#0F172A]">municipalidades distritales</strong> enfrentan cada año una misma paradoja: perciben transferencias importantes por concepto de <strong class="text-[#0F172A]">Canon, Sobrecanon, Regalías, Renta de Aduanas y FONCOMUN</strong>, pero sufren severas limitaciones operativas para convertir ese presupuesto en infraestructura oportuna que cierre las brechas de pobreza y servicios públicos básicos.
+                    </p>
+                    <p class="text-[#334155] text-base leading-relaxed">
+                        Si observamos la realidad territorial de los distritos altoandinos de la provincia de <strong class="text-[#0F172A]">Huari, en la región Áncash</strong> —como es el caso referencial de la <strong class="text-[#0F172A]">Municipalidad Distrital de Pontó</strong> y otros municipios vecinos—, las necesidades en saneamiento rural, infraestructura educativa, riego tecnificado y conectividad vial son urgentes. Precisamente, como documentan los estudios especializados sobre el régimen de la <strong class="text-[#0F172A]">Ley N° 29230</strong> (<em>Salinas Rivas; Estudio AFIN/EY</em>), <strong class="text-[#0F172A]">Áncash es uno de los departamentos líderes a nivel nacional en proyectos ejecutados vía Obras por Impuestos</strong> en transporte, saneamiento, educación y salud.
+                    </p>
+                    <p class="text-[#334155] text-base leading-relaxed">
+                        Desde la perspectiva del Derecho Público Económico (<em>Sánchez Povis, 2016</em>), <strong class="text-[#0F172A]">Obras por Impuestos (OxI)</strong> constituye una manifestación moderna del <strong class="text-[#0F172A]">fomento administrativo</strong> y una verdadera <strong class="text-[#0F172A]">relación "Win / Win" (Ganar-Ganar)</strong> para tres actores clave:
+                    </p>
+                </div>
+
+                <!-- 3 Tarjetas del Modelo Win-Win-Win (AFIN/EY y Sánchez Povis) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-2">
+                    <div class="editorial-card--tint editorial-card-hover rounded-2xl p-6 border-l-4 border-l-[#0055FF]">
+                        <div class="text-2xl mb-2">🏛️</div>
+                        <h3 class="text-base font-extrabold text-[#041473] mb-1.5">1. Gana la Municipalidad Distrital</h3>
+                        <p class="text-xs sm:text-sm text-[#334155] leading-relaxed">
+                            Acelera su inversión pública adelantando el uso de sus recursos futuros de Canon sin pagar intereses financieros, reduciendo la discrecionalidad y evitando obras paralizadas por licitaciones fallidas.
+                        </p>
+                    </div>
+                    <div class="editorial-card--tint editorial-card-hover rounded-2xl p-6 border-l-4 border-l-[#041473]">
+                        <div class="text-2xl mb-2">👨‍👩‍👧‍👦</div>
+                        <h3 class="text-base font-extrabold text-[#041473] mb-1.5">2. Gana la Ciudadanía del Distrito</h3>
+                        <p class="text-xs sm:text-sm text-[#334155] leading-relaxed">
+                            Recibe infraestructura y servicios públicos de alta calidad en menor tiempo (agua potable, colegios equipados, postas médicas, caminos), materializando el rol social del Estado en zonas rurales.
+                        </p>
+                    </div>
+                    <div class="editorial-card--tint editorial-card-hover rounded-2xl p-6 border-l-4 border-l-[#0055FF]">
+                        <div class="text-2xl mb-2">🏢</div>
+                        <h3 class="text-base font-extrabold text-[#041473] mb-1.5">3. Gana la Empresa Privada</h3>
+                        <p class="text-xs sm:text-sm text-[#334155] leading-relaxed">
+                            Direcciona el pago de su Impuesto a la Renta de 3ra Categoría hacia obras tangibles en su zona de influencia, fortaleciendo su reputación corporativa y relacionamiento comunitario sin perder liquidez tributaria.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Cita Destacada Editorial -->
+                <blockquote class="max-w-3xl mx-auto p-6 rounded-2xl bg-[#F4F7FB] border border-[#E2E8F0] border-l-4 border-l-[#0055FF] text-[#0F172A] italic text-sm sm:text-base leading-relaxed">
+                    "Bajo el régimen de Obras por Impuestos, el celo natural de la división entre lo público y lo privado se difumina: los particulares pueden incluso identificar necesidades en la población, diseñar proyectos de solución ceñidos a los parámetros de Invierte.pe y proponer su priorización a la Municipalidad para cerrar brechas sociales trabajando juntos."
+                    <span class="block not-italic text-xs font-bold text-[#041473] mt-3">— Basado en el análisis del Régimen de Obras por Impuestos (Ley N° 29230)</span>
+                </blockquote>
+            </article>
+        </section>
+
+        <!-- BANDA 2 (#F4F7FB): ESCENARIO INTERACTIVO 3D (ACTORES QUE INTERVIENEN EN LAS OXI) -->
+        <section id="ecosistema-3d" class="editorial-band editorial-band--tint">
+            <div class="max-w-5xl mx-auto px-4 sm:px-8 py-14 sm:py-16 space-y-6">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-[#041473] leading-tight">
+                            2. Maqueta 3D: Actores que intervienen en el Ecosistema de Obras por Impuestos
+                        </h2>
+                        <p class="text-[#334155] text-sm sm:text-base mt-2 max-w-3xl">
+                            Interactúa con la escena 3D para explorar cómo se relacionan el Titular del Proyecto (Municipalidad), la Empresa Privada Financista, la Empresa Ejecutora (Contratista), la Entidad Privada Supervisora (EPS), ProInversión, la Contraloría (CGR) y el MEF.
+                        </p>
+                    </div>
+                    <div class="bg-white border border-[#CBD5E1] text-xs text-[#041473] px-3.5 py-2 rounded-xl flex items-center gap-2 shrink-0 font-semibold shadow-sm">
+                        <span>🖱️ Arrastra para rotar en 3D</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                    <!-- Visor 3D (escena espacial azul rey para máximo contraste con los modelos) -->
+                    <div class="lg:col-span-8 relative rounded-2xl border border-[#CBD5E1] shadow-xl overflow-hidden bg-[#041473]">
+                        <div id="canvas-container">
+                            <div id="label-estado" class="label-3d border-[#60A5FA]/70 text-[#BFDBFE]">🏛️ Municipalidad Distrital + MEF</div>
+                            <div id="label-empresa" class="label-3d border-blue-400/70 text-blue-200">🏢 Empresa Financista + Ejecutora</div>
+                            <div id="label-obra" class="label-3d border-emerald-400/70 text-emerald-200">🏫 Proyecto de Inversión Pública</div>
+                            <div id="label-eps" class="label-3d border-amber-400/70 text-amber-200">🔍 Entidad Privada Supervisora (EPS)</div>
+                        </div>
+
+                        <!-- Controles sobre el canvas -->
+                        <div class="absolute bottom-4 left-4 right-4 flex flex-wrap items-center justify-between gap-2 bg-[#041473]/88 backdrop-blur-md p-3 rounded-xl border border-white/20">
+                            <div class="flex flex-wrap gap-1.5">
+                                <button onclick="set3DStep(0)" id="btn-3d-0" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-[#0055FF] hover:bg-[#3B82F6] text-white transition">Ecosistema Completo</button>
+                                <button onclick="set3DStep(1)" id="btn-3d-1" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-white/10 hover:bg-white/20 text-white/85 transition">1. Convenio de Inversión</button>
+                                <button onclick="set3DStep(2)" id="btn-3d-2" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-white/10 hover:bg-white/20 text-white/85 transition">2. Ejecución + Supervisión EPS</button>
+                                <button onclick="set3DStep(3)" id="btn-3d-3" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-white/10 hover:bg-white/20 text-white/85 transition">3. Conformidad y CIPRL</button>
+                            </div>
+                            <button onclick="resetCamera()" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/25 transition">
+                                Centrar Vista
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Panel Explicativo del Escenario 3D (Tarjeta Editorial Blanca) -->
+                    <div class="lg:col-span-4 editorial-card rounded-2xl p-6 flex flex-col justify-between shadow-sm">
+                        <div>
+                            <span id="step-badge" class="inline-block px-3 py-1 rounded-full text-[11px] font-bold bg-[#EFF6FF] text-[#041473] border border-[#BFDBFE] mb-3">
+                                MAPA DE ACTORES OXI
+                            </span>
+                            <h3 id="step-title" class="text-xl font-extrabold text-[#041473] mb-3 leading-snug">
+                                Articulación entre Sector Público y Privado
+                            </h3>
+                            <p id="step-desc" class="text-[#334155] [&_strong]:text-[#0F172A] text-xs sm:text-sm leading-relaxed mb-5">
+                                En una Obra por Impuestos distrital intervienen <strong class="text-[#0F172A]">tres agentes privados diferenciados</strong> (Empresa Financista, Empresa Ejecutora/Contratista y Entidad Privada Supervisora) articulados con la <strong class="text-[#0F172A]">Municipalidad</strong>, <strong class="text-[#0F172A]">ProInversión</strong>, la <strong class="text-[#0F172A]">Contraloría (CGR)</strong>, el <strong class="text-[#0F172A]">MEF (DGPPIP / DGTP)</strong> y <strong class="text-[#0F172A]">SUNAT</strong>.
+                            </p>
+
+                            <div class="space-y-2.5 border-t border-[#E2E8F0] pt-4 text-xs">
+                                <div class="font-bold uppercase tracking-wider text-[#64748B] mb-1">Diferenciación de Agentes Privados:</div>
+                                <div class="p-3 rounded-xl bg-[#F4F7FB] border border-[#E2E8F0] text-[#334155]">
+                                    <strong class="text-[#041473]">🏢 Empresa Privada (Financista):</strong> Firma el Convenio de Inversión (individual o en consorcio), financia el proyecto y recibe el certificado <strong class="text-[#0F172A]">CIPRL</strong>.
+                                </div>
+                                <div class="p-3 rounded-xl bg-[#F4F7FB] border border-[#E2E8F0] text-[#334155]">
+                                    <strong class="text-emerald-700">👷 Empresa Ejecutora (Contratista):</strong> Construye la obra y elabora el expediente técnico (inscrita en el RNP del OSCE).
+                                </div>
+                                <div class="p-3 rounded-xl bg-[#F4F7FB] border border-[#E2E8F0] text-[#334155]">
+                                    <strong class="text-amber-700">🔍 Entidad Privada Supervisora (EPS):</strong> Ejerce una función administrativa delegada: verifica el avance y emite la <em>Conformidad de Calidad</em> obligatoria.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-3 border-t border-[#E2E8F0] flex items-center justify-between text-[11px] text-[#64748B]">
+                            <span>Asistencia técnica gratuita: <strong class="text-[#0F172A]">ProInversión</strong></span>
+                            <span class="text-emerald-700 font-bold">● Cero Corrupción</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BANDA 3 (#FFFFFF): ALCANCES, MODALIDADES Y LOS 6 CUELLOS DE BOTELLA -->
+        <section id="alcances-oxi" class="editorial-band editorial-band--white">
+            <div class="max-w-5xl mx-auto px-4 sm:px-8 py-14 sm:py-16 space-y-6">
+                <div class="max-w-3xl mx-auto text-center space-y-3">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-[#041473] leading-tight">
+                        3. Radiografía Completa de Obras por Impuestos: ¿Qué financia, cómo se propone y cómo superar sus Cuellos de Botella?
+                    </h2>
+                    <p class="text-[#334155] text-sm sm:text-base leading-relaxed">
+                        Explora en las siguientes 3 pestañas interactivas qué componentes puede incluir una municipalidad distrital en un proyecto OxI, cómo funciona la Iniciativa Privada y el Empaquetamiento municipal, y cuáles son los <strong class="text-[#0F172A]">6 Cuellos de Botella críticos</strong> detectados en la experiencia real en Áncash y el Perú.
+                    </p>
+                </div>
+
+                <!-- Selector Interactivo de 3 Pestañas 100% OxI -->
+                <div class="flex flex-wrap justify-center gap-2.5">
+                    <button onclick="switchMechanism('alcances')" id="btn-mec-alcances" class="px-4 py-2.5 rounded-xl text-xs font-bold bg-[#0055FF] hover:bg-[#041473] text-white border border-[#0055FF] shadow-md transition">
+                        📦 ¿Qué se puede financiar y quiénes participan?
+                    </button>
+                    <button onclick="switchMechanism('modalidades')" id="btn-mec-modalidades" class="px-4 py-2.5 rounded-xl text-xs font-bold bg-[#F4F7FB] hover:bg-[#EFF6FF] text-[#334155] hover:text-[#041473] border border-[#CBD5E1] transition">
+                        💡 Iniciativa Privada, Mancomunidades y Empaquetamiento
+                    </button>
+                    <button onclick="switchMechanism('cuellos')" id="btn-mec-cuellos" class="px-4 py-2.5 rounded-xl text-xs font-bold bg-[#F4F7FB] hover:bg-[#EFF6FF] text-[#334155] hover:text-[#041473] border border-[#CBD5E1] transition">
+                        ⏱️ Los 6 Cuellos de Botella en Municipios y Soluciones
+                    </button>
+                </div>
+
+                <!-- Pestaña 1: ¿Qué se puede financiar con OxI y qué requisitos debe cumplir el proyecto? -->
+                <div id="mec-view-alcances" class="editorial-card--tint rounded-3xl p-6 sm:p-8 space-y-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                        <!-- 7 Componentes financiables -->
+                        <div class="lg:col-span-7 space-y-3">
+                            <h3 class="text-lg font-extrabold text-[#041473] flex items-center gap-2">
+                                <span>🏗️</span> Los 7 Componentes que una Municipalidad puede financiar vía OxI
+                            </h3>
+                            <p class="text-xs sm:text-sm text-[#334155] leading-relaxed">
+                                Un error frecuente en los gobiernos locales es pensar que Obras por Impuestos solo sirve para levantar "cemento y ladrillo". De acuerdo con el marco normativo vigente, el Convenio de Inversión puede financiar integralmente y reconocer en el <strong class="text-[#0F172A]">CIPRL</strong> hasta <strong class="text-[#0F172A]">7 rubros</strong>:
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                                <div class="p-3.5 rounded-xl bg-white border border-[#E2E8F0] flex items-start gap-2.5 editorial-card-hover">
+                                    <span class="text-lg">📐</span>
+                                    <div>
+                                        <div class="text-xs font-extrabold text-[#0F172A]">1. Estudios de Preinversión y Expediente Técnico</div>
+                                        <div class="text-[11px] text-[#64748B] mt-0.5">Fichas técnicas, perfiles, estudios definitivos y actualizaciones (Documento de Trabajo).</div>
+                                    </div>
+                                </div>
+                                <div class="p-3.5 rounded-xl bg-white border border-[#E2E8F0] flex items-start gap-2.5 editorial-card-hover">
+                                    <span class="text-lg">🏢</span>
+                                    <div>
+                                        <div class="text-xs font-extrabold text-[#0F172A]">2. Construcción de la Obra</div>
+                                        <div class="text-[11px] text-[#64748B] mt-0.5">Ejecución física integral en transporte, saneamiento, educación, salud, riego, seguridad, etc.</div>
+                                    </div>
+                                </div>
+                                <div class="p-3.5 rounded-xl bg-white border border-[#E2E8F0] flex items-start gap-2.5 editorial-card-hover">
+                                    <span class="text-lg">💻</span>
+                                    <div>
+                                        <div class="text-xs font-extrabold text-[#0F172A]">3. Equipamiento Integral</div>
+                                        <div class="text-[11px] text-[#64748B] mt-0.5">Mobiliario escolar, equipos biomédicos, laboratorios, sistemas de información e IOARR.</div>
+                                    </div>
+                                </div>
+                                <div class="p-3.5 rounded-xl bg-white border border-[#E2E8F0] flex items-start gap-2.5 editorial-card-hover">
+                                    <span class="text-lg">👩‍🏫</span>
+                                    <div>
+                                        <div class="text-xs font-extrabold text-[#0F172A]">4. Capacitación de Usuarios y Beneficiarios</div>
+                                        <div class="text-[11px] text-[#64748B] mt-0.5">Entrenamiento a juntas de regantes, JASS de agua potable, docentes o personal técnico.</div>
+                                    </div>
+                                </div>
+                                <div class="p-3.5 rounded-xl bg-white border border-[#E2E8F0] flex items-start gap-2.5 editorial-card-hover">
+                                    <span class="text-lg">🔧</span>
+                                    <div>
+                                        <div class="text-xs font-extrabold text-[#0F172A]">5. Mantenimiento de Infraestructura</div>
+                                        <div class="text-[11px] text-[#64748B] mt-0.5">Expediente de mantenimiento reconocido con CIPRL trimestrales (hasta por 5 años).</div>
+                                    </div>
+                                </div>
+                                <div class="p-3.5 rounded-xl bg-white border border-[#E2E8F0] flex items-start gap-2.5 editorial-card-hover">
+                                    <span class="text-lg">🔍</span>
+                                    <div>
+                                        <div class="text-xs font-extrabold text-[#0F172A]">6. Supervisión (EPS) y Servicios / Operación</div>
+                                        <div class="text-[11px] text-[#64748B] mt-0.5">El costo de la Entidad Privada Supervisora (EPS) también es financiado y recuperado en el CIPRL.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4 Requisitos obligatorios y fuentes -->
+                        <div class="lg:col-span-5 bg-white rounded-2xl p-5 border border-[#E2E8F0] flex flex-col justify-between space-y-4 shadow-sm">
+                            <div>
+                                <div class="text-xs font-black uppercase tracking-wider text-[#041473] mb-3">
+                                    ✅ 4 Requisitos que debe cumplir todo Proyecto OxI
+                                </div>
+                                <ul class="space-y-2.5 text-xs text-[#334155]">
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-[#0055FF] font-extrabold">1.</span>
+                                        <span><strong class="text-[#0F172A]">Armonía con Planes de Desarrollo:</strong> Debe estar alineado al Plan de Desarrollo Concertado Regional y/o Local del distrito.</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-[#0055FF] font-extrabold">2.</span>
+                                        <span><strong class="text-[#0F172A]">Consistencia con el PMI:</strong> Cumplir con los objetivos, metas e indicadores de cierre de brechas de la <em>Programación Multianual de Inversiones</em>.</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-[#0055FF] font-extrabold">3.</span>
+                                        <span><strong class="text-[#0F172A]">Viabilidad en Invierte.pe:</strong> Contar con declaratoria de viabilidad activa en el Banco de Inversiones.</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-[#0055FF] font-extrabold">4.</span>
+                                        <span><strong class="text-[#0F172A]">Tope CIPRL y Regla Fiscal:</strong> Estar dentro del Límite Máximo de Emisión de CIPRL publicado anualmente por el MEF mediante Decreto Supremo.</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="p-3.5 rounded-xl bg-[#EFF6FF] border border-[#BFDBFE] text-[11px] text-[#334155]">
+                                <strong class="text-[#041473] block mb-1">💡 ¿Y si el distrito recibe poco Canon?</strong>
+                                Tal como destaca <em>Sánchez Povis (2016)</em>, los gobiernos locales que perciban menos de S/ 2.5 millones de canon también pueden financiar OxI con cargo a fondos especiales determinados por el MEF (como FONIE, FONIPREL/FIDT, entre otros) o en cofinanciamiento.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pestaña 2: Modalidades de Iniciativa Privada, Mancomunidades y Empaquetamiento -->
+                <div id="mec-view-modalidades" class="hidden editorial-card--tint rounded-3xl p-6 sm:p-8 space-y-5">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                        <div class="p-5 rounded-2xl bg-white border border-[#E2E8F0] space-y-2.5 editorial-card-hover">
+                            <div class="text-xs font-black uppercase text-[#0055FF]">1. Propuesta del Sector Privado (Petición de Gracia)</div>
+                            <p class="text-xs text-[#334155] leading-relaxed">
+                                En distritos como los de la provincia de Huari, una empresa privada no tiene que esperar a que el municipio tenga listo el proyecto. Puede presentar una <strong class="text-[#0F172A]">Carta de Intención</strong> proponiendo una obra nueva, elaborar el estudio de preinversión y lograr su viabilidad.
+                            </p>
+                            <div class="p-3 rounded-xl bg-[#F4F7FB] text-[11px] text-[#334155] border border-[#E2E8F0]">
+                                <strong class="text-[#041473]">Reembolso garantizado:</strong> El costo de elaborar el estudio de preinversión (hasta el 2% - 5% del monto de inversión) se le reconoce a la empresa privada en el primer CIPRL.
+                            </div>
+                        </div>
+
+                        <div class="p-5 rounded-2xl bg-white border border-[#E2E8F0] space-y-2.5 editorial-card-hover">
+                            <div class="text-xs font-black uppercase text-[#041473]">2. Mancomunidades y Cofinanciamiento</div>
+                            <p class="text-xs text-[#334155] leading-relaxed">
+                                ¿Qué pasa si una carretera interdistrital o una planta de agua supera el tope CIPRL de una sola municipalidad distrital (como Pontó)? La Ley permite que <strong class="text-[#0F172A]">Mancomunidades Municipales</strong>, varios Gobiernos Locales, el Gobierno Regional de Áncash o un Ministerio firmen un <strong class="text-[#0F172A]">Convenio de Cofinanciamiento / Colaboración</strong>.
+                            </p>
+                            <div class="p-3 rounded-xl bg-[#F4F7FB] text-[11px] text-[#334155] border border-[#E2E8F0]">
+                                <strong class="text-[#041473]">Suma de Topes:</strong> Así se unen los límites CIPRL de varias entidades para ejecutar un proyecto de alto impacto territorial.
+                            </div>
+                        </div>
+
+                        <div class="p-5 rounded-2xl bg-white border border-[#E2E8F0] space-y-2.5 editorial-card-hover">
+                            <div class="text-xs font-black uppercase text-[#0055FF]">3. Empaquetamiento de Proyectos Distritales</div>
+                            <p class="text-xs text-[#334155] leading-relaxed">
+                                El estudio de <em>AFIN / EY</em> advierte que muchas municipalidades tienen decenas de proyectos pequeños aislados (ej. veredas o postas por separado) que no atraen postores. La solución estratégica es el <strong class="text-[#0F172A]">Empaquetamiento de Proyectos</strong> con coincidencia geográfica o temática.
+                            </p>
+                            <div class="p-3 rounded-xl bg-[#F4F7FB] text-[11px] text-[#334155] border border-[#E2E8F0]">
+                                <strong class="text-[#0055FF]">Economías de Escala:</strong> Unir 4 o 5 proyectos distritales en un solo paquete reduce costos administrativos y atrae a las grandes empresas financistas.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pestaña 3: Los 6 Cuellos de Botella en la Ruta Crítica de OxI -->
+                <div id="mec-view-cuellos" class="hidden editorial-card--tint rounded-3xl p-6 sm:p-8 space-y-5">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#E2E8F0] pb-4">
+                        <div>
+                            <h3 class="text-lg font-extrabold text-[#041473]">
+                                Diagnóstico Real en Áncash: Los 6 Cuellos de Botella del Proceso OxI y cómo resolverlos
+                            </h3>
+                            <p class="text-xs sm:text-sm text-[#334155] mt-1">
+                                Un estudio empírico sobre <strong class="text-[#0F172A]">proyectos adjudicados en la región Áncash</strong> (<em>Salinas Rivas, 2015</em>) y las entrevistas de <em>EY / AFIN</em> evaluaron los 30 hitos de la ruta crítica de OxI, identificando los <strong class="text-[#0F172A]">6 puntos donde más se demoran las municipalidades</strong> frente al plazo óptimo:
+                            </p>
+                        </div>
+                        <span class="px-3 py-1.5 rounded-xl bg-[#EFF6FF] border border-[#BFDBFE] text-[#041473] text-xs font-bold shrink-0">
+                            📊 Evidencia Empírica en Gobiernos Locales
+                        </span>
+                    </div>
+
+                    <div class="overflow-x-auto bg-white rounded-2xl border border-[#E2E8F0] p-2">
+                        <table class="w-full text-left border-collapse min-w-[720px]">
+                            <thead>
+                                <tr class="border-b-2 border-[#E2E8F0] text-[11px] uppercase tracking-wider text-[#64748B]">
+                                    <th class="py-3 px-3">Hito Crítico (Cuello de Botella)</th>
+                                    <th class="py-3 px-3 text-center text-[#0055FF]">Tiempo Real Promedio</th>
+                                    <th class="py-3 px-3 text-center text-emerald-700">Tiempo Óptimo / Legal</th>
+                                    <th class="py-3 px-3">Causa Principal en Municipalidades</th>
+                                    <th class="py-3 px-3 text-[#041473]">Solución Estratégica para el Municipio</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-[#E2E8F0] text-xs">
+                                <tr>
+                                    <td class="py-3 px-3 font-bold text-[#0F172A]">1. Obtención del Acuerdo de Concejo</td>
+                                    <td class="py-3 px-3 text-center font-extrabold text-[#0055FF]">111 días</td>
+                                    <td class="py-3 px-3 text-center font-extrabold text-emerald-700">40 días</td>
+                                    <td class="py-3 px-3 text-[#334155]">Errores en códigos Invierte.pe/SNIP, montos mal consignados en actas y demora política en sesionar.</td>
+                                    <td class="py-3 px-3 text-[#0F172A]">Usar estrictamente los formatos modelo de ProInversión desde el primer día.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-3 font-bold text-[#0F172A]">2. Solicitud del Informe Previo a CGR</td>
+                                    <td class="py-3 px-3 text-center font-extrabold text-[#0055FF]">85 días</td>
+                                    <td class="py-3 px-3 text-center font-extrabold text-emerald-700">18 días</td>
+                                    <td class="py-3 px-3 text-[#334155]">Asesores externos que no radican en el distrito y demora en armar los informes técnico, legal y financiero.</td>
+                                    <td class="py-3 px-3 text-[#0F172A]">Instalar un <strong>Comité OxI Municipal</strong> permanente que centralice el expediente para Contraloría.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-3 font-bold text-[#0F172A]">3. Verificación de Calidad del Estudio</td>
+                                    <td class="py-3 px-3 text-center font-extrabold text-[#0055FF]">44 días</td>
+                                    <td class="py-3 px-3 text-center font-extrabold text-emerald-700">2 días</td>
+                                    <td class="py-3 px-3 text-[#334155]">Perfiles viabilizados sin contenidos mínimos (saneamiento físico-legal de terrenos incompleto o sin cálculos).</td>
+                                    <td class="py-3 px-3 text-[#0F172A]">Involucrar a la empresa privada desde la preinversión o auditar terrenos antes de priorizar.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-3 font-bold text-[#0F172A]">4. Contratación del Supervisor (EPS)</td>
+                                    <td class="py-3 px-3 text-center font-extrabold text-[#0055FF]">69 días</td>
+                                    <td class="py-3 px-3 text-center font-extrabold text-emerald-700">7 a 25 días</td>
+                                    <td class="py-3 px-3 text-[#334155]">Municipios postergan el concurso de la EPS o fijan honorarios muy bajos que dejan desierto el proceso.</td>
+                                    <td class="py-3 px-3 text-[#0F172A]">Convocar a la EPS <strong>en simultáneo</strong> con la Empresa Financista y financiar su costo vía CIPRL.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-3 font-bold text-[#0F172A]">5. Aprobación del Expediente Técnico</td>
+                                    <td class="py-3 px-3 text-center font-extrabold text-[#0055FF]">54 días</td>
+                                    <td class="py-3 px-3 text-center font-extrabold text-emerald-700">15 días</td>
+                                    <td class="py-3 px-3 text-[#334155]">Falta de especialistas internos en la municipalidad distrital o nuevas revisiones por cambio de gestión.</td>
+                                    <td class="py-3 px-3 text-[#0F172A]">Entregas parciales y mesas técnicas conjuntas entre la Empresa Privada, la EPS y la Unidad Ejecutora.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-3 font-bold text-[#0F172A]">6. Entrega de Obra y Registro SIAF / CIPRL</td>
+                                    <td class="py-3 px-3 text-center font-extrabold text-[#0055FF]">51 días</td>
+                                    <td class="py-3 px-3 text-center font-extrabold text-emerald-700">20 días</td>
+                                    <td class="py-3 px-3 text-[#334155]">Desconocimiento del operador municipal sobre cómo registrar la afectación presupuestal en el SIAF-SP.</td>
+                                    <td class="py-3 px-3 text-[#0F172A]">Asistencia de implantadores CONECTAMEF y aplicación de silencio positivo con la conformidad de la EPS.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BANDA 4 (#F4F7FB): LAS 4 FASES DEL MECANISMO DE OBRAS POR IMPUESTOS -->
+        <section id="fases-oxi" class="editorial-band editorial-band--tint">
+            <div class="max-w-5xl mx-auto px-4 sm:px-8 py-14 sm:py-16 space-y-6">
+                <div class="max-w-3xl mx-auto space-y-3 text-center sm:text-left">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-[#041473] leading-tight">
+                        4. Las 4 Fases de Obras por Impuestos en una Municipalidad Distrital
+                    </h2>
+                    <p class="text-[#334155] text-sm sm:text-base leading-relaxed">
+                        Siguiendo la estructura metodológica oficial de <strong class="text-[#0F172A]">ProInversión y el MEF</strong>, todo proyecto ejecutado por una municipalidad distrital —como los gobiernos locales de la provincia de <strong class="text-[#0F172A]">Huari (Áncash)</strong>— recorre <strong class="text-[#0F172A]">4 fases secuenciales</strong> claramente delimitadas:
+                    </p>
+                </div>
+
+                <!-- Botones de las 4 Fases Oficiales -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
+                    <button onclick="selectPhase(1)" id="phase-btn-1" class="phase-btn active text-left p-4 rounded-2xl flex flex-col justify-between">
+                        <div class="flex items-center justify-between w-full mb-2">
+                            <span class="phase-label text-xs font-black uppercase tracking-wider">Fase 01</span>
+                            <span class="text-2xl">📋</span>
+                        </div>
+                        <div class="phase-name font-extrabold text-sm sm:text-base">1. Priorización</div>
+                        <div class="phase-sub text-xs mt-1">Acuerdo de Concejo y Lista</div>
+                    </button>
+
+                    <button onclick="selectPhase(2)" id="phase-btn-2" class="phase-btn text-left p-4 rounded-2xl flex flex-col justify-between">
+                        <div class="flex items-center justify-between w-full mb-2">
+                            <span class="phase-label text-xs font-black uppercase tracking-wider">Fase 02</span>
+                            <span class="text-2xl">🛡️</span>
+                        </div>
+                        <div class="phase-name font-extrabold text-sm sm:text-base">2. Actos Previos</div>
+                        <div class="phase-sub text-xs mt-1">Comité Especial e Informe CGR</div>
+                    </button>
+
+                    <button onclick="selectPhase(3)" id="phase-btn-3" class="phase-btn text-left p-4 rounded-2xl flex flex-col justify-between">
+                        <div class="flex items-center justify-between w-full mb-2">
+                            <span class="phase-label text-xs font-black uppercase tracking-wider">Fase 03</span>
+                            <span class="text-2xl">🤝</span>
+                        </div>
+                        <div class="phase-name font-extrabold text-sm sm:text-base">3. Proceso de Selección</div>
+                        <div class="phase-sub text-xs mt-1">Concurso y Firma de Convenio</div>
+                    </button>
+
+                    <button onclick="selectPhase(4)" id="phase-btn-4" class="phase-btn text-left p-4 rounded-2xl flex flex-col justify-between">
+                        <div class="flex items-center justify-between w-full mb-2">
+                            <span class="phase-label text-xs font-black uppercase tracking-wider">Fase 04</span>
+                            <span class="text-2xl">🏗️</span>
+                        </div>
+                        <div class="phase-name font-extrabold text-sm sm:text-base">4. Ejecución y CIPRL</div>
+                        <div class="phase-sub text-xs mt-1">Obra, Recepción y Certificado</div>
+                    </button>
+                </div>
+
+                <!-- Detalle Ilustrado de la Fase Seleccionada -->
+                <div id="phase-detail-card" class="editorial-card rounded-3xl p-6 sm:p-8 shadow-sm">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-4 flex flex-col items-center justify-center p-6 rounded-2xl bg-[#F4F7FB] border border-[#E2E8F0] text-center min-h-[220px]">
+                            <div id="phase-illustration" class="floating text-5xl mb-3">📋🏛️🎯</div>
+                            <h4 id="phase-illust-title" class="text-base font-extrabold text-[#041473]">Acuerdo de Concejo Municipal</h4>
+                            <p id="phase-illust-sub" class="text-xs text-[#64748B] mt-2 leading-relaxed">
+                                El municipio aprueba su Lista de Proyectos Priorizados y la remite a ProInversión para su publicación oficial.
+                            </p>
+                        </div>
+
+                        <div class="lg:col-span-8 space-y-4">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EFF6FF] border border-[#BFDBFE] text-[#041473] text-xs font-bold" id="phase-tag">
+                                FASE 1 DE 4 • PRIORIZACIÓN MUNICIPAL
+                            </div>
+                            <h3 id="phase-title" class="text-xl sm:text-2xl font-extrabold text-[#041473]">
+                                Fase 1: Priorización de Proyectos Viables
+                            </h3>
+                            <p id="phase-description" class="text-[#334155] text-sm leading-relaxed">
+                                La Municipalidad Distrital (por iniciativa propia o a propuesta de una empresa privada mediante Carta de Intención) identifica proyectos declarados viables en <strong class="text-[#0F172A]">Invierte.pe</strong> que estén en armonía con su Plan de Desarrollo Local y su Programación Multianual de Inversiones (PMI). El <strong class="text-[#0F172A]">Concejo Municipal</strong> aprueba la lista priorizada y encarga el proceso al Comité Especial (con opción de asistencia técnica o encargo a ProInversión).
+                            </p>
+                            <div id="phase-bullets" class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                                <div class="p-3.5 rounded-xl bg-[#F4F7FB] border border-[#E2E8F0]">
+                                    <div class="text-xs font-extrabold text-[#0055FF] mb-1">💡 Iniciativa Pública o Privada</div>
+                                    <div class="text-xs text-[#334155]">Las empresas privadas pueden proponer nuevos proyectos o actualizar estudios de preinversión, recuperando ese costo en el primer CIPRL.</div>
+                                </div>
+                                <div class="p-3.5 rounded-xl bg-[#F4F7FB] border border-[#E2E8F0]">
+                                    <div class="text-xs font-extrabold text-emerald-700 mb-1">✅ Publicación en ProInversión</div>
+                                    <div class="text-xs text-[#334155]">La lista se envía a ProInversión para que la publique en su portal dentro de los 3 días de recibida y atraiga inversionistas.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BANDA 5 (#FFFFFF): SIMULADOR INTERACTIVO DE TOPES Y CERTIFICADOS CIPRL -->
+        <section id="simulador" class="editorial-band editorial-band--white">
+            <div class="max-w-5xl mx-auto px-4 sm:px-8 py-14 sm:py-16 space-y-6">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-[#041473] leading-tight">
+                        5. Simulador de Certificados CIPRL (Empresa Privada & Municipalidad Distrital)
+                    </h2>
+                    <p class="text-[#334155] text-sm sm:text-base mt-2 max-w-3xl">
+                        Simula cómo la empresa financista recupera su inversión aplicando el certificado <strong class="text-[#0F172A]">CIPRL</strong> contra sus pagos a cuenta y de regularización del Impuesto a la Renta de 3ra Categoría, y conoce las garantías legales del título valor.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                    <!-- Controles del Simulador -->
+                    <div class="lg:col-span-6 editorial-card--tint rounded-3xl p-6 space-y-5">
+                        <div>
+                            <div class="flex justify-between items-center mb-2 gap-2">
+                                <label class="text-xs sm:text-sm font-bold text-[#0F172A]">1. Impuesto a la Renta Anual de la Empresa Financista:</label>
+                                <span id="val-ir" class="text-base sm:text-lg font-extrabold text-[#0055FF] shrink-0">S/ 20,000,000</span>
+                            </div>
+                            <input id="slider-ir" type="range" min="4" max="80" value="20" step="1" oninput="updateSimulator()" class="w-full accent-[#0055FF] cursor-pointer h-2 bg-slate-200 rounded-lg">
+                            <div class="flex justify-between text-[11px] text-[#64748B] mt-1 font-medium">
+                                <span>S/ 4 Millones</span>
+                                <span>S/ 40 Millones</span>
+                                <span>S/ 80 Millones</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-center mb-2 gap-2">
+                                <label class="text-xs sm:text-sm font-bold text-[#0F172A]">2. Inversión Total del Proyecto Distrital (Inc. Expediente y EPS):</label>
+                                <span id="val-obra" class="text-base sm:text-lg font-extrabold text-[#0055FF] shrink-0">S/ 8,000,000</span>
+                            </div>
+                            <input id="slider-obra" type="range" min="1" max="40" value="8" step="1" oninput="updateSimulator()" class="w-full accent-[#0055FF] cursor-pointer h-2 bg-slate-200 rounded-lg">
+                            <div class="flex justify-between text-[11px] text-[#64748B] mt-1 font-medium">
+                                <span>S/ 1 Millón</span>
+                                <span>S/ 20 Millones</span>
+                                <span>S/ 40 Millones</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-center mb-2 gap-2">
+                                <label class="text-xs sm:text-sm font-bold text-[#0F172A]">3. Porcentaje de Aplicación Tributaria Anual:</label>
+                                <span id="val-tope-pct" class="text-xs font-bold px-2.5 py-1 rounded-md bg-[#EFF6FF] border border-[#BFDBFE] text-[#041473]">50% del IR (Regla General)</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2.5">
+                                <button onclick="setTaxLimit(0.5)" id="btn-limit-50" class="py-2.5 px-3 rounded-xl text-xs font-bold bg-[#0055FF] text-white border border-[#0055FF] shadow-md transition">
+                                    Tope Estándar (50% del IR)
+                                </button>
+                                <button onclick="setTaxLimit(0.8)" id="btn-limit-80" class="py-2.5 px-3 rounded-xl text-xs font-bold bg-white text-[#334155] border border-[#CBD5E1] hover:border-[#0055FF] hover:text-[#041473] transition">
+                                    Tope Ampliado (Hasta 80%)
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Resultados Numéricos -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                            <div class="p-4 rounded-xl bg-white border border-[#E2E8F0]">
+                                <div class="text-xs text-[#64748B] font-semibold">Límite Anual Descontable en SUNAT:</div>
+                                <div id="res-limite" class="text-xl font-extrabold text-[#041473] mt-1">S/ 10,000,000</div>
+                                <div class="text-[11px] text-[#64748B] mt-1">Calculado sobre la DJ Anual del ejercicio anterior.</div>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200">
+                                <div class="text-xs text-emerald-900 font-semibold">CIPRL Aplicado en el Ejercicio 1:</div>
+                                <div id="res-usado" class="text-xl font-extrabold text-emerald-700 mt-1">S/ 8,000,000</div>
+                                <div id="res-saldo" class="text-[11px] text-emerald-800 mt-1 font-medium">¡Se recupera el 100% en el primer año fiscal!</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ilustración Visual del Certificado CIPRL Municipal (Diploma Oficial Azul Rey) -->
+                    <div class="lg:col-span-6 flex flex-col justify-between rounded-3xl bg-gradient-to-br from-[#041473] via-[#061B8C] to-[#0A2CB8] border border-[#041473]/25 p-6 relative overflow-hidden shadow-xl text-white">
+                        <div class="absolute -right-8 -bottom-8 text-9xl opacity-10 pointer-events-none select-none">📜</div>
+
+                        <div>
+                            <div class="flex items-center justify-between border-b border-white/20 pb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-[#0055FF] text-white flex items-center justify-center font-black text-lg shadow-lg">🇵🇪</div>
+                                    <div>
+                                        <div class="text-[10px] font-bold uppercase tracking-widest text-[#BFDBFE]">DGETP / DGTP - Ministerio de Economía y Finanzas</div>
+                                        <div class="text-sm sm:text-base font-extrabold text-white">CERTIFICADO DE INVERSIÓN PÚBLICA (CIPRL)</div>
+                                    </div>
+                                </div>
+                                <span class="px-2.5 py-1 rounded-md bg-white/15 border border-white/30 text-white text-[10px] font-bold">GOBIERNO LOCAL</span>
+                            </div>
+
+                            <div class="my-5 space-y-3">
+                                <div class="flex justify-between items-baseline gap-2">
+                                    <span class="text-xs text-white/75">Entidad Pública Titular:</span>
+                                    <span class="text-xs sm:text-sm font-bold text-[#BFDBFE] text-right">MUNICIPALIDAD DISTRITAL (GOB. LOCAL)</span>
+                                </div>
+                                <div class="flex justify-between items-baseline gap-2">
+                                    <span class="text-xs text-white/75">Fuentes de Financiamiento:</span>
+                                    <span class="text-xs font-semibold text-white text-right">Canon, Sobrecanon, Regalías, Renta de Aduanas y Fondos</span>
+                                </div>
+                                <div class="flex justify-between items-baseline gap-2">
+                                    <span class="text-xs text-white/75">Características del Título Valor:</span>
+                                    <span class="text-xs font-semibold text-emerald-300 text-right">Vigencia 10 años • Negociable • +2% Anual al saldo</span>
+                                </div>
+                                <div class="flex justify-between items-baseline gap-2">
+                                    <span class="text-xs text-white/75">Monto Reconocido en CIPRL:</span>
+                                    <span id="cert-monto" class="text-2xl font-black text-white">S/ 8,000,000</span>
+                                </div>
+
+                                <!-- Barra de distribución de impuestos -->
+                                <div class="pt-2">
+                                    <div class="flex justify-between text-xs font-semibold mb-1.5">
+                                        <span class="text-[#BFDBFE]">Obra Distrital (CIPRL): <span id="pct-obra">40.0%</span></span>
+                                        <span class="text-blue-200">Efectivo a SUNAT: <span id="pct-cash">60.0%</span></span>
+                                    </div>
+                                    <div class="w-full h-5 rounded-full bg-white/15 overflow-hidden flex border border-white/25">
+                                        <div id="bar-obra" class="bg-[#60A5FA] h-full transition-all duration-300" style="width: 40%"></div>
+                                        <div id="bar-cash" class="bg-[#0055FF] h-full transition-all duration-300" style="width: 60%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white/10 p-4 rounded-xl border border-white/20 text-xs space-y-1.5">
+                            <div class="font-bold text-[#BFDBFE]">📌 Reglas de Oro del CIPRL (Sánchez Povis / Estudio EY):</div>
+                            <p class="text-white/85 text-[11px] leading-relaxed">
+                                • <strong class="text-white">Fraccionable y Trimestral:</strong> En obras mayores a 5-6 meses, se emiten CIPRL trimestrales por avance de obra.<br>
+                                • <strong class="text-white">Negociable a Terceros:</strong> Es endosable salvo cuando la empresa financista sea al mismo tiempo la constructora.<br>
+                                • <strong class="text-white">Descuento gradual al Municipio:</strong> El MEF descuenta hasta el 30% anual de las transferencias futuras de Canon del municipio hasta cubrir el certificado, <strong class="text-white">sin cobrar intereses</strong>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BANDA 6 (#F4F7FB): CONCLUSIÓN, REFERENCIAS Y TARJETA DE AUTOR -->
+        <section class="editorial-band editorial-band--tint border-b-0">
+            <div class="max-w-5xl mx-auto px-4 sm:px-8 py-14 sm:py-16 space-y-8">
+                <!-- Conclusión y Referencias Bibliográficas -->
+                <div class="editorial-card rounded-3xl p-7 sm:p-9 space-y-6 shadow-sm">
+                    <div class="text-center space-y-4">
+                        <h3 class="text-2xl font-extrabold text-[#041473] max-w-2xl mx-auto">
+                            Obras por Impuestos: Eficiencia Privada con Impacto Social Directo en los Distritos
+                        </h3>
+                        <p class="text-[#334155] text-sm sm:text-base max-w-3xl mx-auto leading-relaxed">
+                            Para las municipalidades distritales del país —y muy especialmente para los gobiernos locales ubicados en provincias con tradición minera y productiva como <strong class="text-[#0F172A]">Huari, en Áncash (Pontó y distritos vecinos)</strong>—, el mecanismo de <strong class="text-[#0F172A]">Obras por Impuestos (OxI)</strong> ha demostrado ser la herramienta más transparente, veloz y libre de corrupción para transformar el Canon en infraestructura de calidad. Superando los cuellos de botella mediante un <strong class="text-[#0F172A]">Comité OxI Municipal</strong> empoderado, el acompañamiento gratuito de <strong class="text-[#0F172A]">ProInversión</strong> y la participación activa de las empresas privadas desde la preinversión, cualquier distrito puede acelerar décadas de desarrollo en pocos meses.
+                        </p>
+                    </div>
+
+                    <!-- Referencias Académicas -->
+                    <div class="border-t border-[#E2E8F0] pt-5 text-left max-w-4xl mx-auto">
+                        <div class="text-xs font-bold uppercase tracking-wider text-[#041473] mb-3">📚 Fuentes y Referencias Bibliográficas del Artículo:</div>
+                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-2.5 text-xs text-[#64748B]">
+                            <li>• <strong class="text-[#0F172A]">TUO de la Ley N° 29230</strong> y su Reglamento (Impulso a la Inversión Pública Regional y Local con participación del Sector Privado - MEF / ProInversión).</li>
+                            <li>• <strong class="text-[#0F172A]">Salinas Rivas, S. F. P. (2015).</strong> <em>Obras por Impuestos: Cuellos de Botella y Propuesta de Mejoras</em> (Caso de 22 PIPs en la región Áncash). Revista Derecho & Sociedad, (45), 273-287.</li>
+                            <li>• <strong class="text-[#0F172A]">Sánchez Povis, L. A. (2016).</strong> <em>La Nueva Relación Público-Privada en el Ordenamiento Jurídico-Administrativo Peruano a la luz del actual Régimen de Obras por Impuestos</em>. RDA (16), 279-298.</li>
+                            <li>• <strong class="text-[#0F172A]">AFIN & Ernst & Young - EY (2015).</strong> <em>Estudio del Régimen de "Obras por Impuestos": Análisis normativo, plazos reales vs. teóricos y oportunidades de mejora</em>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Autor Editorial -->
+                <div class="editorial-card rounded-3xl p-7 sm:p-9 flex flex-col sm:flex-row items-center sm:items-start gap-6 max-w-4xl mx-auto shadow-sm">
+                    <img src="fotoperfil.jpg" alt="Brander Trujillo" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover shrink-0 border-2 border-[#0055FF]/25 shadow-md" />
+                    <div class="space-y-2 text-center sm:text-left">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-[#041473] bg-[#EFF6FF] border border-[#BFDBFE] px-2.5 py-1 rounded-md">
+                            Autor del Artículo
+                        </span>
+                        <h3 class="text-xl sm:text-2xl font-extrabold text-[#041473]">Brander Trujillo</h3>
+                        <p class="text-xs sm:text-sm font-bold text-[#0055FF]">
+                            Ingeniero & Economista · Magíster en Gestión Pública
+                        </p>
+                        <p class="text-xs sm:text-sm text-[#334155] leading-relaxed pt-1">
+                            Especialista en estructuración de inversiones, ciclo Invierte.pe y desarrollo territorial.
+                        </p>
+                        <div class="pt-3 flex flex-wrap justify-center sm:justify-start items-center gap-3">
+                            <a href="contacto.html" class="btn-primary px-5 py-2 rounded-full text-xs font-bold inline-flex items-center gap-1.5">
+                                <span>Contactar con el autor</span>
+                                <span>→</span>
+                            </a>
+                            <a href="trayectoria.html" class="btn-editorial-outline px-4 py-2 text-xs inline-flex items-center gap-1.5">
+                                <span>Ver Trayectoria Profesional</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    
+
+  <!-- FOOTER GLOBAL SIMPLIFICADO -->
+  <footer class="site-footer mt-0">
+    <div class="max-w-6xl mx-auto px-6 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+
+        <div class="md:col-span-2 space-y-4">
+          <a href="index.html" class="inline-block">
+            <img src="firma-logo.png" alt="Brander Trujillo" class="h-10 w-auto object-contain" />
+          </a>
+          <p class="text-sm font-semibold text-white">
+            Ingeniero · Economista · Magíster en Gestión Pública
+          </p>
+          <p class="text-xs text-white/80 max-w-md leading-relaxed">
+            Integrando rigor técnico, análisis de datos y políticas de desarrollo para diseñar proyectos e inversiones
+            públicas y privadas de impacto real.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Navegación</h4>
+          <ul class="space-y-2 text-xs text-white/80">
+            <li><a href="index.html" class="hover:text-[#60A5FA] transition">Inicio</a></li>
+            <li><a href="trayectoria.html" class="hover:text-[#60A5FA] transition">Trayectoria</a></li>
+            <li><a href="blog.html" class="hover:text-[#60A5FA] transition">Blog</a></li>
+            <li><a href="contacto.html" class="hover:text-[#60A5FA] transition">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Temas del Blog</h4>
+          <ul class="space-y-2 text-xs text-white/80">
+            <li><a href="blog.html?cat=inversion" class="hover:text-[#60A5FA] transition">Inversión Pública (Invierte.pe)</a></li>
+            <li><a href="blog.html?cat=ia" class="hover:text-[#60A5FA] transition">Inteligencia Artificial Aplicada</a></li>
+            <li><a href="blog.html?cat=proyectos" class="hover:text-[#60A5FA] transition">Gestión de Proyectos</a></li>
+            <li><a href="blog.html?cat=municipal" class="hover:text-[#60A5FA] transition">Desarrollo Territorial & Local</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div
+        class="pt-8 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/75">
+        <span>© <span id="year"></span> Brander Trujillo — Todos los derechos reservados.</span>
+
+                <div class="flex items-center gap-5">
+          <a href="https://web.facebook.com/brandertrujillomeza" target="_blank" rel="noopener noreferrer"
+            class="hover:text-[#60A5FA] transition" aria-label="Facebook">
+            Facebook
+          </a>
+          <a href="https://www.tiktok.com/@brandertrujillo" target="_blank" rel="noopener noreferrer"
+            class="hover:text-[#60A5FA] transition" aria-label="TikTok">
+            TikTok
+          </a>
+          <a href="https://www.linkedin.com/in/brandertrujillo/" target="_blank" rel="noopener noreferrer"
+            class="hover:text-[#60A5FA] transition" aria-label="LinkedIn">
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+
+<!-- SCRIPTS DE INTERACTIVIDAD Y ESCENA 3D -->
+    <script>
+        // ==========================================
+        // 1. ESCENA 3D INTERACTIVA (THREE.JS)
+        // ==========================================
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        
+        const camera = new THREE.PerspectiveCamera(42, container.clientWidth / container.clientHeight, 0.1, 1000);
+        camera.position.set(0, 14, 22);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.shadowMap.enabled = true;
+        container.appendChild(renderer.domElement);
+
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.06;
+        controls.maxPolarAngle = Math.PI / 2.15;
+        controls.minDistance = 12;
+        controls.maxDistance = 32;
+
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.75);
+        scene.add(ambientLight);
+
+        const dirLight = new THREE.DirectionalLight(0xffffff, 0.9);
+        dirLight.position.set(12, 24, 15);
+        dirLight.castShadow = true;
+        scene.add(dirLight);
+
+        // Plataforma Base
+        const baseGeo = new THREE.CylinderGeometry(10.5, 11, 0.8, 64);
+        const baseMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.7 });
+        const baseMesh = new THREE.Mesh(baseGeo, baseMat);
+        baseMesh.position.y = -0.4;
+        baseMesh.receiveShadow = true;
+        scene.add(baseMesh);
+
+        const ringGeo = new THREE.RingGeometry(9.8, 10.1, 64);
+        const ringMat = new THREE.MeshBasicMaterial({ color: 0x334155, side: THREE.DoubleSide });
+        const ringMesh = new THREE.Mesh(ringGeo, ringMat);
+        ringMesh.rotation.x = -Math.PI / 2;
+        ringMesh.position.y = 0.02;
+        scene.add(ringMesh);
+
+        function createBuildingGroup(x, z) {
+            const group = new THREE.Group();
+            group.position.set(x, 0, z);
+            scene.add(group);
+            return group;
+        }
+
+        // 1. NODO MUNICIPALIDAD DISTRITAL + MEF
+        const posEstado = new THREE.Vector3(0, 0, -6.2);
+        const groupEstado = createBuildingGroup(posEstado.x, posEstado.z);
+        
+        const estBase = new THREE.Mesh(
+            new THREE.BoxGeometry(3.4, 2.2, 2.4),
+            new THREE.MeshStandardMaterial({ color: 0x0055ff, roughness: 0.3 })
+        );
+        estBase.position.y = 1.1;
+        estBase.castShadow = true;
+        groupEstado.add(estBase);
+
+        for (let i = -1.2; i <= 1.2; i += 0.8) {
+            const col = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.14, 0.14, 2.1, 16),
+                new THREE.MeshStandardMaterial({ color: 0xf8fafc })
+            );
+            col.position.set(i, 1.1, 1.25);
+            groupEstado.add(col);
+        }
+        const roofEst = new THREE.Mesh(
+            new THREE.ConeGeometry(2.5, 1.2, 4),
+            new THREE.MeshStandardMaterial({ color: 0x041473 })
+        );
+        roofEst.position.y = 2.8;
+        roofEst.rotation.y = Math.PI / 4;
+        groupEstado.add(roofEst);
+
+        // 2. NODO EMPRESA PRIVADA FINANCISTA
+        const posEmpresa = new THREE.Vector3(-6.2, 0, 4.2);
+        const groupEmpresa = createBuildingGroup(posEmpresa.x, posEmpresa.z);
+
+        const empTower = new THREE.Mesh(
+            new THREE.BoxGeometry(2.4, 4.4, 2.4),
+            new THREE.MeshStandardMaterial({ color: 0x2563eb, metalness: 0.3, roughness: 0.2 })
+        );
+        empTower.position.y = 2.2;
+        empTower.castShadow = true;
+        groupEmpresa.add(empTower);
+
+        const empTop = new THREE.Mesh(
+            new THREE.BoxGeometry(1.6, 0.6, 1.6),
+            new THREE.MeshStandardMaterial({ color: 0x60a5fa })
+        );
+        empTop.position.y = 4.7;
+        groupEmpresa.add(empTop);
+
+        // 3. NODO OBRA PÚBLICA DISTRITAL
+        const posObra = new THREE.Vector3(6.2, 0, 4.2);
+        const groupObra = createBuildingGroup(posObra.x, posObra.z);
+
+        const obraMain = new THREE.Mesh(
+            new THREE.BoxGeometry(3.2, 2.0, 2.2),
+            new THREE.MeshStandardMaterial({ color: 0x10b981, roughness: 0.3 })
+        );
+        obraMain.position.y = 1.0;
+        obraMain.castShadow = true;
+        groupObra.add(obraMain);
+
+        const obraWing = new THREE.Mesh(
+            new THREE.BoxGeometry(1.8, 2.8, 2.2),
+            new THREE.MeshStandardMaterial({ color: 0x059669, roughness: 0.3 })
+        );
+        obraWing.position.set(0, 1.4, 0);
+        groupObra.add(obraWing);
+
+        const crossH = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.25, 0.1), new THREE.MeshBasicMaterial({ color: 0xffffff }));
+        const crossV = new THREE.Mesh(new THREE.BoxGeometry(0.25, 0.8, 0.1), new THREE.MeshBasicMaterial({ color: 0xffffff }));
+        crossH.position.set(0, 2.1, 1.15);
+        crossV.position.set(0, 2.1, 1.15);
+        groupObra.add(crossH, crossV);
+
+        // 4. NODO SUPERVISORA EPS
+        const posEPS = new THREE.Vector3(0, 0, 0.6);
+        const groupEPS = createBuildingGroup(posEPS.x, posEPS.z);
+        const epsMesh = new THREE.Mesh(
+            new THREE.CylinderGeometry(1.1, 1.3, 1.2, 6),
+            new THREE.MeshStandardMaterial({ color: 0xf59e0b, roughness: 0.3 })
+        );
+        epsMesh.position.y = 0.6;
+        groupEPS.add(epsMesh);
+
+        function createPathConnection(start, end, height, colorHex) {
+            const mid = new THREE.Vector3().addVectors(start, end).multiplyScalar(0.5);
+            mid.y += height;
+            const curve = new THREE.QuadraticBezierCurve3(
+                new THREE.Vector3(start.x, 1.5, start.z),
+                mid,
+                new THREE.Vector3(end.x, 1.5, end.z)
+            );
+            const tubeGeo = new THREE.TubeGeometry(curve, 32, 0.08, 8, false);
+            const tubeMat = new THREE.MeshBasicMaterial({ color: colorHex, transparent: true, opacity: 0.55 });
+            const tubeMesh = new THREE.Mesh(tubeGeo, tubeMat);
+            scene.add(tubeMesh);
+
+            const orbGeo = new THREE.SphereGeometry(0.32, 16, 16);
+            const orbMat = new THREE.MeshBasicMaterial({ color: colorHex });
+            const orbMesh = new THREE.Mesh(orbGeo, orbMat);
+            scene.add(orbMesh);
+
+            return { curve, tubeMesh, orbMesh };
+        }
+
+        const pathConvenio = createPathConnection(posEmpresa, posEstado, 3.8, 0x60a5fa);
+        const pathConstruccion = createPathConnection(posEmpresa, posObra, 4.2, 0x60a5fa);
+        const pathCIPRL = createPathConnection(posEstado, posEmpresa, 5.5, 0xfbbf24);
+
+        const stepInfos = [
+            {
+                badge: "MAPA DE ACTORES OXI",
+                title: "Articulación entre Sector Público y Privado",
+                desc: "En una Obra por Impuestos distrital intervienen <strong>tres agentes privados diferenciados</strong> (Empresa Financista, Empresa Ejecutora/Contratista y Entidad Privada Supervisora) articulados con la <strong>Municipalidad</strong>, <strong>ProInversión</strong>, la <strong>Contraloría (CGR)</strong>, el <strong>MEF (DGPPIP / DGTP)</strong> y <strong>SUNAT</strong>."
+            },
+            {
+                badge: "PASO 1 • PRIORIZACIÓN Y CONVENIO",
+                title: "1. Acuerdo de Concejo, Informe CGR y Convenio",
+                desc: "La Municipalidad Distrital prioriza el proyecto viable en Invierte.pe, solicita el Informe Previo a la <strong>Contraloría General de la República</strong> y, tras el concurso, suscribe el <strong>Convenio de Inversión</strong> con la Empresa Privada Financista."
+            },
+            {
+                badge: "PASO 2 • EJECUCIÓN Y SUPERVISIÓN EPS",
+                title: "2. Contratista construye y EPS certifica calidad",
+                desc: "La Empresa Privada financia el estudio definitivo y la obra a través de la <strong>Empresa Ejecutora (Contratista)</strong>. En paralelo, la <strong>Entidad Privada Supervisora (EPS)</strong> fiscaliza permanentemente el avance y emite la <em>Conformidad de Calidad</em>."
+            },
+            {
+                badge: "PASO 3 • RECEPCIÓN, SIAF Y CIPRL",
+                title: "3. El MEF emite el Certificado CIPRL",
+                desc: "Con la Conformidad de Calidad de la EPS, la Conformidad de Recepción de la Municipalidad y el registro en el <strong>SIAF-SP</strong>, la DGTP del <strong>MEF</strong> emite el <strong>CIPRL</strong> (en un plazo máximo legal) para que la empresa descuente su Impuesto a la Renta."
+            }
+        ];
+
+        function set3DStep(step) {
+            for (let i = 0; i <= 3; i++) {
+                const btn = document.getElementById(`btn-3d-${i}`);
+                btn.className = (i === step)
+                    ? "px-3 py-1.5 rounded-lg text-xs font-bold bg-[#0055FF] hover:bg-[#3B82F6] text-white transition"
+                    : "px-3 py-1.5 rounded-lg text-xs font-bold bg-white/10 hover:bg-white/20 text-white/85 transition";
+            }
+
+            document.getElementById('step-badge').innerHTML = stepInfos[step].badge;
+            document.getElementById('step-title').innerHTML = stepInfos[step].title;
+            document.getElementById('step-desc').innerHTML = stepInfos[step].desc;
+
+            pathConvenio.tubeMesh.material.opacity = (step === 0 || step === 1) ? 0.75 : 0.12;
+            pathConvenio.orbMesh.visible = (step === 0 || step === 1);
+
+            pathConstruccion.tubeMesh.material.opacity = (step === 0 || step === 2) ? 0.75 : 0.12;
+            pathConstruccion.orbMesh.visible = (step === 0 || step === 2);
+
+            pathCIPRL.tubeMesh.material.opacity = (step === 0 || step === 3) ? 0.75 : 0.12;
+            pathCIPRL.orbMesh.visible = (step === 0 || step === 3);
+        }
+
+        function resetCamera() {
+            camera.position.set(0, 14, 22);
+            controls.target.set(0, 0, 0);
+            controls.update();
+        }
+
+        const labelEstado = document.getElementById('label-estado');
+        const labelEmpresa = document.getElementById('label-empresa');
+        const labelObra = document.getElementById('label-obra');
+        const labelEPS = document.getElementById('label-eps');
+
+        function updateLabelPosition(element, worldPos, yOffset) {
+            const tempV = worldPos.clone();
+            tempV.y += yOffset;
+            tempV.project(camera);
+            const x = (tempV.x *  .5 + .5) * container.clientWidth;
+            const y = (tempV.y * -.5 + .5) * container.clientHeight;
+            element.style.left = `${x}px`;
+            element.style.top = `${y}px`;
+        }
+
+        let clock = new THREE.Clock();
+        function animate() {
+            requestAnimationFrame(animate);
+            const elapsed = clock.getElapsedTime();
+
+            pathConvenio.orbMesh.position.copy(pathConvenio.curve.getPointAt((elapsed * 0.35) % 1));
+            pathConstruccion.orbMesh.position.copy(pathConstruccion.curve.getPointAt((elapsed * 0.42) % 1));
+            pathCIPRL.orbMesh.position.copy(pathCIPRL.curve.getPointAt((elapsed * 0.30) % 1));
+
+            const scalePulse = 1 + Math.sin(elapsed * 3) * 0.03;
+            groupObra.scale.set(1, scalePulse, 1);
+
+            controls.update();
+            renderer.render(scene, camera);
+
+            updateLabelPosition(labelEstado, posEstado, 4.1);
+            updateLabelPosition(labelEmpresa, posEmpresa, 5.6);
+            updateLabelPosition(labelObra, posObra, 3.6);
+            updateLabelPosition(labelEPS, posEPS, 2.0);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        });
+
+        // ==========================================
+        // 0. BARRA DE PROGRESO DE LECTURA
+        // ==========================================
+        (function initReadingProgress() {
+            const bar = document.getElementById('reading-progress');
+            if (!bar) return;
+            const update = () => {
+                const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+                bar.style.width = `${pct}%`;
+            };
+            window.addEventListener('scroll', update, { passive: true });
+            update();
+        })();
+
+        // ==========================================
+        // 2. PESTAÑAS DE PROFUNDIZACIÓN OXI (ALCANCES / MODALIDADES / CUELLOS DE BOTELLA)
+        // ==========================================
+        function switchMechanism(tab) {
+            const tabs = ['alcances', 'modalidades', 'cuellos'];
+            tabs.forEach(t => {
+                const view = document.getElementById(`mec-view-${t}`);
+                const btn = document.getElementById(`btn-mec-${t}`);
+                if (t === tab) {
+                    view.classList.remove('hidden');
+                    btn.className = "px-4 py-2.5 rounded-xl text-xs font-bold bg-[#0055FF] hover:bg-[#041473] text-white border border-[#0055FF] shadow-md transition";
+                } else {
+                    view.classList.add('hidden');
+                    btn.className = "px-4 py-2.5 rounded-xl text-xs font-bold bg-[#F4F7FB] hover:bg-[#EFF6FF] text-[#334155] hover:text-[#041473] border border-[#CBD5E1] transition";
+                }
+            });
+        }
+
+        // ==========================================
+        // 3. INTERACTIVIDAD DE LAS 4 FASES OFICIALES DE OXI
+        // ==========================================
+        const phasesData = {
+            1: {
+                tag: "FASE 1 DE 4 • PRIORIZACIÓN MUNICIPAL",
+                title: "Fase 1: Priorización de Proyectos Viables",
+                desc: "La Municipalidad Distrital (por iniciativa propia o a propuesta de una empresa privada mediante Carta de Intención) identifica proyectos declarados viables en Invierte.pe que estén en armonía con su Plan de Desarrollo Local y su Programación Multianual de Inversiones (PMI). El Concejo Municipal aprueba la lista priorizada y designa al Comité Especial.",
+                illust: "📋🏛️🎯",
+                illustTitle: "Acuerdo de Concejo Municipal",
+                illustSub: "El municipio aprueba su Lista de Proyectos Priorizados y la remite a ProInversión para su publicación oficial.",
+                b1Title: "💡 Iniciativa Pública o Privada",
+                b1Text: "Las empresas privadas pueden proponer nuevos proyectos o actualizar estudios de preinversión, recuperando ese costo en el primer CIPRL.",
+                b2Title: "✅ Publicación en ProInversión",
+                b2Text: "La lista se envía a ProInversión para que la publique en su portal dentro de los 3 días de recibida y promueva el proyecto."
+            },
+            2: {
+                tag: "FASE 2 DE 4 • ACTOS PREVIOS Y CONTRALORÍA",
+                title: "Fase 2: Actos Previos e Informe Previo de la CGR",
+                desc: "El Comité Especial (integrado por 3 representantes de la Municipalidad o encargado a ProInversión) elabora las Bases del proceso y solicita el Informe Previo a la Contraloría General de la República (CGR), la cual verifica la capacidad financiera (tope CIPRL), la legalidad y el alineamiento del proyecto.",
+                illust: "🛡️📑🔍",
+                illustTitle: "Informe Previo de Contraloría",
+                illustSub: "Se levantan las observaciones técnicas, legales y presupuestales antes de lanzar el concurso.",
+                b1Title: "🏛️ Comité OxI Empoderado",
+                b1Text: "Como recomienda Salinas Rivas (2015), contar con un equipo interno dedicado reduce el armado de la solicitud de 85 a 18 días.",
+                b2Title: "🤝 Asistencia Gratuita de ProInversión",
+                b2Text: "La Dirección de Inversiones Descentralizadas de ProInversión asesora gratuitamente al municipio en la estructuración de las bases."
+            },
+            3: {
+                tag: "FASE 3 DE 4 • PROCESO DE SELECCIÓN",
+                title: "Fase 3: Concurso de la Empresa Privada y de la Supervisora (EPS)",
+                desc: "Se publica la convocatoria, las empresas presentan su Expresión de Interés, se absuelven consultas, se integran las bases y se evalúan las propuestas técnicas y económicas. Otorgada la Buena Pro, la Municipalidad y la Empresa Privada (o consorcio) suscriben el Convenio de Inversión.",
+                illust: "🤝🏆📝",
+                illustTitle: "Adjudicación y Firma de Convenio",
+                illustSub: "En simultáneo debe convocarse y contratarse a la Entidad Privada Supervisora (EPS).",
+                b1Title: "⚡ Adjudicación Directa",
+                b1Text: "De acuerdo con la Ley N° 29230 (modificada por Ley N° 30056), si se presenta un único postor con expresión de interés válida, se adjudica con plazos reducidos.",
+                b2Title: "🔍 Selección Simultánea de la EPS",
+                b2Text: "Para evitar retrasos en el inicio de obra, el concurso de la Entidad Privada Supervisora debe correr en paralelo al de la empresa financista."
+            },
+            4: {
+                tag: "FASE 4 DE 4 • EJECUCIÓN Y EMISIÓN DEL CIPRL",
+                title: "Fase 4: Ejecución de la Obra, Recepción y Emisión del CIPRL",
+                desc: "La empresa privada elabora o modifica el Expediente Técnico (Documento de Trabajo), su Contratista ejecuta la obra + equipamiento + capacitación (y mantenimiento hasta por 5 años si aplica). Con la Conformidad de Calidad de la EPS y la Conformidad de Recepción del Municipio, se registra en el SIAF-SP y el MEF emite el CIPRL.",
+                illust: "🏗️📜💰",
+                illustTitle: "Entrega de Obra y Certificado CIPRL",
+                illustSub: "En obras mayores a 5-6 meses, se entregan CIPRL parciales cada trimestre según el avance.",
+                b1Title: "🛡️ Silencio Positivo con Conformidad EPS",
+                b1Text: "Si la entidad pública demora injustificadamente la conformidad de recepción pero existe Conformidad de Calidad de la EPS, la recepción se tiene por otorgada.",
+                b2Title: "📈 Reajuste del 2% Anual",
+                b2Text: "El saldo del CIPRL no utilizado en el ejercicio fiscal genera un reconocimiento adicional del 2% anual no gravado con Impuesto a la Renta."
+            }
+        };
+
+        function selectPhase(num) {
+            for (let i = 1; i <= 4; i++) {
+                const btn = document.getElementById(`phase-btn-${i}`);
+                btn.classList.toggle('active', i === num);
+            }
+
+            const d = phasesData[num];
+            document.getElementById('phase-tag').innerText = d.tag;
+            document.getElementById('phase-title').innerText = d.title;
+            document.getElementById('phase-description').innerText = d.desc;
+            document.getElementById('phase-illustration').innerText = d.illust;
+            document.getElementById('phase-illust-title').innerText = d.illustTitle;
+            document.getElementById('phase-illust-sub').innerText = d.illustSub;
+
+            document.getElementById('phase-bullets').innerHTML = `
+                <div class="p-3.5 rounded-xl bg-[#F4F7FB] border border-[#E2E8F0]">
+                    <div class="text-xs font-extrabold text-[#0055FF] mb-1">${d.b1Title}</div>
+                    <div class="text-xs text-[#334155]">${d.b1Text}</div>
+                </div>
+                <div class="p-3.5 rounded-xl bg-[#F4F7FB] border border-[#E2E8F0]">
+                    <div class="text-xs font-extrabold text-emerald-700 mb-1">${d.b2Title}</div>
+                    <div class="text-xs text-[#334155]">${d.b2Text}</div>
+                </div>
+            `;
+        }
+
+        // ==========================================
+        // 4. SIMULADOR FINANCIERO CIPRL (50% vs 80%)
+        // ==========================================
+        let currentTaxLimitPct = 0.5;
+
+        function setTaxLimit(pct) {
+            currentTaxLimitPct = pct;
+            const btn50 = document.getElementById('btn-limit-50');
+            const btn80 = document.getElementById('btn-limit-80');
+            const labelPct = document.getElementById('val-tope-pct');
+
+            if (pct === 0.8) {
+                btn80.className = "py-2.5 px-3 rounded-xl text-xs font-bold bg-[#0055FF] text-white border border-[#0055FF] shadow-md transition";
+                btn50.className = "py-2.5 px-3 rounded-xl text-xs font-bold bg-white text-[#334155] border border-[#CBD5E1] hover:border-[#0055FF] hover:text-[#041473] transition";
+                labelPct.innerText = "Hasta 80% (Tope Ampliado)";
+            } else {
+                btn50.className = "py-2.5 px-3 rounded-xl text-xs font-bold bg-[#0055FF] text-white border border-[#0055FF] shadow-md transition";
+                btn80.className = "py-2.5 px-3 rounded-xl text-xs font-bold bg-white text-[#334155] border border-[#CBD5E1] hover:border-[#0055FF] hover:text-[#041473] transition";
+                labelPct.innerText = "50% del IR (Regla General)";
+            }
+            updateSimulator();
+        }
+
+        function formatSoles(millions) {
+            return "S/ " + Math.round(millions * 1000000).toLocaleString('es-PE');
+        }
+
+        function updateSimulator() {
+            const ir = parseFloat(document.getElementById('slider-ir').value);
+            const obra = parseFloat(document.getElementById('slider-obra').value);
+
+            const limiteAnual = ir * currentTaxLimitPct;
+            const usadoEsteAnio = Math.min(obra, limiteAnual);
+            const saldoFuturo = Math.max(0, obra - limiteAnual);
+
+            document.getElementById('val-ir').innerText = formatSoles(ir);
+            document.getElementById('val-obra').innerText = formatSoles(obra);
+            document.getElementById('res-limite').innerText = formatSoles(limiteAnual);
+            document.getElementById('res-usado').innerText = formatSoles(usadoEsteAnio);
+            document.getElementById('cert-monto').innerText = formatSoles(obra);
+
+            const saldoEl = document.getElementById('res-saldo');
+            if (saldoFuturo > 0) {
+                saldoEl.innerHTML = `<span class="text-[#041473] font-bold">Quedan ${formatSoles(saldoFuturo)} en CIPRL para el siguiente año (con +2% de reajuste).</span>`;
+            } else {
+                saldoEl.innerHTML = `<span class="text-emerald-800 font-semibold">¡Se recupera el 100% de la obra en el primer año fiscal!</span>`;
+            }
+
+            const pctObra = ((usadoEsteAnio / ir) * 100).toFixed(1);
+            const pctCash = (100 - pctObra).toFixed(1);
+
+            document.getElementById('pct-obra').innerText = `${pctObra}%`;
+            document.getElementById('pct-cash').innerText = `${pctCash}%`;
+            document.getElementById('bar-obra').style.width = `${pctObra}%`;
+            document.getElementById('bar-cash').style.width = `${pctCash}%`;
+        }
+
+        function copyBlogSnippet() {
+            const snippet = "🚀 Nuevo en el Blog: Obras por Impuestos (OxI) como alternativa estratégica de inversión para Municipalidades Distritales. Descubre cómo funciona el mecanismo paso a paso en 3D, qué componentes financia, cómo superar sus 6 cuellos de botella en regiones como Áncash y simula la emisión de certificados CIPRL.";
+            navigator.clipboard.writeText(snippet);
+            const btn = document.getElementById('btn-copy-blog');
+            btn.innerText = "✅ ¡Resumen Copiado!";
+            setTimeout(() => { btn.innerText = "📋 Copiar Resumen para Redes"; }, 2500);
+        }
+
+        // Inicializar simulador al cargar con el 50% estándar de las diapositivas
+        updateSimulator();
+    </script>
+</body>
+</html>

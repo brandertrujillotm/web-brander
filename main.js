@@ -85,6 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const trayectoriaPages = ['trayectoria.html', 'sobre-mi.html', 'formacion.html', 'publicaciones.html'];
   const blogPages = [
     'blog.html',
+    'organigrama-estado-peruano.html',
+    'obras-por-impuestos-oxi.html',
     'inteligencia-artificial.html',
     'innovacion-estrategia.html',
     'gestion-proyectos.html',
@@ -100,15 +102,44 @@ document.addEventListener('DOMContentLoaded', () => {
     const isDirectMatch = href === currentPath || (currentPath === '' && href === 'index.html');
 
     if (isDirectMatch || isTrayectoria || isBlog) {
-      link.classList.add('active');
-      link.classList.add('text-white');
-      link.classList.remove('text-slate-300', 'text-slate-400');
+      link.classList.add('active', 'text-white');
+      link.classList.remove('text-white/80', 'text-slate-300', 'text-slate-400');
     } else {
-      link.classList.remove('active');
-      link.classList.remove('text-white');
-      link.classList.add('text-slate-300');
+      link.classList.remove('active', 'text-white');
+      link.classList.add('text-white/80');
     }
   });
+
+  // 4b. Estado visual del Navbar y barra fija de redes al hacer scroll + sincronización de altura
+  const siteHeader = document.querySelector('header.site-header');
+  const socialTopBar = document.querySelector('.social-top-bar');
+
+  const syncStickyOffsets = () => {
+    if (siteHeader && siteHeader.firstElementChild) {
+      const navHeight = Math.round(siteHeader.firstElementChild.getBoundingClientRect().height + 1);
+      document.documentElement.style.setProperty('--navbar-height', `${navHeight}px`);
+    }
+    if (socialTopBar) {
+      const socialHeight = Math.round(socialTopBar.getBoundingClientRect().height);
+      document.documentElement.style.setProperty('--social-bar-height', `${socialHeight}px`);
+    }
+  };
+
+  syncStickyOffsets();
+  window.addEventListener('resize', syncStickyOffsets, { passive: true });
+  window.addEventListener('load', syncStickyOffsets);
+
+  if (siteHeader) {
+    const handleHeaderScroll = () => {
+      const scrolled = window.scrollY > 18;
+      siteHeader.classList.toggle('is-scrolled', scrolled);
+      if (socialTopBar) {
+        socialTopBar.classList.toggle('is-scrolled', scrolled);
+      }
+    };
+    handleHeaderScroll();
+    window.addEventListener('scroll', handleHeaderScroll, { passive: true });
+  }
 
   // 5. Animaciones de entrada al hacer scroll (Intersection Observer)
   const reveals = document.querySelectorAll('.reveal');
@@ -122,8 +153,8 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
       }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -40px 0px'
+        threshold: 0.08,
+        rootMargin: '0px 0px -30px 0px'
       });
 
       reveals.forEach(el => revealObserver.observe(el));
@@ -132,24 +163,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 6. Efecto de inclinación sutil (tilt 3D) en tarjetas de escritorio
-  if (window.matchMedia('(min-width: 1024px)').matches) {
-    const interactiveCards = document.querySelectorAll('.card-glass, .card-interactive');
+  // 6. Efecto de inclinación sutil (tilt 3D) en tarjetas interactivas de escritorio
+  if (window.matchMedia('(min-width: 1024px)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const interactiveCards = document.querySelectorAll('.card-interactive');
     interactiveCards.forEach(card => {
+      if (card.querySelector('form')) return;
+
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -3.5;
-        const rotateY = ((x - centerX) / centerX) * 3.5;
+        const rotateX = ((y - centerY) / centerY) * -2.8;
+        const rotateY = ((x - centerX) / centerX) * 2.8;
 
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
       });
 
       card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+        card.style.transform = '';
       });
     });
   }
